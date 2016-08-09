@@ -4,7 +4,7 @@
     <groupId>org.eurekaclinical</groupId>    
     <artifactId>user-services</artifactId>
     <packaging>war</packaging>
-    <version>1-Alpha-13</version>
+    <version>1-Alpha-16</version>
     <name>Eureka! Clinical User Services</name>
     <description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
         web interface that is used by Eureka! Clinical multiple projects
@@ -142,7 +142,7 @@
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>user-common</artifactId>
-                <version>1-Alpha-11</version>
+                <version>1-Alpha-14</version>
         </dependency>       
         <dependency>
                 <groupId>org.jasig.cas.client</groupId>

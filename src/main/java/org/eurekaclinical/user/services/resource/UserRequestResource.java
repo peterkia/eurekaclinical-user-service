@@ -148,7 +148,7 @@ public class UserRequestResource {
 	 * Mark a local user as verified.
 	 *
 	 * @param code The verification code to match against local users.
-	  
+	 */  
 	@Path("/verify/{code}")
 	@PUT
 	public void verifyUser(@PathParam("code") final String code) {
@@ -159,6 +159,6 @@ public class UserRequestResource {
 		} else {
 			throw new HttpStatusException(Response.Status.NOT_FOUND);
 		}
-	}*/
+	}
 
 }
