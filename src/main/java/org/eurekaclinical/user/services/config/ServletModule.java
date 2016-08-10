@@ -19,8 +19,10 @@
  */
 package org.eurekaclinical.user.services.config;
 
+import com.google.inject.Singleton;
 import java.util.Map;
 import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
+import org.jasig.cas.client.session.SingleSignOutFilter;
 
 /**
  * Configure web related items for Guice and Jersey.
@@ -44,5 +46,17 @@ public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPer
 		params.put("proxyReceptorUrl", getCasProxyCallbackPath());
 		return params;
 	}
+        
+ @Override
+    protected final void configureServlets() {
+        
+         bind(SingleSignOutFilter.class).in(Singleton.class);
+            filter("/*").through(SingleSignOutFilter.class);
+        
+super.configureServlets();
+        
+        
+       
+    }
     
 }
