@@ -47,16 +47,13 @@ public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPer
 		return params;
 	}
         
- @Override
-    protected final void configureServlets() {
+	@Override
+	protected final void configureServlets() {
         
-         bind(SingleSignOutFilter.class).in(Singleton.class);
-            filter("/*").through(SingleSignOutFilter.class);
+		bind(SingleSignOutFilter.class).in(Singleton.class);
+		filter("/*").through(SingleSignOutFilter.class);
         
-super.configureServlets();
-        
-        
-       
-    }
+		super.configureServlets(); 
+	}
     
 }

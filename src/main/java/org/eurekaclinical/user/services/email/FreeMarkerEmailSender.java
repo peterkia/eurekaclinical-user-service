@@ -74,7 +74,7 @@ public class FreeMarkerEmailSender implements EmailSender {
 	 * Default constructor, creates a FreeMarker configuration object. Should be
 	 * called in the context of a request.
 	 *
-	 * @param inUserServiceProperties
+	 * @param inUserServiceProperties in userServiceProperties
 	 * @param inSession The mail session to use when sending a message.
 	 */
 	@Inject
@@ -93,7 +93,7 @@ public class FreeMarkerEmailSender implements EmailSender {
 	 * Sends a verification email.
 	 *
 	 * @param inUser The user to verify.
-	 * @throws EmailException
+	 * @throws EmailException Email exceptions
 	 */
 	@Override
 	public void sendVerificationMessage(final UserEntity inUser)
