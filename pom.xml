@@ -4,7 +4,7 @@
     <groupId>org.eurekaclinical</groupId>    
     <artifactId>user-services</artifactId>
     <packaging>war</packaging>
-    <version>1.0-Alpha-1</version>
+    <version>1.0-Alpha-2</version>
     <name>Eureka! Clinical User Services</name>
     <description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
         web interface that is used by Eureka! Clinical multiple projects
@@ -138,12 +138,22 @@
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>eureka-client</artifactId>
                 <version>1.0-Alpha-1</version>
-        </dependency>          
+        </dependency> 
+		<dependency>
+			<groupId>com.sun.jersey.jersey-test-framework</groupId>
+			<artifactId>jersey-test-framework-grizzly2</artifactId>
+		</dependency>                 
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>user-common</artifactId>
-                <version>1.0-Alpha-1</version>
-        </dependency>       
+                <version>1.0-Alpha-2</version>
+        </dependency>    
+        <dependency>
+                <groupId>org.eurekaclinical</groupId>
+                <artifactId>user-common</artifactId>
+                <version>1.0-Alpha-2</version>                
+                <type>test-jar</type>
+        </dependency>           
         <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-core</artifactId>
@@ -157,94 +167,94 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-guice</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-servlet</artifactId>
-		</dependency>        
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-persist</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.transaction</groupId>
-			<artifactId>jta</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>jsr250-api</artifactId>
-		</dependency>     
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.1-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-jdk14</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-                        <version>2.2.7</version>
-		</dependency>            
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.freemarker</groupId>
-			<artifactId>freemarker</artifactId>
-                        <version>2.3.23</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-jndi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<type>pom</type>
-                        <version>2.6.0</version>
-		</dependency>          
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-                <dependency>
-                        <groupId>org.eurekaclinical</groupId>
-                        <artifactId>javautil</artifactId>
-                        <version>3.0-Alpha-7</version>
-                        <type>jar</type>
-                </dependency>                
+        <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-server</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-json</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.sun.jersey</groupId>
+                <artifactId>jersey-client</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.sun.jersey.contribs</groupId>
+                <artifactId>jersey-guice</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-servlet</artifactId>
+        </dependency>        
+        <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-persist</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>javax.transaction</groupId>
+                <artifactId>jta</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>jsr250-api</artifactId>
+        </dependency>     
+        <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <scope>provided</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>2.2.7</version>
+        </dependency>            
+        <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <scope>provided</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.23</version>
+        </dependency>
+        <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-jndi</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache</artifactId>
+                <type>pom</type>
+                <version>2.6.0</version>
+        </dependency>          
+        <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+                <groupId>org.eurekaclinical</groupId>
+                <artifactId>javautil</artifactId>
+                <version>3.0-Alpha-7</version>
+                <type>jar</type>
+        </dependency>                
     </dependencies>
 
 </project>

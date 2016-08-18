@@ -37,6 +37,11 @@ This project includes:
   Google Guice - Extensions - JNDI under The Apache Software License, Version 2.0
   Google Guice - Extensions - Persist under The Apache Software License, Version 2.0
   Google Guice - Extensions - Servlet under The Apache Software License, Version 2.0
+  grizzly-framework under CDDL+GPL
+  grizzly-http under CDDL+GPL
+  grizzly-http-server under CDDL+GPL
+  grizzly-http-servlet under CDDL+GPL
+  grizzly-rcm under CDDL+GPL
   H2 Database Engine under MPL 2.0, and EPL 1.0
   Hamcrest Core under New BSD License
   Hibernate Commons Annotations under GNU Lesser General Public License
@@ -57,13 +62,18 @@ This project includes:
   Javassist under MPL 1.1 or LGPL 2.1 or Apache License 2.0
   JavaUtil under Apache License, Version 2.0
   javax.inject under The Apache Software License, Version 2.0
+  javax.servlet API v.3.0 under CDDL + GPLv2 with classpath exception
   JAX-RS provider for JSON content type under The Apache Software License, Version 2.0 or GNU Lesser General Public License (LGPL), Version 2.1
   JAXB CORE under CDDL 1.1 or GPL2 w/ CPE
   JAXB Reference Implementation under CDDL 1.1 or GPL2 w/ CPE
   JBoss Logging 3 under Apache License, version 2.0
   Jersey Apache HTTP Client 4.x under CDDL 1.1 or GPL2 w/ CPE
+  Jersey Test Framework - Core under CDDL 1.1 or GPL2 w/ CPE
+  Jersey Test Framework - Grizzly 2 Module under CDDL 1.1 or GPL2 w/ CPE
   jersey-client under CDDL 1.1 or GPL2 w/ CPE
   jersey-core under CDDL 1.1 or GPL2 w/ CPE
+  jersey-grizzly2 under CDDL 1.1 or GPL2 w/ CPE
+  jersey-grizzly2-servlet under CDDL 1.1 or GPL2 w/ CPE
   jersey-guice under CDDL 1.1 or GPL2 w/ CPE
   jersey-json under CDDL 1.1 or GPL2 w/ CPE
   jersey-multipart under CDDL 1.1 or GPL2 w/ CPE
