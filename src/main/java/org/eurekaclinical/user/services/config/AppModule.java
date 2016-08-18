@@ -33,8 +33,6 @@ import org.eurekaclinical.common.comm.clients.cassupport.CasWebResourceWrapperFa
 import org.eurekaclinical.standardapis.dao.UserDao;
 import org.eurekaclinical.standardapis.entity.RoleEntity;
 import org.eurekaclinical.standardapis.entity.UserEntity;
-import org.eurekaclinical.user.services.clients.I2b2Client;
-import org.eurekaclinical.user.services.clients.I2b2RestClient;
 import org.eurekaclinical.user.services.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.services.dao.JpaAuthenticationMethodDao;
 import org.eurekaclinical.user.services.dao.JpaLocalUserDao;
@@ -60,8 +58,7 @@ public class AppModule extends AbstractModule {
 	}
 
 	@Override
-	protected void configure() {
-		bind(I2b2Client.class).to(I2b2RestClient.class);        
+	protected void configure() {      
 		bind(new TypeLiteral<UserDao<? extends UserEntity<? extends RoleEntity>>>() {}).to(JpaUserDao.class);
 		bind(org.eurekaclinical.user.services.dao.UserDao.class).to(JpaUserDao.class);
 		bind(LocalUserDao.class).to(JpaLocalUserDao.class);
@@ -75,8 +72,7 @@ public class AppModule extends AbstractModule {
 		bind(Context.class).to(InitialContext.class);
 		bind(Session.class).toProvider(
 				JndiIntegration.fromJndi(Session.class,
-						"java:comp/env/mail/Session"));                
-		//bind(PasswordGenerator.class).to(PasswordGeneratorImpl.class);    no need? 
+						"java:comp/env/mail/Session"));     
 
 		bind(WebResourceWrapperFactory.class).to(CasWebResourceWrapperFactory.class);
         }

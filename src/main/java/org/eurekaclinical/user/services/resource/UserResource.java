@@ -50,7 +50,6 @@ import org.eurekaclinical.user.common.entity.UserEntity;
 import org.eurekaclinical.user.common.entity.UserEntityToUserVisitor;
 import org.eurekaclinical.user.common.util.StringUtil;
 import org.eurekaclinical.user.services.authentication.ServicesAuthenticationSupport;
-import org.eurekaclinical.user.services.clients.I2b2Client;
 import org.eurekaclinical.user.services.config.UserServiceProperties;
 import org.eurekaclinical.user.services.dao.*;
 import org.eurekaclinical.user.services.email.EmailException;
@@ -92,10 +91,6 @@ public class UserResource {
 	 */
 	private final EmailSender emailSender;
 	/**
-	 * An i2b2 client to change the password remotely.
-	 */
-	private final I2b2Client i2b2Client;
-	/**
 	 * And validation errors that we may have encountered while validating a new
 	 * user request, or a user update.
 	 */
@@ -112,16 +107,15 @@ public class UserResource {
 	 * @param inLocalUserDao Local user dao
 	 * @param inRoleDao DAO used to access {@link RoleEntity} related functionality.
 	 * @param inEmailSender Used to send emails to the user when necessary.
-	 * @param inClient Client
 	 * @param inOAuthProviderDao OAuth provider dao
 	 * @param inLoginTypeDao Login type dao
 	 * @param inAuthenticationMethodDao Authentication method dao
-	 * @param inProperties
+	 * @param inProperties in properties
 	 */
 	@Inject
 	public UserResource(UserDao inUserDao, LocalUserDao inLocalUserDao,
 			RoleDao inRoleDao,
-			EmailSender inEmailSender, I2b2Client inClient,
+			EmailSender inEmailSender, 
 			OAuthProviderDao inOAuthProviderDao,
 			LoginTypeDao inLoginTypeDao,
 			AuthenticationMethodDao inAuthenticationMethodDao,
@@ -130,7 +124,6 @@ public class UserResource {
 		this.localUserDao = inLocalUserDao;
 		this.roleDao = inRoleDao;
 		this.emailSender = inEmailSender;
-		this.i2b2Client = inClient;
 		this.visitor = new UserToUserEntityVisitor(inOAuthProviderDao,
 				inRoleDao, inLoginTypeDao, inAuthenticationMethodDao);
 		this.authenticationSupport = new ServicesAuthenticationSupport();
