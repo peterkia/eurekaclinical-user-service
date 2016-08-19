@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package org.eurekaclinical.user.services.dao;
-
-/*
+/*-
  * #%L
- * Eureka Services
+ * Eureka! Clinical User Services
  * %%
- * Copyright (C) 2012 - 2014 Emory University
+ * Copyright (C) 2016 Emory University
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +17,7 @@ package org.eurekaclinical.user.services.dao;
  * limitations under the License.
  * #L%
  */
+package org.eurekaclinical.user.services.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
