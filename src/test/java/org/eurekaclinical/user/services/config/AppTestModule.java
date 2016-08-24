@@ -50,7 +50,7 @@ public class AppTestModule extends AbstractModule {
 	@Override
 	protected void configure() {
 
-		install(new JpaPersistModule("user-services-jpa-unit"));
+		install(new JpaPersistModule("eurekaclinical-user-service-jpa-unit"));
 
 		bind(UserDao.class).to(JpaUserDao.class);
 		bind(org.eurekaclinical.standardapis.dao.UserDao.class).to(JpaUserDao.class);

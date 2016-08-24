@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.eurekaclinical</groupId>    
-    <artifactId>user-services</artifactId>
+    <artifactId>eurekaclinical-user-service</artifactId>
     <packaging>war</packaging>
     <version>1.0-Alpha-2</version>
-    <name>Eureka! Clinical User Services</name>
+    <name>Eureka! Clinical User Service</name>
     <description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
         web interface that is used by Eureka! Clinical multiple projects
     </description>    
@@ -18,7 +18,7 @@
     </parent>        
 
  
-    <url>https://github.com/eurekaclinical/user-services</url>
+    <url>https://github.com/eurekaclinical/user-service</url>
     
     <properties>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
@@ -26,19 +26,19 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/eurekaclinical/user-services.git</connection>
-        <developerConnection>scm:git:https://github.com/eurekaclinical/user-services.git</developerConnection>
-        <url>https://github.com/eurekaclinical/user-services.git</url>
+        <connection>scm:git:https://github.com/eurekaclinical/user-service.git</connection>
+        <developerConnection>scm:git:https://github.com/eurekaclinical/user-service.git</developerConnection>
+        <url>https://github.com/eurekaclinical/user-service.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/eurekaclinical/user-services/issues</url>
+        <url>https://github.com/eurekaclinical/user-service/issues</url>
     </issueManagement>
     
     <build>
-            <finalName>user-services</finalName>
+            <finalName>eurekaclinical-user-service</finalName>
             <plugins>
                     <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
@@ -104,7 +104,7 @@
                                                             </property>
                                                     </expressionVars>
                                                     <changeLogFile>${project.build.directory}/classes/dbmigration/changelog-master.xml</changeLogFile>
-                                                    <url>jdbc:h2:file:${project.build.directory}/user-services-db/user-services</url>
+                                                    <url>jdbc:h2:file:${project.build.directory}/eurekaclinical-user-service-db/eurekaclinical-user-service</url>
                                             </configuration>
                                     </execution>
                             </executions>
@@ -145,12 +145,12 @@
 		</dependency>                 
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
-                <artifactId>user-common</artifactId>
+                <artifactId>eurekaclinical-user-common</artifactId>
                 <version>1.0-Alpha-2</version>
         </dependency>    
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
-                <artifactId>user-common</artifactId>
+                <artifactId>eurekaclinical-user-common</artifactId>
                 <version>1.0-Alpha-2</version>                
                 <type>test-jar</type>
         </dependency>           

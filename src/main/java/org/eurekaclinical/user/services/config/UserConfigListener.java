@@ -35,7 +35,7 @@ import org.eurekaclinical.common.config.InjectorSupport;
  * @author miaoai
  */
 public class UserConfigListener extends GuiceServletContextListener {
-	private static final String JPA_UNIT = "user-services-jpa-unit";
+	private static final String JPA_UNIT = "eurekaclinical-user-service-jpa-unit";
 	private final UserServiceProperties userServiceProperties = new UserServiceProperties();
 
 	@Override

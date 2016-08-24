@@ -31,16 +31,8 @@ public class UserServiceProperties extends AbstractProperties {
 
 	@Override
 	public String getProxyCallbackServer() {
-		return this.getValue("user.services.callbackserver");
+		return this.getValue("user.service.callbackserver");
 	}
-	/**
-	 * Gets the i2b2 rest URL from application.properties.
-	 *
-	 * @return URL.
-	 */
-	public String getI2b2URL() {
-		return this.getValue("user.services.i2b2.url");
-	}   
 	/**
 	 * Get the verification base URL, to be used in sending a verification email
 	 * to the user.
@@ -59,7 +51,7 @@ public class UserServiceProperties extends AbstractProperties {
 	 */
 	public String getVerificationEmailSubject() {
 		return this.getValue(
-				"user.services.email.verify.subject");
+				"user.service.email.verify.subject");
 	}
 	/**
 	 * Get the activation email subject line.
@@ -68,7 +60,7 @@ public class UserServiceProperties extends AbstractProperties {
 	 */
 	public String getActivationEmailSubject() {
 		return this.getValue(
-				"user.services.email.activation.subject");
+				"user.service.email.activation.subject");
 	}
 	/**
 	 * Get the password change email subject line.
@@ -77,7 +69,7 @@ public class UserServiceProperties extends AbstractProperties {
 	 */
 	public String getPasswordChangeEmailSubject() {
 		return this.getValue(
-				"user.services.email.password.subject");
+				"user.service.email.password.subject");
 	}
 	/**
 	 * Gets the subject line for a password reset email.
@@ -85,7 +77,7 @@ public class UserServiceProperties extends AbstractProperties {
 	 * @return The subject line.
 	 */
 	public String getPasswordResetEmailSubject() {
-		return this.getValue("user.services.email.reset.subject");
+		return this.getValue("user.service.email.reset.subject");
 	}
 	/**
 	 * Get email address in the From header.
@@ -93,6 +85,6 @@ public class UserServiceProperties extends AbstractProperties {
 	 * @return an email address.
 	 */
 	public String getFromEmailAddress() {
-		return this.getValue("user.services.email.from");
+		return this.getValue("user.service.email.from");
 	}        
 }
