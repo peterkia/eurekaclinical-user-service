@@ -24,14 +24,14 @@ import javax.persistence.EntityManager;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-import org.eurekaclinical.user.common.entity.UserEntity;
 import org.eurekaclinical.standardapis.dao.AbstractJpaUserDao;
 
+import org.eurekaclinical.user.common.entity.UserEntity;
 /**
  * An implementation of the {@link UserDao} interface, backed by JPA entities
  * and queries.
  *
- * @author hrathod
+ * @author miaoai
  */
 public class JpaUserDao extends AbstractJpaUserDao<UserEntity> implements UserDao {
 

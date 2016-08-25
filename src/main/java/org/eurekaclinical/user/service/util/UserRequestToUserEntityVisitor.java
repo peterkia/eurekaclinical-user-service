@@ -19,33 +19,38 @@
  */
 package org.eurekaclinical.user.service.util;
 
-import org.eurekaclinical.eureka.client.comm.LdapUserRequest;
-import org.eurekaclinical.eureka.client.comm.LocalUserRequest;
-import org.eurekaclinical.eureka.client.comm.OAuthUserRequest;
-import org.eurekaclinical.eureka.client.comm.UserRequest;
-import org.eurekaclinical.eureka.client.comm.UserRequestVisitor;
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
-import org.eurekaclinical.user.common.entity.OAuthUserEntity;
-import org.eurekaclinical.user.common.entity.RoleEntity;
-import org.eurekaclinical.user.common.entity.UserEntity;
-import org.eurekaclinical.user.common.util.StringUtil;
-import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
-import org.eurekaclinical.user.service.dao.LoginTypeDao;
-import org.eurekaclinical.user.service.dao.OAuthProviderDao;
-import org.eurekaclinical.user.service.dao.RoleDao;
-import org.eurekaclinical.user.service.entity.UserEntityFactory;
 import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
 import javax.ws.rs.core.Response;
+
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 
+import org.eurekaclinical.user.client.comm.LdapUserRequest;
+import org.eurekaclinical.user.client.comm.LocalUserRequest;
+import org.eurekaclinical.user.client.comm.OAuthUserRequest;
+import org.eurekaclinical.user.client.comm.UserRequest;
+import org.eurekaclinical.user.client.comm.UserRequestVisitor;
+
+import org.eurekaclinical.user.common.entity.LocalUserEntity;
+import org.eurekaclinical.user.common.entity.OAuthUserEntity;
+import org.eurekaclinical.user.common.entity.RoleEntity;
+import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.common.util.StringUtil;
+
+import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
+import org.eurekaclinical.user.service.dao.LoginTypeDao;
+import org.eurekaclinical.user.service.dao.OAuthProviderDao;
+import org.eurekaclinical.user.service.dao.RoleDao;
+import org.eurekaclinical.user.service.entity.UserEntityFactory;
 /**
  *
- * @author Andrew Post
+ * @author miaoai
  */
 public class UserRequestToUserEntityVisitor implements UserRequestVisitor {
 	private UserEntity userEntity;

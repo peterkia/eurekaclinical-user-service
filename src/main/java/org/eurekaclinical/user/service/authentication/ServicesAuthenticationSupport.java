@@ -20,7 +20,6 @@
 package org.eurekaclinical.user.service.authentication;
 
 import org.eurekaclinical.user.common.authentication.AbstractUserSupport;
-
 /**
  *
  * @author miaoai

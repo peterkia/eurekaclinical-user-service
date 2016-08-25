@@ -21,14 +21,16 @@ package org.eurekaclinical.user.service.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import org.eurekaclinical.user.common.entity.OAuthProvider;
-import org.eurekaclinical.user.common.entity.OAuthProvider_;
+
 import javax.persistence.EntityManager;
+
 import org.eurekaclinical.standardapis.dao.GenericDao;
 
+import org.eurekaclinical.user.common.entity.OAuthProvider;
+import org.eurekaclinical.user.common.entity.OAuthProvider_;
 /**
  *
- * @author Andrew Post
+ * @author miaoai
  */
 public class JpaOAuthProviderDao extends GenericDao<OAuthProvider, Long> implements OAuthProviderDao{
 

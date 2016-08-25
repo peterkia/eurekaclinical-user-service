@@ -21,17 +21,16 @@ package org.eurekaclinical.user.service.dao;
 
 import javax.persistence.EntityManager;
 
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 import org.eurekaclinical.user.common.entity.RoleEntity;
-import org.eurekaclinical.standardapis.dao.AbstractJpaRoleDao;
 
+import org.eurekaclinical.standardapis.dao.AbstractJpaRoleDao;
 /**
  * A {@link RoleDao} implementation, backed by JPA entities and queries.
  *
- * @author hrathod
+ * @author miaoai
  *
  */
 public class JpaRoleDao extends AbstractJpaRoleDao<RoleEntity> implements RoleDao {

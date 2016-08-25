@@ -20,10 +20,11 @@
 package org.eurekaclinical.user.service.config;
 
 import com.google.inject.Singleton;
+
 import java.util.Map;
-import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 
+import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
 /**
  * Configure web related items for Guice and Jersey.
  * 

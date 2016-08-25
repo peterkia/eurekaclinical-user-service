@@ -21,22 +21,27 @@ package org.eurekaclinical.user.service.resource;
 
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
-import org.eurekaclinical.eureka.client.comm.LoginType;
-import org.eurekaclinical.user.common.entity.LoginTypeEntity;
-import org.eurekaclinical.user.service.dao.LoginTypeDao;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
+
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 
+import org.eurekaclinical.user.client.comm.LoginType;
+
+import org.eurekaclinical.user.common.entity.LoginTypeEntity;
+
+import org.eurekaclinical.user.service.dao.LoginTypeDao;
 /**
  *
- * @author Andrew Post
+ * @author miaoai
  */
 @Transactional
 @Path("/protected/logintypes")
@@ -75,7 +80,7 @@ public class LoginTypeResource {
 	@GET
 	@Path("/byname/{name}")
 	public LoginType getByName(@PathParam("name") String inName) {
-		LoginTypeEntity loginTypeEntity = this.loginTypeDao.getByName(org.eurekaclinical.eureka.client.comm.authentication.LoginType.valueOf(inName));
+		LoginTypeEntity loginTypeEntity = this.loginTypeDao.getByName(org.eurekaclinical.user.client.comm.authentication.LoginType.valueOf(inName));
 		if (loginTypeEntity == null) {
 			throw new HttpStatusException(Status.NOT_FOUND);
 		}

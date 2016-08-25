@@ -19,23 +19,25 @@
  */
 package org.eurekaclinical.user.service.util;
 
-import org.eurekaclinical.eureka.client.comm.LdapUser;
-import org.eurekaclinical.eureka.client.comm.LocalUser;
-import org.eurekaclinical.eureka.client.comm.OAuthUser;
-import org.eurekaclinical.eureka.client.comm.User;
-import org.eurekaclinical.eureka.client.comm.UserVisitor;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eurekaclinical.user.client.comm.LdapUser;
+import org.eurekaclinical.user.client.comm.LocalUser;
+import org.eurekaclinical.user.client.comm.OAuthUser;
+import org.eurekaclinical.user.client.comm.User;
+import org.eurekaclinical.user.client.comm.UserVisitor;
+
 import org.eurekaclinical.user.common.entity.LocalUserEntity;
 import org.eurekaclinical.user.common.entity.OAuthUserEntity;
 import org.eurekaclinical.user.common.entity.RoleEntity;
 import org.eurekaclinical.user.common.entity.UserEntity;
+
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
 import org.eurekaclinical.user.service.dao.OAuthProviderDao;
 import org.eurekaclinical.user.service.dao.RoleDao;
 import org.eurekaclinical.user.service.entity.UserEntityFactory;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author miaoai

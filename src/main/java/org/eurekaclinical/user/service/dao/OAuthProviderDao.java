@@ -19,9 +19,9 @@
  */
 package org.eurekaclinical.user.service.dao;
 
-import org.eurekaclinical.user.common.entity.OAuthProvider;
 import org.eurekaclinical.standardapis.dao.Dao;
 
+import org.eurekaclinical.user.common.entity.OAuthProvider;
 /**
  * @author miaoai
  */

@@ -20,7 +20,6 @@
 package org.eurekaclinical.user.service.dao;
 
 import org.eurekaclinical.user.common.entity.RoleEntity;
-
 /**
  * A data access object interface for working with {@link RoleEntity} objects in the
  * data store.

@@ -35,7 +35,7 @@ import org.eurekaclinical.user.common.test.TestDataProvider;
 import org.eurekaclinical.user.service.config.AppTestModule;
 import org.eurekaclinical.user.service.config.ContextTestListener;
 import org.eurekaclinical.user.service.test.Setup;
-import org.eurekaclinical.eureka.client.comm.User;
+import org.eurekaclinical.user.client.comm.User;
 
 /**
  * @author hrathod

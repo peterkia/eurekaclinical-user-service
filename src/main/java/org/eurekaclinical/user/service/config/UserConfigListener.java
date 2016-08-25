@@ -23,9 +23,10 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceServletContextListener;
-import javax.servlet.ServletContextEvent;
-import org.eurekaclinical.common.config.InjectorSupport;
 
+import javax.servlet.ServletContextEvent;
+
+import org.eurekaclinical.common.config.InjectorSupport;
 /**
  * Set up the Guice dependency injection engine. Uses three modules:
  * {@link ServletModule} for web related configuration, {@link AppModule}

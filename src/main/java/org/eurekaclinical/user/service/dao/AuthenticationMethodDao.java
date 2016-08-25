@@ -19,10 +19,11 @@
  */
 package org.eurekaclinical.user.service.dao;
 
-import org.eurekaclinical.eureka.client.comm.authentication.AuthenticationMethod;
-import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
 import org.eurekaclinical.standardapis.dao.Dao;
 
+import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
+
+import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
 /**
  * @author miaoai
  */

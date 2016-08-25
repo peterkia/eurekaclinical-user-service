@@ -23,16 +23,17 @@ import com.google.inject.AbstractModule;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-
 import com.google.inject.TypeLiteral;
 import com.google.inject.jndi.JndiIntegration;
 import javax.mail.Session;
-import org.eurekaclinical.common.comm.clients.WebResourceWrapperFactory;
-import org.eurekaclinical.common.comm.clients.cassupport.CasWebResourceWrapperFactory;
 
 import org.eurekaclinical.standardapis.dao.UserDao;
 import org.eurekaclinical.standardapis.entity.RoleEntity;
 import org.eurekaclinical.standardapis.entity.UserEntity;
+
+import org.eurekaclinical.common.comm.clients.WebResourceWrapperFactory;
+import org.eurekaclinical.common.comm.clients.cassupport.CasWebResourceWrapperFactory;
+
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.JpaAuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.JpaLocalUserDao;
@@ -44,9 +45,9 @@ import org.eurekaclinical.user.service.dao.LocalUserDao;
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
 import org.eurekaclinical.user.service.dao.OAuthProviderDao;
 import org.eurekaclinical.user.service.dao.RoleDao;
+
 import org.eurekaclinical.user.service.email.EmailSender;
 import org.eurekaclinical.user.service.email.FreeMarkerEmailSender;
-
 /**
  * Configure all the non-web related binding for Guice.
  * 

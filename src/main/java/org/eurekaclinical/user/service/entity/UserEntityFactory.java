@@ -19,16 +19,17 @@
  */
 package org.eurekaclinical.user.service.entity;
 
-import org.eurekaclinical.eureka.client.comm.authentication.AuthenticationMethod;
-import org.eurekaclinical.eureka.client.comm.authentication.LoginType;
+import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
+import org.eurekaclinical.user.client.comm.authentication.LoginType;
+
 import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
 import org.eurekaclinical.user.common.entity.LdapUserEntity;
 import org.eurekaclinical.user.common.entity.LocalUserEntity;
 import org.eurekaclinical.user.common.entity.LoginTypeEntity;
 import org.eurekaclinical.user.common.entity.OAuthUserEntity;
+
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
-
 /**
  *
  * @author miaoai

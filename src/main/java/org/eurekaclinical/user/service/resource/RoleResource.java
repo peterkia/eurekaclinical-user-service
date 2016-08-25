@@ -20,18 +20,19 @@
 package org.eurekaclinical.user.service.resource;
 
 import javax.ws.rs.Path;
+import javax.inject.Inject;
 import com.google.inject.persist.Transactional;
 
-import org.eurekaclinical.user.common.entity.RoleEntity;
-import org.eurekaclinical.user.service.dao.RoleDao;
-import javax.inject.Inject;
 import org.eurekaclinical.common.comm.Role;
 import org.eurekaclinical.common.resource.AbstractRoleResource;
 
+import org.eurekaclinical.user.common.entity.RoleEntity;
+
+import org.eurekaclinical.user.service.dao.RoleDao;
 /**
  * A RESTful end-point for working with {@link RoleEntity} objects.
  *
- * @author hrathod
+ * @author miaoai
  *
  */
 @Transactional

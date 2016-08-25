@@ -29,12 +29,12 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
+
 import org.eurekaclinical.user.common.entity.OAuthProvider;
 
 import org.eurekaclinical.user.service.dao.OAuthProviderDao;
-
 /**
- * @author Andrew Post
+ * @author miaoai
  */
 @Transactional
 @Path("/protected/oauthproviders")

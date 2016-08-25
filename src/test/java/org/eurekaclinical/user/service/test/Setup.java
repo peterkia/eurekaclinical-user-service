@@ -30,21 +30,22 @@ import javax.persistence.criteria.CriteriaQuery;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
+import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
+import org.eurekaclinical.user.client.comm.authentication.LoginType;
+
 import org.eurekaclinical.user.common.entity.*;
 import org.eurekaclinical.user.common.test.TestDataException;
 import org.eurekaclinical.user.common.test.TestDataProvider;
 import org.eurekaclinical.user.common.util.StringUtil;
+
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
 import org.eurekaclinical.user.service.entity.UserEntityFactory;
-import org.eurekaclinical.eureka.client.comm.authentication.AuthenticationMethod;
-import org.eurekaclinical.eureka.client.comm.authentication.LoginType;
-
 /**
  * Sets up the environment for testing, by bootstrapping the data store with
  * certain items to test against.
  *
- * @author hrathod
+ * @author miaoai
  */
 public class Setup implements TestDataProvider {
 

@@ -19,12 +19,8 @@
  */
 package org.eurekaclinical.user.service.resource;
 
-import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
-import org.eurekaclinical.user.service.dao.LocalUserDao;
-import org.eurekaclinical.user.service.dao.LoginTypeDao;
-import org.eurekaclinical.user.service.dao.RoleDao;
-import org.eurekaclinical.user.service.dao.OAuthProviderDao;
-import org.eurekaclinical.user.service.dao.UserDao;
+import java.net.URI;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -32,13 +28,17 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.lang3.StringUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 
-import org.eurekaclinical.eureka.client.comm.UserRequest;
+import org.eurekaclinical.standardapis.exception.HttpStatusException;
+
+import org.eurekaclinical.user.client.comm.UserRequest;
+
 import org.eurekaclinical.user.common.entity.LocalUserEntity;
 import org.eurekaclinical.user.common.entity.RoleEntity;
 import org.eurekaclinical.user.common.entity.UserEntity;
@@ -48,9 +48,12 @@ import org.eurekaclinical.user.service.email.EmailSender;
 
 import org.eurekaclinical.user.service.util.UserRequestToUserEntityVisitor;
 
-import java.net.URI;
-import org.eurekaclinical.standardapis.exception.HttpStatusException;
-
+import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
+import org.eurekaclinical.user.service.dao.LocalUserDao;
+import org.eurekaclinical.user.service.dao.LoginTypeDao;
+import org.eurekaclinical.user.service.dao.RoleDao;
+import org.eurekaclinical.user.service.dao.OAuthProviderDao;
+import org.eurekaclinical.user.service.dao.UserDao;
 /**
  * RESTful end-point for new user registration-related methods.
  *

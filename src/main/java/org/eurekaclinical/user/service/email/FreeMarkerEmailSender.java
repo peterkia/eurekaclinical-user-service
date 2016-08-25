@@ -34,9 +34,6 @@ import javax.mail.internet.MimeMessage;
 
 import com.google.inject.Inject;
 
-import org.eurekaclinical.user.common.entity.UserEntity;
-import org.eurekaclinical.user.service.config.UserServiceProperties;
-
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
@@ -47,6 +44,9 @@ import java.net.UnknownHostException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.eurekaclinical.user.common.entity.UserEntity;
+
+import org.eurekaclinical.user.service.config.UserServiceProperties;
 /**
  * Implements the EmailSender interface with FreeMarker templates.
  *

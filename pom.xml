@@ -139,10 +139,11 @@
                 <artifactId>eureka-client</artifactId>
                 <version>1.0-Alpha-1</version>
         </dependency> 
-		<dependency>
-			<groupId>com.sun.jersey.jersey-test-framework</groupId>
-			<artifactId>jersey-test-framework-grizzly2</artifactId>
-		</dependency>                 
+        <dependency>
+                <groupId>org.eurekaclinical</groupId>
+                <artifactId>eurekaclinical-user-client</artifactId>
+                <version>1.0-Alpha-1</version>
+        </dependency>                        
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>eurekaclinical-user-common</artifactId>
@@ -153,7 +154,11 @@
                 <artifactId>eurekaclinical-user-common</artifactId>
                 <version>1.0-Alpha-2</version>                
                 <type>test-jar</type>
-        </dependency>           
+        </dependency>         
+        <dependency>
+                <groupId>com.sun.jersey.jersey-test-framework</groupId>
+                <artifactId>jersey-test-framework-grizzly2</artifactId>
+        </dependency>            
         <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-core</artifactId>

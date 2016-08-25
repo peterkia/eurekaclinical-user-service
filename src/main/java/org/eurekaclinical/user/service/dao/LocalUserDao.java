@@ -19,12 +19,12 @@
  */
 package org.eurekaclinical.user.service.dao;
 
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
 import org.eurekaclinical.standardapis.dao.Dao;
 
+import org.eurekaclinical.user.common.entity.LocalUserEntity;
 /**
  *
- * @author Andrew Post
+ * @author miaoai
  */
 public interface LocalUserDao extends Dao<LocalUserEntity, Long> {
 	/**

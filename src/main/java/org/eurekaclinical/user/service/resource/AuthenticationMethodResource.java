@@ -21,22 +21,27 @@ package org.eurekaclinical.user.service.resource;
 
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
-import org.eurekaclinical.eureka.client.comm.AuthenticationMethod;
-import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
-import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
+
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
 
+import org.eurekaclinical.user.client.comm.AuthenticationMethod;
+
+import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
+
+import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 /**
  *
- * @author Andrew Post
+ * @author miaoai
  */
 @Transactional
 @Path("/protected/authenticationmethods")
@@ -74,7 +79,7 @@ public class AuthenticationMethodResource {
 	@GET
 	@Path("/byname/{name}")
 	public AuthenticationMethod getByName(@PathParam("name") String inName) {
-		AuthenticationMethodEntity authenticationMethodEntity = this.authenticationMethodDao.getByName(org.eurekaclinical.eureka.client.comm.authentication.AuthenticationMethod.valueOf(inName));
+		AuthenticationMethodEntity authenticationMethodEntity = this.authenticationMethodDao.getByName(org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod.valueOf(inName));
 		if (authenticationMethodEntity == null) {
 			throw new HttpStatusException(Status.NOT_FOUND);
 		}

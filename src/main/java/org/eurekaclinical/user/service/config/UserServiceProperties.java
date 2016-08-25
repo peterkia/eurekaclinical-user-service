@@ -20,8 +20,8 @@
 package org.eurekaclinical.user.service.config;
 
 import com.google.inject.Singleton;
-import org.eurekaclinical.user.common.props.AbstractProperties;
 
+import org.eurekaclinical.user.common.props.AbstractProperties;
 /**
  *
  * @author miaoai

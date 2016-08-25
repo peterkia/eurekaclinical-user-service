@@ -21,15 +21,18 @@ package org.eurekaclinical.user.service.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import org.eurekaclinical.eureka.client.comm.authentication.AuthenticationMethod;
-import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
-import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity_;
 
 import javax.persistence.EntityManager;
+
 import org.eurekaclinical.standardapis.dao.GenericDao;
 
+import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
+
+import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
+import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity_;
 /**
  *
+ * @author miaoai
  */
 public class JpaAuthenticationMethodDao extends
 		GenericDao<AuthenticationMethodEntity, Long> implements AuthenticationMethodDao {

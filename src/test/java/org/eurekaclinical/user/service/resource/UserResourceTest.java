@@ -26,9 +26,9 @@ import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
 import java.util.List;
-import org.eurekaclinical.eureka.client.comm.LocalUserRequest;
-import org.eurekaclinical.eureka.client.comm.PasswordChangeRequest;
-import org.eurekaclinical.eureka.client.comm.User;
+import org.eurekaclinical.user.client.comm.LocalUserRequest;
+import org.eurekaclinical.user.client.comm.PasswordChangeRequest;
+import org.eurekaclinical.user.client.comm.User;
 
 import static org.junit.Assert.assertEquals;
 

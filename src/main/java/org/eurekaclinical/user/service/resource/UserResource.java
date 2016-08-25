@@ -48,8 +48,8 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 
-import org.eurekaclinical.eureka.client.comm.PasswordChangeRequest;
-import org.eurekaclinical.eureka.client.comm.User;
+import org.eurekaclinical.user.client.comm.PasswordChangeRequest;
+import org.eurekaclinical.user.client.comm.User;
 import org.eurekaclinical.user.common.entity.LocalUserEntity;
 import org.eurekaclinical.user.common.entity.RoleEntity;
 import org.eurekaclinical.user.common.entity.UserEntity;

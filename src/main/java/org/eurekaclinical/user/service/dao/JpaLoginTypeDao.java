@@ -21,15 +21,17 @@ package org.eurekaclinical.user.service.dao;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import org.eurekaclinical.eureka.client.comm.authentication.LoginType;
+
+import org.eurekaclinical.user.client.comm.authentication.LoginType;
+
 import org.eurekaclinical.user.common.entity.LoginTypeEntity;
 import org.eurekaclinical.user.common.entity.LoginTypeEntity_;
 
 import javax.persistence.EntityManager;
 import org.eurekaclinical.standardapis.dao.GenericDao;
-
 /**
  *
+ * @author miaoai
  */
 public class JpaLoginTypeDao extends
 		GenericDao<LoginTypeEntity, Long> implements LoginTypeDao {

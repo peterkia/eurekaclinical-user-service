@@ -19,28 +19,28 @@
  */
 package org.eurekaclinical.user.service.dao;
 
-import javax.persistence.EntityManager;
-
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
-import org.eurekaclinical.user.common.entity.LocalUserEntity_;
-import org.eurekaclinical.user.common.entity.UserEntity;
-import org.eurekaclinical.user.common.entity.UserEntity_;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
+import javax.persistence.EntityManager;
+
 import org.eurekaclinical.standardapis.dao.GenericDao;
 
+import org.eurekaclinical.user.common.entity.LocalUserEntity;
+import org.eurekaclinical.user.common.entity.LocalUserEntity_;
+import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.common.entity.UserEntity_;
 /**
  * An implementation of the {@link UserDao} interface, backed by JPA entities
  * and queries.
  *
- * @author hrathod
+ * @author miaoai
  */
 public class JpaLocalUserDao extends GenericDao<LocalUserEntity, Long> implements LocalUserDao {
 
