@@ -16,9 +16,6 @@
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
         <version>1-Alpha-6</version>
     </parent>        
-
- 
-    <url>https://github.com/eurekaclinical/user-service</url>
     
     <properties>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
@@ -43,14 +40,6 @@
                     <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-compiler-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                            <groupId>org.apache.tomcat.maven</groupId>
-                            <artifactId>tomcat7-maven-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-resources-plugin</artifactId>
                     </plugin>
                     <plugin>
                             <groupId>org.codehaus.mojo</groupId>
@@ -127,7 +116,148 @@
                     </resource>
             </resources>                                        
     </build>     
-                   
+    <profiles>
+        <profile>
+                <id>tomcat</id>
+                <properties>            
+                        <tomcat.httpsPort>8443</tomcat.httpsPort>
+                </properties>
+                <build>
+                        <plugins>
+                                <plugin>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-resources-plugin</artifactId>
+                                        <executions>
+                                                <execution>
+                                                        <id>copy-context.xml</id>
+                                                        <phase>process-resources</phase>
+                                                        <goals>
+                                                                <goal>copy-resources</goal>
+                                                        </goals>
+                                                        <configuration>
+                                                                <outputDirectory>${project.build.directory}/tomcat-config</outputDirectory>
+                                                                <resources>
+                                                                        <resource>
+                                                                                <directory>${basedir}/src/main/resources/tomcat-server-config</directory>
+                                                                                <filtering>true</filtering>
+                                                                                <includes>
+                                                                                        <include>context.xml</include>
+                                                                                </includes>
+                                                                        </resource>
+                                                                </resources>
+                                                        </configuration>
+                                                </execution>
+                                                <execution>
+                                                        <id>copy-cert</id>
+                                                        <phase>process-resources</phase>
+                                                        <goals>
+                                                                <goal>copy-resources</goal>
+                                                        </goals>
+                                                        <configuration>
+                                                                <outputDirectory>${project.build.directory}/tomcat-config</outputDirectory>
+                                                                <resources>
+                                                                    <resource>
+                                                                        <directory>${basedir}/src/main/resources/tomcat-server-config</directory>
+                                                                        <filtering>false</filtering>
+                                                                        <includes>
+                                                                                <include>localhost.keystore</include>
+                                                                                <include>localhost.truststore</include>
+                                                                        </includes>
+                                                                    </resource>
+                                                                </resources>
+                                                        </configuration>
+                                                </execution>
+                                                <execution>
+                                                        <id>copy-logging.properties-file</id>
+                                                        <phase>process-resources</phase>
+                                                        <goals>
+                                                                <goal>copy-resources</goal>
+                                                        </goals>
+                                                        <configuration>
+                                                                <outputDirectory>${project.build.directory}/eureka-config</outputDirectory>
+                                                                <resources>
+                                                                    <resource>
+                                                                            <directory>${basedir}/src/main/resources/tomcat-eureka-config</directory>
+                                                                            <includes>
+                                                                                    <include>logging.properties</include>
+                                                                            </includes>
+                                                                            <filtering>true</filtering>
+                                                                    </resource>
+                                                                </resources>
+                                                        </configuration>
+                                                </execution>
+                                                <execution>
+                                                        <id>copy-application.properties-file</id>
+                                                        <phase>process-resources</phase>
+                                                        <goals>
+                                                                <goal>copy-resources</goal>
+                                                        </goals>
+                                                        <configuration>
+                                                                <outputDirectory>${project.build.directory}/eureka-config/eureka</outputDirectory>
+                                                                <resources>
+                                                                    <resource>
+                                                                            <directory>${basedir}/src/main/resources/tomcat-eureka-config/eureka</directory>
+                                                                            <filtering>true</filtering>
+                                                                    </resource>
+                                                                </resources>
+                                                        </configuration>
+                                                </execution>
+                                        </executions>
+                                </plugin>                    
+                                <plugin>
+                                        <groupId>org.apache.tomcat.maven</groupId>
+                                        <artifactId>tomcat7-maven-plugin</artifactId>     
+                                        <dependencies>
+                                                <dependency>
+                                                        <groupId>org.jasig.cas.client</groupId>
+                                                        <artifactId>cas-client-core</artifactId>
+                                                        <version>3.2.1</version>                                
+                                                        <exclusions>
+                                                            <exclusion>
+                                                                    <groupId>javax.servlet</groupId>
+                                                                    <artifactId>servlet-api</artifactId>
+                                                            </exclusion>
+                                                        </exclusions>                                
+                                                </dependency>
+                                                <dependency>
+                                                        <groupId>commons-codec</groupId>
+                                                        <artifactId>commons-codec</artifactId>
+                                                        <version>1.4</version>
+                                                        <scope>compile</scope>
+                                                </dependency>                            
+                                        </dependencies>  
+                                        <configuration>
+                                                <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                                                <port>${tomcat.port}</port>
+                                                <httpsPort>${tomcat.httpsPort}</httpsPort>
+                                                <keystorePass>changeit</keystorePass>
+                                                <keystoreFile>conf/localhost.keystore</keystoreFile>
+                                                <keystoreType>JKS</keystoreType>
+                                                <additionalConfigFilesDir>${project.build.directory}/tomcat-config</additionalConfigFilesDir>
+                                                <systemProperties>
+                                                        <org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH>true</org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH>
+                                                        <javax.net.ssl.trustStore>${project.build.directory}/tomcat/conf/localhost.truststore</javax.net.ssl.trustStore>
+                                                        <javax.net.ssl.trustStorePassword>changeit</javax.net.ssl.trustStorePassword>
+                                                        <eureka.config.dir>${project.build.directory}/eureka-config/eureka</eureka.config.dir>
+                                                        <java.util.logging.config.file>${project.build.directory}/eureka-config/logging.properties</java.util.logging.config.file>
+                                                </systemProperties>
+                                                <webapps>
+                                                        <webapp>
+                                                            <groupId>org.eurekaclinical</groupId>
+                                                            <artifactId>cas-server</artifactId>
+                                                            <version>2.0-Alpha-7-SNAPSHOT</version>
+                                                            <type>war</type>
+                                                            <asWebapp>true</asWebapp>
+                                                        </webapp>
+                                                </webapps>
+                                                <addContextWarDependencies>true</addContextWarDependencies>
+                                                <addWarDependenciesInClassloader>true</addWarDependenciesInClassloader>                            
+                                        </configuration>                 
+                                </plugin>
+                        </plugins>           
+                </build>
+        </profile>
+    </profiles>        
     <dependencies>
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
@@ -158,7 +288,7 @@
         <dependency>
                 <groupId>org.jasig.cas.client</groupId>
                 <artifactId>cas-client-core</artifactId>
-        </dependency>   
+        </dependency>  
         <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
