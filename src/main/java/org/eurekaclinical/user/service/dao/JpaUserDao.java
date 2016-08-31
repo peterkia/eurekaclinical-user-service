@@ -26,7 +26,7 @@ import com.google.inject.Provider;
 
 import org.eurekaclinical.standardapis.dao.AbstractJpaUserDao;
 
-import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
 /**
  * An implementation of the {@link UserDao} interface, backed by JPA entities
  * and queries.

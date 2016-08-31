@@ -21,7 +21,7 @@ package org.eurekaclinical.user.service.email;
 
 import org.eurekaclinical.user.service.email.EmailException;
 import org.eurekaclinical.user.service.email.EmailSender;
-import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
 
 /**
  * A mock implementation of the EmailSender interface that does nothing.

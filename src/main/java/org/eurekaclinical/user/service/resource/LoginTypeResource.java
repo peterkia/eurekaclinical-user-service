@@ -36,7 +36,7 @@ import org.eurekaclinical.standardapis.exception.HttpStatusException;
 
 import org.eurekaclinical.user.client.comm.LoginType;
 
-import org.eurekaclinical.user.common.entity.LoginTypeEntity;
+import org.eurekaclinical.user.service.entity.LoginTypeEntity;
 
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
 /**

@@ -32,10 +32,10 @@ import javax.persistence.EntityManager;
 
 import org.eurekaclinical.standardapis.dao.GenericDao;
 
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
-import org.eurekaclinical.user.common.entity.LocalUserEntity_;
-import org.eurekaclinical.user.common.entity.UserEntity;
-import org.eurekaclinical.user.common.entity.UserEntity_;
+import org.eurekaclinical.user.service.entity.LocalUserEntity;
+import org.eurekaclinical.user.service.entity.LocalUserEntity_;
+import org.eurekaclinical.user.service.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.UserEntity_;
 /**
  * An implementation of the {@link UserDao} interface, backed by JPA entities
  * and queries.

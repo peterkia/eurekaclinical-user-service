@@ -26,22 +26,22 @@ import javax.persistence.EntityManager;
 
 import org.eurekaclinical.standardapis.dao.GenericDao;
 
-import org.eurekaclinical.user.common.entity.OAuthProvider;
-import org.eurekaclinical.user.common.entity.OAuthProvider_;
+import org.eurekaclinical.user.service.entity.OAuthProviderEntity;
+import org.eurekaclinical.user.service.entity.OAuthProviderEntity_;
 /**
  *
  * @author miaoai
  */
-public class JpaOAuthProviderDao extends GenericDao<OAuthProvider, Long> implements OAuthProviderDao{
+public class JpaOAuthProviderDao extends GenericDao<OAuthProviderEntity, Long> implements OAuthProviderDao{
 
 	@Inject
 	protected JpaOAuthProviderDao(Provider<EntityManager> inManagerProvider) {
-		super(OAuthProvider.class, inManagerProvider);
+		super(OAuthProviderEntity.class, inManagerProvider);
 	}
 
 	@Override
-	public OAuthProvider getByName(String inName) {
-		return this.getUniqueByAttribute(OAuthProvider_.name, inName);
+	public OAuthProviderEntity getByName(String inName) {
+		return this.getUniqueByAttribute(OAuthProviderEntity_.name, inName);
 	}
 	
 }

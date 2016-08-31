@@ -26,7 +26,7 @@ import com.google.inject.persist.Transactional;
 import org.eurekaclinical.common.comm.Role;
 import org.eurekaclinical.common.resource.AbstractRoleResource;
 
-import org.eurekaclinical.user.common.entity.RoleEntity;
+import org.eurekaclinical.user.service.entity.RoleEntity;
 
 import org.eurekaclinical.user.service.dao.RoleDao;
 /**

@@ -20,7 +20,7 @@
 package org.eurekaclinical.user.service.dao;
 
 
-import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
 /**
  * A data access object interface for working with {@link UserEntity} objects in the
  * data store.

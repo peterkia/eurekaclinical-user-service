@@ -23,7 +23,7 @@ import org.eurekaclinical.standardapis.dao.Dao;
 
 import org.eurekaclinical.user.client.comm.authentication.LoginType;
 
-import org.eurekaclinical.user.common.entity.LoginTypeEntity;
+import org.eurekaclinical.user.service.entity.LoginTypeEntity;
 /**
  * @author miaoai
  */

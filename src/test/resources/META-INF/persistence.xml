@@ -23,14 +23,14 @@
 	version="2.0">
 	<persistence-unit name="eurekaclinical-user-service-jpa-unit"
 		transaction-type="RESOURCE_LOCAL">
-		<class>org.eurekaclinical.user.common.entity.RoleEntity</class>
-		<class>org.eurekaclinical.user.common.entity.UserEntity</class>
-		<class>org.eurekaclinical.user.common.entity.LocalUserEntity</class>
-		<class>org.eurekaclinical.user.common.entity.OAuthUserEntity</class>
-		<class>org.eurekaclinical.user.common.entity.LdapUserEntity</class>
-		<class>org.eurekaclinical.user.common.entity.OAuthProvider</class>
-		<class>org.eurekaclinical.user.common.entity.AuthenticationMethodEntity</class>
-		<class>org.eurekaclinical.user.common.entity.LoginTypeEntity</class>
+		<class>org.eurekaclinical.user.service.entity.RoleEntity</class>
+		<class>org.eurekaclinical.user.service.entity.UserEntity</class>
+		<class>org.eurekaclinical.user.service.entity.LocalUserEntity</class>
+		<class>org.eurekaclinical.user.service.entity.OAuthUserEntity</class>
+		<class>org.eurekaclinical.user.service.entity.LdapUserEntity</class>
+		<class>org.eurekaclinical.user.service.entity.OAuthProviderEntity</class>
+		<class>org.eurekaclinical.user.service.entity.AuthenticationMethodEntity</class>
+		<class>org.eurekaclinical.user.service.entity.LoginTypeEntity</class>
 		
 		<properties>
 			<!-- Disable the second-level cache -->

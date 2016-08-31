@@ -21,7 +21,7 @@ package org.eurekaclinical.user.service.dao;
 
 import org.eurekaclinical.standardapis.dao.Dao;
 
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
+import org.eurekaclinical.user.service.entity.LocalUserEntity;
 /**
  *
  * @author miaoai

@@ -37,10 +37,10 @@ import org.eurekaclinical.user.client.comm.OAuthUserRequest;
 import org.eurekaclinical.user.client.comm.UserRequest;
 import org.eurekaclinical.user.client.comm.UserRequestVisitor;
 
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
-import org.eurekaclinical.user.common.entity.OAuthUserEntity;
-import org.eurekaclinical.user.common.entity.RoleEntity;
-import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.LocalUserEntity;
+import org.eurekaclinical.user.service.entity.OAuthUserEntity;
+import org.eurekaclinical.user.service.entity.RoleEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
 import org.eurekaclinical.user.common.util.StringUtil;
 
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;

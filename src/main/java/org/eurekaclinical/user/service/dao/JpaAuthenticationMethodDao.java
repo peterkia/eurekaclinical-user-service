@@ -28,8 +28,8 @@ import org.eurekaclinical.standardapis.dao.GenericDao;
 
 import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
 
-import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity;
-import org.eurekaclinical.user.common.entity.AuthenticationMethodEntity_;
+import org.eurekaclinical.user.service.entity.AuthenticationMethodEntity;
+import org.eurekaclinical.user.service.entity.AuthenticationMethodEntity_;
 /**
  *
  * @author miaoai

@@ -30,7 +30,7 @@ import javax.ws.rs.core.MediaType;
 import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 
-import org.eurekaclinical.user.common.entity.OAuthProvider;
+import org.eurekaclinical.user.service.entity.OAuthProviderEntity;
 
 import org.eurekaclinical.user.service.dao.OAuthProviderDao;
 /**
@@ -50,19 +50,19 @@ public class OAuthProviderResource {
 	}
 
 	@GET
-	public List<OAuthProvider> getAll () {
+	public List<OAuthProviderEntity> getAll () {
 		return this.oauthProviderDao.getAll();
 	}
 	
 	@GET
 	@Path("/{id}")
-	public OAuthProvider get (@PathParam("id") Long inId) {
+	public OAuthProviderEntity get (@PathParam("id") Long inId) {
 		return this.oauthProviderDao.retrieve(inId);
 	}
 
 	@GET
 	@Path("/byname/{name}")
-	public OAuthProvider getByName (@PathParam("name") String inName) {
+	public OAuthProviderEntity getByName (@PathParam("name") String inName) {
 		return this.oauthProviderDao.getByName(inName);
 	}
 	

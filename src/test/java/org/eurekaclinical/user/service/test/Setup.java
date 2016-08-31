@@ -19,6 +19,11 @@
  */
 package org.eurekaclinical.user.service.test;
 
+import org.eurekaclinical.user.service.entity.LocalUserEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.RoleEntity;
+import org.eurekaclinical.user.service.entity.AuthenticationMethodEntity;
+import org.eurekaclinical.user.service.entity.LoginTypeEntity;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
@@ -33,7 +38,6 @@ import com.google.inject.Provider;
 import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
 import org.eurekaclinical.user.client.comm.authentication.LoginType;
 
-import org.eurekaclinical.user.common.entity.*;
 import org.eurekaclinical.user.common.test.TestDataException;
 import org.eurekaclinical.user.common.test.TestDataProvider;
 import org.eurekaclinical.user.common.util.StringUtil;

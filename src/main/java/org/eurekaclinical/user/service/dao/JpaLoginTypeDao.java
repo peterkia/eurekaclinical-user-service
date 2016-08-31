@@ -24,8 +24,8 @@ import com.google.inject.Provider;
 
 import org.eurekaclinical.user.client.comm.authentication.LoginType;
 
-import org.eurekaclinical.user.common.entity.LoginTypeEntity;
-import org.eurekaclinical.user.common.entity.LoginTypeEntity_;
+import org.eurekaclinical.user.service.entity.LoginTypeEntity;
+import org.eurekaclinical.user.service.entity.LoginTypeEntity_;
 
 import javax.persistence.EntityManager;
 import org.eurekaclinical.standardapis.dao.GenericDao;

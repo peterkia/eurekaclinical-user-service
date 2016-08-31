@@ -21,17 +21,17 @@ package org.eurekaclinical.user.service.dao;
 
 import org.eurekaclinical.standardapis.dao.Dao;
 
-import org.eurekaclinical.user.common.entity.OAuthProvider;
+import org.eurekaclinical.user.service.entity.OAuthProviderEntity;
 /**
  * @author miaoai
  */
 public interface OAuthProviderDao  extends
-		Dao<OAuthProvider, Long> {
+		Dao<OAuthProviderEntity, Long> {
 	/**
 	 * Gets a value definition match operator based on the name attribute.
 	 * @param inName the name to search for in the database
-	 * @return a {@link OAuthProvider} with the given name if
+	 * @return a {@link OAuthProviderEntity} with the given name if
 	 * found, null otherwise
 	 */
-	public OAuthProvider getByName(String inName);
+	public OAuthProviderEntity getByName(String inName);
 }

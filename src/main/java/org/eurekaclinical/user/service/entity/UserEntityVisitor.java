@@ -17,23 +17,31 @@
  * limitations under the License.
  * #L%
  */
-package org.eurekaclinical.user.service.dao;
-
-import org.eurekaclinical.standardapis.dao.Dao;
-
-import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
-
-import org.eurekaclinical.user.service.entity.AuthenticationMethodEntity;
+package org.eurekaclinical.user.service.entity;
 /**
+ *
  * @author miaoai
  */
-public interface AuthenticationMethodDao  extends
-		Dao<AuthenticationMethodEntity, Long> {
+public interface UserEntityVisitor {
+	
 	/**
-	 * Gets a value definition match operator based on the name attribute.
-	 * @param inName the name to search for in the database
-	 * @return a {@link AuthenticationMethodEntity} with the given name if
-	 * found, null otherwise
+	 * Processes a local user entity.
+	 * @param localUserEntity a local user entity. Cannot be 
+	 * <code>null</code>.
 	 */
-	public AuthenticationMethodEntity getByName(AuthenticationMethod inName);
+	void visit(LocalUserEntity localUserEntity);
+	
+	/**
+	 * Processes an LDAP user entity.
+	 * @param ldapUserEntity an LDAP user entity. Cannot be 
+	 * <code>null</code>.
+	 */
+	void visit(LdapUserEntity ldapUserEntity);
+	
+	/**
+	 * Processes an OAuth user entity.
+	 * @param oauthUserEntity an OAuth user entity. Cannot be 
+	 * <code>null</code>.
+	 */
+	void visit(OAuthUserEntity oauthUserEntity);
 }

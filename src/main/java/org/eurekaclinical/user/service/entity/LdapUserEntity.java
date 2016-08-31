@@ -17,23 +17,29 @@
  * limitations under the License.
  * #L%
  */
-package org.eurekaclinical.user.service.dao;
+package org.eurekaclinical.user.service.entity;
 
-import org.eurekaclinical.standardapis.dao.Dao;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import org.eurekaclinical.user.client.comm.authentication.AuthenticationMethod;
-
-import org.eurekaclinical.user.service.entity.AuthenticationMethodEntity;
 /**
+ *
  * @author miaoai
  */
-public interface AuthenticationMethodDao  extends
-		Dao<AuthenticationMethodEntity, Long> {
-	/**
-	 * Gets a value definition match operator based on the name attribute.
-	 * @param inName the name to search for in the database
-	 * @return a {@link AuthenticationMethodEntity} with the given name if
-	 * found, null otherwise
-	 */
-	public AuthenticationMethodEntity getByName(AuthenticationMethod inName);
+@Entity
+@Table(name = "ldap_users")
+public class LdapUserEntity extends UserEntity {
+	
+	public LdapUserEntity(LoginTypeEntity loginType, AuthenticationMethodEntity authenticationMethod) {
+		super(loginType, authenticationMethod);
+	}
+	
+	protected LdapUserEntity() {
+		
+	}
+
+	@Override
+	public void accept(UserEntityVisitor userEntityVisitor) {
+		userEntityVisitor.visit(this);
+	}
 }

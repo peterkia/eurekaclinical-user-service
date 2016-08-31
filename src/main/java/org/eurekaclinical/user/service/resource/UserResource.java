@@ -50,10 +50,10 @@ import com.google.inject.persist.Transactional;
 
 import org.eurekaclinical.user.client.comm.PasswordChangeRequest;
 import org.eurekaclinical.user.client.comm.User;
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
-import org.eurekaclinical.user.common.entity.RoleEntity;
-import org.eurekaclinical.user.common.entity.UserEntity;
-import org.eurekaclinical.user.common.entity.UserEntityToUserVisitor;
+import org.eurekaclinical.user.service.entity.LocalUserEntity;
+import org.eurekaclinical.user.service.entity.RoleEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.UserEntityToUserVisitor;
 import org.eurekaclinical.user.common.util.StringUtil;
 import org.eurekaclinical.user.service.authentication.ServicesAuthenticationSupport;
 import org.eurekaclinical.user.service.config.UserServiceProperties;
@@ -166,7 +166,7 @@ public class UserResource {
 		if (userEntity == null) {
 			throw new HttpStatusException(Response.Status.NOT_FOUND);
 		}
-		if (!req.isUserInRole("admin") && !this.authenticationSupport.isSameUser(req, userEntity)) {
+		if (!req.isUserInRole("admin") && !this.authenticationSupport.isSameUser(req, userEntity.getUsername())) {
 			throw new HttpStatusException(Response.Status.FORBIDDEN);
 		}
 		this.userDao.refresh(userEntity);

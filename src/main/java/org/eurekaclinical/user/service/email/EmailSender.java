@@ -19,7 +19,7 @@
  */
 package org.eurekaclinical.user.service.email;
 
-import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
 
 /**
  * An interface that defines how emails can be sent out from the application.

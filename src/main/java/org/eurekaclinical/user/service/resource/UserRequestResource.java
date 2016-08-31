@@ -39,9 +39,9 @@ import org.eurekaclinical.standardapis.exception.HttpStatusException;
 
 import org.eurekaclinical.user.client.comm.UserRequest;
 
-import org.eurekaclinical.user.common.entity.LocalUserEntity;
-import org.eurekaclinical.user.common.entity.RoleEntity;
-import org.eurekaclinical.user.common.entity.UserEntity;
+import org.eurekaclinical.user.service.entity.LocalUserEntity;
+import org.eurekaclinical.user.service.entity.RoleEntity;
+import org.eurekaclinical.user.service.entity.UserEntity;
 
 import org.eurekaclinical.user.service.email.EmailException;
 import org.eurekaclinical.user.service.email.EmailSender;

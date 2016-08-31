@@ -24,7 +24,7 @@ import javax.persistence.EntityManager;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-import org.eurekaclinical.user.common.entity.RoleEntity;
+import org.eurekaclinical.user.service.entity.RoleEntity;
 
 import org.eurekaclinical.standardapis.dao.AbstractJpaRoleDao;
 /**
