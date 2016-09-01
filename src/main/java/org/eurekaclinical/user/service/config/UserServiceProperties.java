@@ -87,4 +87,9 @@ public class UserServiceProperties extends AbstractProperties {
 	public String getFromEmailAddress() {
 		return this.getValue("user.service.email.from");
 	}        
+
+	@Override
+	public String getUrl() {
+        	return getValue("user.service.url");
+	}
 }

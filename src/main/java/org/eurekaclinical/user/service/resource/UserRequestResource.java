@@ -120,7 +120,7 @@ public class UserRequestResource {
 	public Response addUser(
 			UserRequest userRequest, @Context UriInfo uriInfo) {
 		UserEntity user
-				= this.userDao.getByUsername(userRequest.getUsername());
+				= this.userDao.getByName(userRequest.getUsername());
 		if (user != null) {
 			throw new HttpStatusException(Response.Status.CONFLICT,
 					"That username is already taken");

@@ -22,6 +22,7 @@ package org.eurekaclinical.user.service.resource;
 import javax.ws.rs.Path;
 import javax.inject.Inject;
 import com.google.inject.persist.Transactional;
+import javax.servlet.http.HttpServletRequest;
 
 import org.eurekaclinical.common.comm.Role;
 import org.eurekaclinical.common.resource.AbstractRoleResource;
@@ -51,11 +52,11 @@ public class RoleResource extends AbstractRoleResource<RoleEntity, Role> {
 	}
 
 	@Override
-	protected Role toRole(RoleEntity roleEntity) {
+	protected Role toComm(RoleEntity roleEntity, HttpServletRequest req) {
 		Role role = new Role();
-		role.setId(roleEntity.getId());
-		role.setName(roleEntity.getName());
-		return role;
+        	role.setId(roleEntity.getId());
+        	role.setName(roleEntity.getName());
+        	return role;
 	}
 
 }

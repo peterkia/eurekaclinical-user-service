@@ -211,7 +211,13 @@ public abstract class UserEntity implements org.eurekaclinical.standardapis.enti
 			this.created = created;
 		}
 	}
-
+	public void addRole(RoleEntity inRole) {
+        	this.roles.add(inRole);
+	}
+    
+	public void removeRole(RoleEntity inRole) {
+        	this.roles.remove(inRole);
+	}
 	/**
 	 * Get the user's first name.
 	 *

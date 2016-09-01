@@ -189,7 +189,7 @@ public class UserResource {
 		AttributePrincipal principal = 
 				this.authenticationSupport.getUserPrincipal(req);
 		String username = principal.getName();
-		UserEntity userEntity = this.userDao.getByUsername(username);
+		UserEntity userEntity = this.userDao.getByName(username);
 		if (userEntity != null) {
 			this.userDao.refresh(userEntity);
 		} else {
@@ -212,7 +212,7 @@ public class UserResource {
 	@RolesAllowed({"admin"})
 	@POST
 	public Response addUser(final User user, @Context UriInfo uriInfo) {
-		if (this.userDao.getByUsername(user.getUsername()) != null) {
+		if (this.userDao.getByName(user.getUsername()) != null) {
 			throw new HttpStatusException(Response.Status.CONFLICT);
 		}
 		String[] errors = user.validate();
@@ -234,7 +234,7 @@ public class UserResource {
 			throw new HttpStatusException(
 					Response.Status.BAD_REQUEST, StringUtils.join(errors, ", "));
 		}
-		UserEntity addedUser = this.userDao.getByUsername(user.getUsername());
+		UserEntity addedUser = this.userDao.getByName(user.getUsername());
 		URI uri = uriInfo.getAbsolutePathBuilder().path(addedUser.getId().toString()).build();
 		return Response.created(uri).entity(user).build();
 	}
@@ -365,7 +365,7 @@ public class UserResource {
 		boolean result = true;
 		boolean updateByMe = true;
 		// the roles to check
-		RoleEntity adminUserRole = this.roleDao.getRoleByName("admin");
+		RoleEntity adminUserRole = this.roleDao.getByName("admin");
 
 		updateByMe = me.getUsername().equals(currentUser.getUsername());
                 
