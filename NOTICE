@@ -26,6 +26,7 @@ This project includes:
   dom4j under BSD License
   ehcache under The Apache Software License, Version 2.0 or Terracotta Public License
   Ehcache Core under The Apache Software License, Version 2.0
+  ehcache-terracotta under Apache License, Version 2.0
   Eureka! Clinical Common under Apache License, Version 2.0
   Eureka! Clinical Standard APIs under Apache License, Version 2.0
   Eureka! Clinical User Client under Apache License, Version 2.0
@@ -86,10 +87,9 @@ This project includes:
   Logging under The Apache Software License, Version 2.0
   logkit under Apache License, Version 2.0
   MIME streaming extension under Dual license consisting of the CDDL v1.1 and GPL v2
-  net.sf.ehcache:ehcache-terracotta under Apache License, Version 2.0
-  org.terracotta:terracotta-toolkit-1.6-runtime under Apache License, Version 2.0
   SLF4J API Module under MIT License
   SLF4J JDK14 Binding under MIT License
+  terracotta-toolkit-runtime under Apache License, Version 2.0
   XML Commons External Components XML APIs under The Apache Software License, Version 2.0
   Xml Compatibility extensions for Jackson under The Apache Software License, Version 2.0 or GNU Lesser General Public License (LGPL), Version 2.1
 
