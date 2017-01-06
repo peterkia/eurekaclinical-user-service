@@ -4,7 +4,7 @@
     <groupId>org.eurekaclinical</groupId>    
     <artifactId>eurekaclinical-user-service</artifactId>
     <packaging>war</packaging>
-    <version>1.0-Alpha-2</version>
+    <version>1.0-Alpha-3-SNAPSHOT</version>
     <name>Eureka! Clinical User Service</name>
     <description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
         web interface that is used by Eureka! Clinical multiple projects
@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.eurekaclinical</groupId>
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
-        <version>1-Alpha-6</version>
+        <version>1</version>
     </parent>        
     
     <properties>
@@ -23,15 +23,15 @@
     </properties>
 
     <scm>
-        <connection>scm:git:https://github.com/eurekaclinical/user-service.git</connection>
-        <developerConnection>scm:git:https://github.com/eurekaclinical/user-service.git</developerConnection>
-        <url>https://github.com/eurekaclinical/user-service.git</url>
+        <connection>scm:git:https://github.com/eurekaclinical/eurekaclinical-user-service.git</connection>
+        <developerConnection>scm:git:https://github.com/eurekaclinical/eurekaclinical-user-service.git</developerConnection>
+        <url>https://github.com/eurekaclinical/eurekaclinical-user-service.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/eurekaclinical/user-service/issues</url>
+        <url>https://github.com/eurekaclinical/eurekaclinical-user-service/issues</url>
     </issueManagement>
     
     <build>
@@ -245,7 +245,7 @@
                                                         <webapp>
                                                             <groupId>org.eurekaclinical</groupId>
                                                             <artifactId>cas-server</artifactId>
-                                                            <version>2.0-Alpha-7-SNAPSHOT</version>
+                                                            <version>3.0-Alpha-4</version>
                                                             <type>war</type>
                                                             <asWebapp>true</asWebapp>
                                                         </webapp>
@@ -262,12 +262,12 @@
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>eurekaclinical-user-common</artifactId>
-                <version>1.0-Alpha-2</version>
+                <version>1.0-Alpha-4</version>
         </dependency>    
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>eurekaclinical-user-common</artifactId>
-                <version>1.0-Alpha-2</version>                
+                <version>1.0-Alpha-4</version>                
                 <type>test-jar</type>
         </dependency>         
         <dependency>
@@ -353,7 +353,6 @@
         <dependency>
                 <groupId>org.freemarker</groupId>
                 <artifactId>freemarker</artifactId>
-                <version>2.3.23</version>
         </dependency>
         <dependency>
                 <groupId>com.google.inject.extensions</groupId>
@@ -372,7 +371,7 @@
         <dependency>
                 <groupId>org.eurekaclinical</groupId>
                 <artifactId>javautil</artifactId>
-                <version>3.0-Alpha-7</version>
+                <version>3.0</version>
                 <type>jar</type>
         </dependency>                
     </dependencies>
