@@ -22,6 +22,7 @@ package org.eurekaclinical.user.service.config;
 import com.google.inject.Singleton;
 
 import org.eurekaclinical.user.common.props.AbstractProperties;
+
 /**
  *
  * @author miaoai
@@ -31,8 +32,9 @@ public class UserServiceProperties extends AbstractProperties {
 
 	@Override
 	public String getProxyCallbackServer() {
-		return this.getValue("user.service.callbackserver");
+		return this.getValue("eurekaclinical.userservice.callbackserver");
 	}
+
 	/**
 	 * Get the verification base URL, to be used in sending a verification email
 	 * to the user.
@@ -41,9 +43,10 @@ public class UserServiceProperties extends AbstractProperties {
 	 * configuration file.
 	 */
 	public String getVerificationUrl() {
-		String verUrl = getApplicationUrl();
+		String verUrl = getUserWebappUrl();
 		return verUrl + (verUrl.endsWith("/") ? "" : "/") + "verify?code=";
 	}
+
 	/**
 	 * Get the verification email subject line.
 	 *
@@ -51,8 +54,9 @@ public class UserServiceProperties extends AbstractProperties {
 	 */
 	public String getVerificationEmailSubject() {
 		return this.getValue(
-				"user.service.email.verify.subject");
+				"eurekaclinical.userservice.email.verify.subject");
 	}
+
 	/**
 	 * Get the activation email subject line.
 	 *
@@ -60,8 +64,9 @@ public class UserServiceProperties extends AbstractProperties {
 	 */
 	public String getActivationEmailSubject() {
 		return this.getValue(
-				"user.service.email.activation.subject");
+				"eurekaclinical.userservice.email.activation.subject");
 	}
+
 	/**
 	 * Get the password change email subject line.
 	 *
@@ -69,27 +74,33 @@ public class UserServiceProperties extends AbstractProperties {
 	 */
 	public String getPasswordChangeEmailSubject() {
 		return this.getValue(
-				"user.service.email.password.subject");
+				"eurekaclinical.userservice.email.password.subject");
 	}
+
 	/**
 	 * Gets the subject line for a password reset email.
 	 *
 	 * @return The subject line.
 	 */
 	public String getPasswordResetEmailSubject() {
-		return this.getValue("user.service.email.reset.subject");
+		return this.getValue("eurekaclinical.userservice.email.reset.subject");
 	}
+
 	/**
 	 * Get email address in the From header.
 	 *
 	 * @return an email address.
 	 */
 	public String getFromEmailAddress() {
-		return this.getValue("user.service.email.from");
-	}        
+		return this.getValue("eurekaclinical.userservice.email.from");
+	}
 
 	@Override
 	public String getUrl() {
-        	return getValue("user.service.url");
+		return getValue("eurekaclinical.userservice.url");
+	}
+
+	public String getUserWebappUrl() {
+		return getValue("eurekaclinical.userwebapp.url");
 	}
 }

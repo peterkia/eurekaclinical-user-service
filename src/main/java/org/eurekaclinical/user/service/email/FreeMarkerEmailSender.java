@@ -108,7 +108,7 @@ public class FreeMarkerEmailSender implements EmailSender {
 	@Override
 	public void sendActivationMessage(final UserEntity inUser) throws EmailException {
 		Map<String, Object> params = new HashMap<>();
-		String applicationUrl = this.userServiceProperties.getApplicationUrl();
+		String applicationUrl = this.userServiceProperties.getUserWebappUrl();
 		params.put("applicationUrl", applicationUrl);
 		sendMessage(inUser, "activation.ftl",
 				this.userServiceProperties.getActivationEmailSubject(), params);
