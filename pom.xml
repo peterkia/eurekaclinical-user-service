@@ -3,7 +3,7 @@
 	<groupId>org.eurekaclinical</groupId>    
 	<artifactId>eurekaclinical-user-service</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-Alpha-6-SNAPSHOT</version>
+	<version>1.0-Alpha-6</version>
 	<name>Eureka! Clinical User Service</name>
 	<description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
 		web interface that is used by Eureka! Clinical multiple projects
@@ -25,7 +25,7 @@
 		<connection>scm:git:https://github.com/eurekaclinical/eurekaclinical-user-service.git</connection>
 		<developerConnection>scm:git:https://github.com/eurekaclinical/eurekaclinical-user-service.git</developerConnection>
 		<url>https://github.com/eurekaclinical/eurekaclinical-user-service.git</url>
-		<tag>HEAD</tag>
+		<tag>eurekaclinical-user-service-1.0-Alpha-6</tag>
 	</scm>
 
 	<issueManagement>
