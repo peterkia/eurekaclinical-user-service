@@ -15,6 +15,28 @@ It provides RESTful APIs for users to manage their profile and change their pass
 ## `/api/protected/roles`
 
 ## `/api/protected/oauthproviders`
+A read-only endpoint for retrieving information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
+
+### Role-based authorization
+None
+
+### OAuthProvider object
+Properties:
+* `id`: unique number identifying the OAuth provider.
+* `name`: unique string containing the OAuth provider's name.
+* `description`: string containing a longer description of the OAuth provider.
+
+### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
+#### `/api/protected/oauthproviders`
+Returns an array of all LoginType objects.
+
+#### `/api/protected/oauthproviders/{id}`
+Returns a specified LoginType object by the value of its id property, which is unique.
+
+#### `/api/protected/oauthproviders/byname/{name}`
+Returns a specified LoginType object by the value of its name property, which is unique.
 
 ## `/api/protected/logintypes`
 A read-only endpoint for retrieving information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
@@ -31,6 +53,8 @@ Properties:
 * `description`: string containing the login type's description.
 
 ### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
 #### `/api/protected/logintypes`
 Returns an array of all LoginType objects.
 
@@ -56,6 +80,8 @@ Properties:
 * description: string containing the authentication method's description.
 
 ### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
 #### `/api/protected/authenticationmethods`
 Returns an array of all AuthenticationMethod objects.
 
