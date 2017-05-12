@@ -5,7 +5,7 @@ RESTful APIs for managing user profiles
 No final releases yet
 
 # What does it do?
-It provides web pages for users to manage their user profiles and change their password. It also implements a proxy servlet and router for web clients to access the web services provided by eurekaclinical-user-service.
+It provides RESTful APIs for users to manage their profile and change their password.
 
 # Building it
 The project uses the maven build tool. Typically, you build it by invoking `mvn clean install` at the command line. For simple file changes, not additions or deletions, you can usually use `mvn install`. See https://github.com/eurekaclinical/dev-wiki/wiki/Building-Eureka!-Clinical-projects for more details.
