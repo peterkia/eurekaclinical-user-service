@@ -1,5 +1,5 @@
 # Eureka! Clinical User Service
-User interface and web client proxy for managing user accounts
+RESTful APIs for managing user accounts
 
 # Version history
 No final releases yet
