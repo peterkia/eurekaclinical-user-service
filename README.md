@@ -17,7 +17,7 @@ It provides RESTful APIs for users to manage their profile and change their pass
 ## `/api/protected/oauthproviders`
 
 ## `/api/protected/logintypes`
-A read-only endpoint for retrieving information about available login types.
+A read-only endpoint for retrieving information about available login types, which controls whether the user 1) authenticates using Eureka! Clinical's built-in login screen or 2) authenticates with a trusted third party provider like an OAuth provider.
 
 ### Role-based authorization
 None
