@@ -7,6 +7,33 @@ No final releases yet
 # What does it do?
 It provides RESTful APIs for users to manage their profile and change their password.
 
+# REST endpoints
+## `/api/userrequests`
+
+## `/api/protected/users`
+
+## `/api/protected/roles`
+
+## `/api/protected/oauthproviders`
+
+## `/api/protected/logintypes`
+
+## `/api/protected/authenticationmethods`
+A read-only endpoint for retrieving information about available authentication methods.
+
+### Role-based authorization
+None
+
+### Calls
+#### `/api/protected/authenticationmethods`
+Returns a list of all AuthenticationMethod objects.
+
+#### `/api/protected/authenticationmethods/{id}`
+Returns a specified AuthenticationMethod object by the value of its id property, which is unique.
+
+#### `/api/protected/authenticationmethods/byname/{name}`
+Returns a specified AuthenticationMethod object by the value of its name property, which is unique.
+
 # Building it
 The project uses the maven build tool. Typically, you build it by invoking `mvn clean install` at the command line. For simple file changes, not additions or deletions, you can usually use `mvn install`. See https://github.com/eurekaclinical/dev-wiki/wiki/Building-Eureka!-Clinical-projects for more details.
 
