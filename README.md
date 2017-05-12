@@ -24,6 +24,15 @@ A read-only endpoint for retrieving information about available authentication m
 ### Role-based authorization
 None
 
+### AuthenticationMethod object
+Properties:
+* id: unique number identifying the object.
+* name: unique string containing the authentication method's name. Allowed values are
+  * LOCAL: Uses Eureka! Clinical's built-in authentication.
+  * LDAP: Uses an LDAP server.
+  * OAUTH: Uses OAuth.
+* description: string containing the authentication method's description.
+
 ### Calls
 #### `/api/protected/authenticationmethods`
 Returns an array of all AuthenticationMethod objects.
