@@ -15,7 +15,7 @@ It provides RESTful APIs for users to manage their profile and change their pass
 ## `/api/protected/roles`
 
 ## `/api/protected/oauthproviders`
-A read-only endpoint for retrieving information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
+A read-only endpoint for retrieving information about available OAuth providers.
 
 ### Role-based authorization
 None
@@ -30,13 +30,13 @@ Properties:
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
 
 #### `/api/protected/oauthproviders`
-Returns an array of all LoginType objects.
+Returns an array of all OAuthProvider objects.
 
 #### `/api/protected/oauthproviders/{id}`
-Returns a specified LoginType object by the value of its id property, which is unique.
+Returns a specified OAuthProvider object by the value of its id property, which is unique.
 
 #### `/api/protected/oauthproviders/byname/{name}`
-Returns a specified LoginType object by the value of its name property, which is unique.
+Returns a specified OAuthProvider object by the value of its name property, which is unique.
 
 ## `/api/protected/logintypes`
 A read-only endpoint for retrieving information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
