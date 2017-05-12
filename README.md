@@ -12,8 +12,6 @@ It provides RESTful APIs for users to manage their profile and change their pass
 
 ## `/api/protected/users`
 
-## `/api/protected/roles`
-
 ## `/api/protected/oauthproviders`
 A read-only endpoint for retrieving information about available OAuth providers.
 
