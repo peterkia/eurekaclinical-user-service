@@ -26,7 +26,7 @@ None
 
 ### Calls
 #### `/api/protected/authenticationmethods`
-Returns a list of all AuthenticationMethod objects.
+Returns an array of all AuthenticationMethod objects.
 
 #### `/api/protected/authenticationmethods/{id}`
 Returns a specified AuthenticationMethod object by the value of its id property, which is unique.
