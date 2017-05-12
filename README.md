@@ -17,18 +17,18 @@ It provides RESTful APIs for users to manage their profile and change their pass
 ## `/api/protected/oauthproviders`
 
 ## `/api/protected/logintypes`
-A read-only endpoint for retrieving information about available login types, which controls whether the user 1) authenticates using Eureka! Clinical's built-in login screen or 2) authenticates with a trusted third party provider like an OAuth provider.
+A read-only endpoint for retrieving information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
 
 ### Role-based authorization
 None
 
 ### LoginType object
 Properties:
-* id: unique number identifying the object.
-* name: unique string containing the login type's name. Allowed values are
-  * INTERNAL: Uses Eureka! Clinical's built-in login screen.
-  * PROVIDER: Delegates to an external provider for login.
-* description: string containing the login type's description.
+* `id`: unique number identifying the object.
+* `name`: unique string containing the login type's name. Allowed values are
+  * `INTERNAL`: Authentication using Eureka! Clinical's built-in login screen.
+  * `PROVIDER`: Authentication using an external provider for login.
+* `description`: string containing the login type's description.
 
 ### Calls
 #### `/api/protected/logintypes`
@@ -48,11 +48,11 @@ None
 
 ### AuthenticationMethod object
 Properties:
-* id: unique number identifying the object.
-* name: unique string containing the authentication method's name. Allowed values are
-  * LOCAL: Uses Eureka! Clinical's built-in authentication.
-  * LDAP: Uses an LDAP server.
-  * OAUTH: Uses OAuth.
+* `id`: unique number identifying the object.
+* `name`: unique string containing the authentication method's name. Allowed values are
+  * `LOCAL`: Uses Eureka! Clinical's built-in authentication.
+  * `LDAP`: Uses an LDAP server.
+  * `OAUTH`: Uses OAuth.
 * description: string containing the authentication method's description.
 
 ### Calls
