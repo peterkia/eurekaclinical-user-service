@@ -1,5 +1,5 @@
 # Eureka! Clinical User Service
-RESTful APIs for managing user profiles
+RESTful APIs for managing user accounts
 
 # Version history
 No final releases yet
