@@ -45,6 +45,35 @@ Requests a user account. The UserRequest object is passed in as the body of the 
 Marks the user as verified. The code to specify is provided to the user in an email.
 
 ## `/api/protected/users`
+Manages created user accounts.
+
+### Role-based authorization
+Call-dependent
+
+### Requires successful authentication
+Yes
+
+### User object
+Properties:
+* `id`: unique number identifying the user (set by the server on object creation, and required thereafter).
+* `username`: required username string.
+* `firstName`: optional first name string.
+* `lastName`: optional last name string.
+* `fullName`: optional full name string.
+* `email`: optional email address string.
+* `organization`: optional organization string.
+* `title`: optional title.
+* `department`: optional department.
+* `loginType`: required unique string indicating the login screen that is requested:
+  * `INTERNAL`: using Eureka! Clinical's login screen.
+  * `PROVIDER`: using a trusted third party provider's login mechanism.
+* `type`: required unique string indicating requested authentication method:
+  * `LOCAL`: Eureka! Clinical's authentication mechanism.
+  * `OAUTH`: An OAuth provider.
+  * `LDAP`: An LDAP server.
+* `created`: required the timestamp string indicating when the account was created.
+* `active`: required boolean indicating whether the account is active.
+* `roles`: an optional array of id numbers indicating what roles the user has.
 
 ## `/api/protected/oauthproviders`
 Retrieves information about available OAuth providers.
