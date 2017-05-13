@@ -73,7 +73,6 @@ Properties:
   * `LDAP`: An LDAP server.
 * `created`: required the timestamp string indicating when the account was created.
 * `active`: required boolean indicating whether the account is active.
-* `roles`: an optional array of id numbers indicating what roles the user has.
 
 ## `/api/protected/oauthproviders`
 Retrieves information about available OAuth providers.
