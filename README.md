@@ -74,6 +74,31 @@ Properties:
 * `created`: required the timestamp string indicating when the account was created.
 * `active`: required boolean indicating whether the account is active.
 
+### Calls
+All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
+
+#### GET `/api/protected/users`
+Returns an array of all User objects. Requires the `admin` role.
+
+#### GET `/api/protected/users/{id}`
+Returns a specified User object by the value of its id property, which is unique. Requires either the `researcher` role or the `admin` role.
+
+#### GET `/api/protected/users/me`
+Returns the User object for the currently authenticated user. Requires either the `researcher` role or the `admin` role.
+
+#### POST `/api/protected/users/`
+Creates a new user. The User object is passed in as the body of the request. Returns the URI of the created User object. Requires the `admin` role.
+
+#### PUT `/api/protected/users/{id}`
+Updates the user object with the specified id. The User object is passed in as the body of the request. Requires either the `researcher` role or the `admin` role.
+
+#### POST `/api/protected/users/passwordchange`
+Changes the user's password. Returns nothing. Requires either the `researcher` role or the `admin` role. This call is non-standard.
+
+This call requires a different JSON object in the body of the request, a PasswordChangeRequest object. Its properties are:
+* `oldPassword`: required old password string.
+* `newPassword`: required new password string.
+
 ## `/api/protected/oauthproviders`
 Retrieves information about available OAuth providers.
 
