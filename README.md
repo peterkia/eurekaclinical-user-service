@@ -9,14 +9,44 @@ It provides RESTful APIs for users to manage their profile and change their pass
 
 # REST endpoints
 ## `/api/userrequests`
+Manages user account requests.
+
+### Role-based authorization
+None
+
+### Requires successful authentication
+No
+
+### UserRequest object
+Properties:
+* `id`: unique number identifying the request.
+* `username`: the requested username string. Required.
+* `firstName`: the requesting user's first name string. Optional.
+* `lastName`: the requesting user's last name string. Optional.
+* `fullName`: the requesting user's full name string. Optional.
+* `email`: the requesting user's email address string. Optional.
+* `verifyEmail`: the same email address string. Must match the value of `email`. Optional unless `email` has a value.
+* `organization`: the requesting user's organization string. Optional.
+* `title`: the requesting user's title. Optional.
+* `department`: the requesting user's department. Optional.
+* `loginType`: Required. Whether the requested account is:
+  * `INTERNAL`: using Eureka! Clinical's login screen.
+  * `PROVIDER`: using a trusted third party provider's login mechanism.
+* `type`: Required. The authentication method of the account request:
+  * `LOCAL`: using Eureka! Clinical's authentication mechanism.
+  * `OAUTH`: using an OAuth provider.
+  * `LDAP`: using an LDAP server.
 
 ## `/api/protected/users`
 
 ## `/api/protected/oauthproviders`
-A read-only endpoint for retrieving information about available OAuth providers.
+Retrieves information about available OAuth providers.
 
 ### Role-based authorization
 None
+
+### Requires successful authentication
+Yes
 
 ### OAuthProvider object
 Properties:
@@ -37,10 +67,13 @@ Returns a specified OAuthProvider object by the value of its id property, which 
 Returns a specified OAuthProvider object by the value of its name property, which is unique.
 
 ## `/api/protected/logintypes`
-A read-only endpoint for retrieving information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
+Retrieves information about available login types, which include 1) authenticating using Eureka! Clinical's built-in login screen or 2) authenticating with a trusted third party provider like an OAuth provider.
 
 ### Role-based authorization
 None
+
+### Requires successful authentication
+Yes
 
 ### LoginType object
 Properties:
@@ -63,10 +96,13 @@ Returns a specified LoginType object by the value of its id property, which is u
 Returns a specified LoginType object by the value of its name property, which is unique.
 
 ## `/api/protected/authenticationmethods`
-A read-only endpoint for retrieving information about available authentication methods.
+Retrieves information about available authentication methods.
 
 ### Role-based authorization
 None
+
+### Requires successful authentication
+Yes
 
 ### AuthenticationMethod object
 Properties:
