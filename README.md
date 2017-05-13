@@ -33,9 +33,9 @@ Properties:
   * `INTERNAL`: using Eureka! Clinical's login screen.
   * `PROVIDER`: using a trusted third party provider's login mechanism.
 * `type`: Required. The authentication method of the account request:
-  * `LOCAL`: using Eureka! Clinical's authentication mechanism.
-  * `OAUTH`: using an OAuth provider.
-  * `LDAP`: using an LDAP server.
+  * `LOCAL`: Eureka! Clinical's authentication mechanism.
+  * `OAUTH`: An OAuth provider.
+  * `LDAP`: An LDAP server.
 
 ## `/api/protected/users`
 
