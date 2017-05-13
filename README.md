@@ -37,6 +37,13 @@ Properties:
   * `OAUTH`: An OAuth provider.
   * `LDAP`: An LDAP server.
 
+### Calls
+#### POST /api/userrequests
+Requests a user account. The UserRequest object is passed in as the body of the request. Returns the URI of the created UserRequest object. Uses status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification).
+
+#### PUT /api/userrequests/verify/{code}
+Marks the user as verified. The code to specify is provided to the user in an email.
+
 ## `/api/protected/users`
 
 ## `/api/protected/oauthproviders`
