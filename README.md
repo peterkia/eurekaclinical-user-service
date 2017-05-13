@@ -19,20 +19,20 @@ No
 
 ### UserRequest object
 Properties:
-* `id`: unique number identifying the request.
-* `username`: the requested username string. Required.
-* `firstName`: the requesting user's first name string. Optional.
-* `lastName`: the requesting user's last name string. Optional.
-* `fullName`: the requesting user's full name string. Optional.
-* `email`: the requesting user's email address string. Optional.
-* `verifyEmail`: the same email address string. Must match the value of `email`. Optional unless `email` has a value.
-* `organization`: the requesting user's organization string. Optional.
-* `title`: the requesting user's title. Optional.
-* `department`: the requesting user's department. Optional.
-* `loginType`: Required. Whether the requested account is:
+* `id`: unique number identifying the request (set by the server on object creation, and required thereafter).
+* `username`: required username string.
+* `firstName`: optional first name string.
+* `lastName`: optional last name string.
+* `fullName`: optional full name string.
+* `email`: optional email address string.
+* `verifyEmail`: the same email address string. Must match the value of `email`.
+* `organization`: optional organization string.
+* `title`: optional title.
+* `department`: optional department.
+* `loginType`: required unique string indicating the login screen that is requested:
   * `INTERNAL`: using Eureka! Clinical's login screen.
   * `PROVIDER`: using a trusted third party provider's login mechanism.
-* `type`: Required. The authentication method of the account request:
+* `type`: required unique string indicating requested authentication method:
   * `LOCAL`: Eureka! Clinical's authentication mechanism.
   * `OAUTH`: An OAuth provider.
   * `LDAP`: An LDAP server.
@@ -50,20 +50,20 @@ Yes
 
 ### OAuthProvider object
 Properties:
-* `id`: unique number identifying the OAuth provider.
-* `name`: unique string containing the OAuth provider's name.
-* `description`: string containing a longer description of the OAuth provider.
+* `id`: required unique number identifying the OAuth provider.
+* `name`: required unique string containing the OAuth provider's name.
+* `description`: optional string containing a longer description of the OAuth provider.
 
 ### Calls
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
 
-#### `/api/protected/oauthproviders`
+#### GET `/api/protected/oauthproviders`
 Returns an array of all OAuthProvider objects.
 
-#### `/api/protected/oauthproviders/{id}`
+#### GET `/api/protected/oauthproviders/{id}`
 Returns a specified OAuthProvider object by the value of its id property, which is unique.
 
-#### `/api/protected/oauthproviders/byname/{name}`
+#### GET `/api/protected/oauthproviders/byname/{name}`
 Returns a specified OAuthProvider object by the value of its name property, which is unique.
 
 ## `/api/protected/logintypes`
@@ -77,22 +77,22 @@ Yes
 
 ### LoginType object
 Properties:
-* `id`: unique number identifying the object.
-* `name`: unique string containing the login type's name. Allowed values are
+* `id`: required unique number identifying the object.
+* `name`:  required unique string containing the login type's name. Allowed values are
   * `INTERNAL`: Authentication using Eureka! Clinical's built-in login screen.
   * `PROVIDER`: Authentication using an external provider for login.
-* `description`: string containing the login type's description.
+* `description`: optional string containing the login type's description.
 
 ### Calls
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
 
-#### `/api/protected/logintypes`
+#### GET `/api/protected/logintypes`
 Returns an array of all LoginType objects.
 
-#### `/api/protected/logintypes/{id}`
+#### GET `/api/protected/logintypes/{id}`
 Returns a specified LoginType object by the value of its id property, which is unique.
 
-#### `/api/protected/logintypes/byname/{name}`
+#### GET `/api/protected/logintypes/byname/{name}`
 Returns a specified LoginType object by the value of its name property, which is unique.
 
 ## `/api/protected/authenticationmethods`
@@ -106,23 +106,23 @@ Yes
 
 ### AuthenticationMethod object
 Properties:
-* `id`: unique number identifying the object.
-* `name`: unique string containing the authentication method's name. Allowed values are
+* `id`: required unique number identifying the object.
+* `name`: required unique string containing the authentication method's name. Allowed values are
   * `LOCAL`: Uses Eureka! Clinical's built-in authentication.
   * `LDAP`: Uses an LDAP server.
   * `OAUTH`: Uses OAuth.
-* description: string containing the authentication method's description.
+* description: optional string containing the authentication method's description.
 
 ### Calls
 All calls use standard names, return values and status codes as specified in the [Eureka! Clinical microservice specification](https://github.com/eurekaclinical/dev-wiki/wiki/Eureka%21-Clinical-microservice-specification)
 
-#### `/api/protected/authenticationmethods`
+#### GET `/api/protected/authenticationmethods`
 Returns an array of all AuthenticationMethod objects.
 
-#### `/api/protected/authenticationmethods/{id}`
+#### GET `/api/protected/authenticationmethods/{id}`
 Returns a specified AuthenticationMethod object by the value of its id property, which is unique.
 
-#### `/api/protected/authenticationmethods/byname/{name}`
+#### GET `/api/protected/authenticationmethods/byname/{name}`
 Returns a specified AuthenticationMethod object by the value of its name property, which is unique.
 
 # Building it
