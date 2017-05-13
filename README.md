@@ -5,7 +5,7 @@ RESTful APIs for managing user accounts
 No final releases yet
 
 # What does it do?
-It provides RESTful APIs for users to manage their profile and change their password.
+It provides RESTful APIs for users to request an account, manage their profile and change their password. It also provides APIs for an administrator to create accounts.
 
 # REST endpoints
 ## `/api/userrequests`
