@@ -1,6 +1,9 @@
 # Eureka! Clinical User Service
 RESTful APIs for managing user accounts
 
+## Version 1.0 development series
+Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-user-service/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-user-service)
+
 ## Version history
 No final releases yet
 
