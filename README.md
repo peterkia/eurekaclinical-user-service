@@ -206,6 +206,12 @@ You can run this project in an embedded tomcat by executing `mvn tomcat7:run -Pt
 ## Developer documentation
 * [Javadoc for latest development release](http://javadoc.io/doc/org.eurekaclinical/eurekaclinical-user-service) [![Javadocs](http://javadoc.io/badge/org.eurekaclinical/eurekaclinical-user-service.svg)](http://javadoc.io/doc/org.eurekaclinical/eurekaclinical-user-service)
 
+## Configuration
+Eureka! Clinical CAS is configured via a properties file located at `/etc/eureka/cas.properties`. In addition to the properties described in the [JASIG CAS documentation](https://wiki.jasig.org/display/casum/configuring), it supports the following properties:
+* `eurekaclinical.userservice.callbackserver`: https://hostname:port
+* `eurekaclinical.userservice.url`: https://hostname:port/eurekaclinical-user-service
+* `cas.url`: https://hostname.of.casserver:port/cas-server
+
 ## Getting help
 Feel free to contact us at help@eurekaclinical.org.
 
