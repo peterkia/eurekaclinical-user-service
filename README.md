@@ -10,6 +10,18 @@ No final releases yet
 ## What does it do?
 It provides RESTful APIs for users to request an account, manage their profile and change their password. It also provides APIs for an administrator to create accounts.
 
+## Build requirements
+* [Oracle Java JDK 8](http://www.oracle.com/technetwork/java/javase/overview/index.html)
+* [Maven 3.2.5 or greater](https://maven.apache.org)
+
+## Runtime requirements
+* [Oracle Java JRE 8](http://www.oracle.com/technetwork/java/javase/overview/index.html)
+* [Tomcat 7](https://tomcat.apache.org)
+* One of the following relational databases:
+  * [Oracle](https://www.oracle.com/database/index.html) 11g or greater
+  * [Postgresql](https://www.postgresql.org) 9.1 or greater
+  * [H2](http://h2database.com) 1.4.193 or greater (for testing)
+
 ## REST endpoints
 ### `/api/userrequests`
 Manages user account requests.
