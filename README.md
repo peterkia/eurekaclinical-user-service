@@ -1,5 +1,5 @@
 # Eureka! Clinical User Service
-Atlanta Clinical and Translational Science Institute (ACTSI), Emory University, Atlanta, GA
+[Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
 ## What does it do?
 It provides RESTful APIs for users to request an account, manage their profile and change their password. It also provides APIs for an administrator to create accounts.
