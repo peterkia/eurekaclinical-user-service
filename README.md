@@ -19,7 +19,7 @@ It provides RESTful APIs for users to request an account, manage their profile a
 * [Tomcat 7](https://tomcat.apache.org)
 * One of the following relational databases:
   * [Oracle](https://www.oracle.com/database/index.html) 11g or greater
-  * [Postgresql](https://www.postgresql.org) 9.1 or greater
+  * [PostgreSQL](https://www.postgresql.org) 9.1 or greater
   * [H2](http://h2database.com) 1.4.193 or greater (for testing)
 
 ## REST endpoints
