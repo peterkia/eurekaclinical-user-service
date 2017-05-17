@@ -251,6 +251,9 @@ This service is configured using a properties file located at `/etc/ec-user/appl
 
 A Tomcat restart is required to detect any changes to the configuration file.
 
+### WAR installation
+Stop tomcat, copy the warfile into the tomcat webapps directory, renaming it to remove the version, and start tomcat.
+
 ## Maven dependency
 ```
 <dependency>
