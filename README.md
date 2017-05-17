@@ -206,6 +206,51 @@ The project uses the maven build tool. Typically, you build it by invoking `mvn 
 ## Performing system tests
 You can run this project in an embedded tomcat by executing `mvn tomcat7:run -Ptomcat` after you have built it. It will be accessible in your web browser at https://localhost:8443/eurekaclinical-user-service/. Your username will be `superuser`.
 
+## Installation
+### Database schema creation
+A [Liquibase](http://www.liquibase.org) changelog is provided in `src/main/resources/dbmigration/` for creating the schema and objects. [Liquibase 3.3 or greater](http://www.liquibase.org/download/index.html) is required.
+
+Perform the following steps:
+1) Create a schema in your database and a user account for accessing that schema.
+2) Get a JDBC driver for your database and put it the liquibase lib directory.
+3) Run the following:
+```
+./liquibase \
+      --driver=JDBC_DRIVER_CLASS_NAME \
+      --classpath=/path/to/jdbcdriver.jar:/path/to/eurekaclinical-user-service.war \
+      --changeLogFile=dbmigration/changelog-master.xml \
+      --url="JDBC_CONNECTION_URL" \
+      --username=DB_USER \
+      --password=DB_PASS \
+      update
+```
+4) Add the following Resource tag to Tomcat's `context.xml` file:
+```
+<Context>
+...
+    <Resource name="jdbc/UserService" auth="Container"
+            type="javax.sql.DataSource"
+            driverClassName="JDBC_DRIVER_CLASS_NAME"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            url="JDBC_CONNECTION_URL"
+            username="DB_USER" password="DB_PASS"
+            initialSize="3" maxActive="20" maxIdle="3" minIdle="1"
+            maxWait="-1" validationQuery="SELECT 1" testOnBorrow="true"/>
+...
+</Context>
+```
+
+The validation query above is suitable for PostgreSQL. For Oracle and H2, use
+`SELECT 1 FROM DUAL`.
+
+### Configuration
+This service is configured using a properties file located at `/etc/ec-user/application.properties`. It supports the following properties:
+* `eurekaclinical.userservice.callbackserver`: https://hostname:port
+* `eurekaclinical.userservice.url`: https://hostname:port/eurekaclinical-user-service
+* `cas.url`: https://hostname.of.casserver:port/cas-server
+
+A Tomcat restart is required to detect any changes to the configuration file.
+
 ## Maven dependency
 ```
 <dependency>
@@ -217,12 +262,6 @@ You can run this project in an embedded tomcat by executing `mvn tomcat7:run -Pt
 
 ## Developer documentation
 * [Javadoc for latest development release](http://javadoc.io/doc/org.eurekaclinical/eurekaclinical-user-service) [![Javadocs](http://javadoc.io/badge/org.eurekaclinical/eurekaclinical-user-service.svg)](http://javadoc.io/doc/org.eurekaclinical/eurekaclinical-user-service)
-
-## Configuration
-This service is configured using a properties file located at `/etc/ec-user/application.properties`. It supports the following properties:
-* `eurekaclinical.userservice.callbackserver`: https://hostname:port
-* `eurekaclinical.userservice.url`: https://hostname:port/eurekaclinical-user-service
-* `cas.url`: https://hostname.of.casserver:port/cas-server
 
 ## Getting help
 Feel free to contact us at help@eurekaclinical.org.
