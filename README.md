@@ -252,10 +252,10 @@ This service is configured using a properties file located at `/etc/ec-user/appl
 A Tomcat restart is required to detect any changes to the configuration file.
 
 ### WAR installation
-1) Stop Tomcat
-2) Remove any old copies of the unpacked war from Tomcat's webapps directory
-3) Copy the warfile into the tomcat webapps directory, renaming it to remove the version
-4) Start tomcat
+1) Stop Tomcat.
+2) Remove any old copies of the unpacked war from Tomcat's webapps directory.
+3) Copy the warfile into the tomcat webapps directory, renaming it to remove the version. For example, rename `eurekaclinical-user-webapp-1.0.war` to `eurekaclinical-user-webapp.war`.
+4) Start Tomcat.
 
 ## Maven dependency
 ```
