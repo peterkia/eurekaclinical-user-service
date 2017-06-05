@@ -36,8 +36,6 @@ import org.eurekaclinical.user.service.dao.RoleDao;
 import org.eurekaclinical.user.service.dao.UserDao;
 import org.eurekaclinical.user.service.email.EmailSender;
 import org.eurekaclinical.user.service.email.MockEmailSender;
-import org.eurekaclinical.common.comm.clients.WebResourceWrapperFactory;
-import org.eurekaclinical.common.comm.clients.cassupport.CasWebResourceWrapperFactory;
 
 /**
  * Configure Guice for non-web application testing.
@@ -60,6 +58,5 @@ public class AppTestModule extends AbstractModule {
 		bind(AuthenticationMethodDao.class).to(JpaAuthenticationMethodDao.class);
 		bind(LoginTypeDao.class).to(JpaLoginTypeDao.class);
 		bind(EmailSender.class).to(MockEmailSender.class);
-		bind(WebResourceWrapperFactory.class).to(CasWebResourceWrapperFactory.class);
 	}
 }

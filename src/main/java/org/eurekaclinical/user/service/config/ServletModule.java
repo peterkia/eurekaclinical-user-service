@@ -19,10 +19,6 @@
  */
 package org.eurekaclinical.user.service.config;
 
-import com.google.inject.Singleton;
-
-import java.util.Map;
-import org.jasig.cas.client.session.SingleSignOutFilter;
 
 import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
 /**
@@ -33,28 +29,9 @@ import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWi
 public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPersist {
 
 	private static final String PACKAGE_NAMES = "org.eurekaclinical.user.service.resource;org.eurekaclinical.user.common.json";
-	private final UserServiceProperties properties;
 
 	public ServletModule(UserServiceProperties inProperties) {
 		super(inProperties, PACKAGE_NAMES);
-		this.properties = inProperties;
 	}    
-    
-	@Override
-	public Map<String, String> getCasValidationFilterInitParams() {
-		Map<String, String> params = super.getCasValidationFilterInitParams();
-		params.put("proxyCallbackUrl", getCasProxyCallbackUrl());
-		params.put("proxyReceptorUrl", getCasProxyCallbackPath());
-		return params;
-	}
-        
-	@Override
-	protected final void configureServlets() {
-        
-		bind(SingleSignOutFilter.class).in(Singleton.class);
-		filter("/*").through(SingleSignOutFilter.class);
-        
-		super.configureServlets(); 
-	}
     
 }

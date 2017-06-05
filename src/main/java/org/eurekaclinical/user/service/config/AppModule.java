@@ -31,9 +31,6 @@ import org.eurekaclinical.standardapis.dao.UserDao;
 import org.eurekaclinical.standardapis.entity.RoleEntity;
 import org.eurekaclinical.standardapis.entity.UserEntity;
 
-import org.eurekaclinical.common.comm.clients.WebResourceWrapperFactory;
-import org.eurekaclinical.common.comm.clients.cassupport.CasWebResourceWrapperFactory;
-
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.JpaAuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.JpaLocalUserDao;
@@ -74,8 +71,6 @@ public class AppModule extends AbstractModule {
 		bind(Session.class).toProvider(
 				JndiIntegration.fromJndi(Session.class,
 						"java:comp/env/mail/Session"));     
-
-		bind(WebResourceWrapperFactory.class).to(CasWebResourceWrapperFactory.class);
         }
     
 }

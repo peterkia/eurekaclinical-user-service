@@ -19,7 +19,7 @@ web interface that is used by Eureka! Clinical multiple projects
 	<properties>
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 		<eureka.build.timestamp>${maven.build.timestamp}</eureka.build.timestamp>
-		<ec-user-common-version>1.0-Alpha-11</ec-user-common-version>
+		<ec-user-common-version>1.0-Alpha-12</ec-user-common-version>
 	</properties>
 
 	<scm>
