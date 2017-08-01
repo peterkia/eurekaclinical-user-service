@@ -20,16 +20,19 @@
 package org.eurekaclinical.user.service.config;
 
 import com.google.inject.Singleton;
-
-import org.eurekaclinical.user.common.props.AbstractProperties;
+import org.eurekaclinical.standardapis.props.CasJerseyEurekaClinicalProperties;
 
 /**
  *
  * @author miaoai
  */
 @Singleton
-public class UserServiceProperties extends AbstractProperties {
+public class UserServiceProperties extends CasJerseyEurekaClinicalProperties {
 
+	public UserServiceProperties() {
+		super("/etc/ec-user");
+	}
+	
 	@Override
 	public String getProxyCallbackServer() {
 		return this.getValue("eurekaclinical.userservice.callbackserver");

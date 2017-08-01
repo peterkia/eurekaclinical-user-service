@@ -20,18 +20,31 @@
 package org.eurekaclinical.user.service.config;
 
 
+import com.google.inject.Singleton;
 import org.eurekaclinical.common.config.AbstractAuthorizingJerseyServletModuleWithPersist;
+import org.eurekaclinical.common.filter.HasAuthenticatedSessionFilter;
 /**
  * Configure web related items for Guice and Jersey.
  * 
  * @author miaoai
  */
 public class ServletModule extends AbstractAuthorizingJerseyServletModuleWithPersist {
+	
+	private static final String FILTER_PATH = "/api/*"; 
 
 	private static final String PACKAGE_NAMES = "org.eurekaclinical.user.service.resource;org.eurekaclinical.user.common.json";
 
 	public ServletModule(UserServiceProperties inProperties) {
 		super(inProperties, PACKAGE_NAMES);
-	}    
+	}
+
+	@Override
+	protected void setupFilters() {
+		bind(HasAuthenticatedSessionFilter.class).in(Singleton.class);
+		filterRegex(FILTER_PATH).through(HasAuthenticatedSessionFilter.class);
+		super.setupFilters();
+	}
+	
+	
     
 }

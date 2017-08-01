@@ -54,13 +54,11 @@ import org.eurekaclinical.user.service.entity.LocalUserEntity;
 import org.eurekaclinical.user.service.entity.RoleEntity;
 import org.eurekaclinical.user.service.entity.UserEntity;
 import org.eurekaclinical.user.service.entity.UserEntityToUserVisitor;
-import org.eurekaclinical.user.common.util.StringUtil;
-import org.eurekaclinical.user.service.authentication.ServicesAuthenticationSupport;
-import org.eurekaclinical.user.service.config.UserServiceProperties;
 import org.eurekaclinical.user.service.email.EmailException;
 import org.eurekaclinical.user.service.email.EmailSender;
 import org.eurekaclinical.user.service.util.UserToUserEntityVisitor;
 import org.eurekaclinical.standardapis.exception.HttpStatusException;
+import org.eurekaclinical.user.service.util.StringUtil;
 
 /**
  * RESTful end-point for {@link UserEntity} related methods.
@@ -102,8 +100,6 @@ public class UserResource {
 	private String validationError;
 	
 	private UserToUserEntityVisitor visitor;
-	private final ServicesAuthenticationSupport authenticationSupport;
-	private final UserServiceProperties properties;
 
 	/**
 	 * Create a UserResource object with a User DAO and a Role DAO.
@@ -115,7 +111,6 @@ public class UserResource {
 	 * @param inOAuthProviderDao OAuth provider dao
 	 * @param inLoginTypeDao Login type dao
 	 * @param inAuthenticationMethodDao Authentication method dao
-	 * @param inProperties in properties
 	 */
 	@Inject
 	public UserResource(UserDao inUserDao, LocalUserDao inLocalUserDao,
@@ -123,16 +118,13 @@ public class UserResource {
 			EmailSender inEmailSender, 
 			OAuthProviderDao inOAuthProviderDao,
 			LoginTypeDao inLoginTypeDao,
-			AuthenticationMethodDao inAuthenticationMethodDao,
-			UserServiceProperties inProperties) {
+			AuthenticationMethodDao inAuthenticationMethodDao) {
 		this.userDao = inUserDao;
 		this.localUserDao = inLocalUserDao;
 		this.roleDao = inRoleDao;
 		this.emailSender = inEmailSender;
 		this.visitor = new UserToUserEntityVisitor(inOAuthProviderDao,
 				inRoleDao, inLoginTypeDao, inAuthenticationMethodDao);
-		this.authenticationSupport = new ServicesAuthenticationSupport();
-		this.properties = inProperties;
 	}
 
 	/**
@@ -166,7 +158,7 @@ public class UserResource {
 		if (userEntity == null) {
 			throw new HttpStatusException(Response.Status.NOT_FOUND);
 		}
-		if (!req.isUserInRole("admin") && !this.authenticationSupport.isSameUser(req, userEntity.getUsername())) {
+		if (!req.isUserInRole("admin") && !req.getRemoteUser().equals(userEntity.getUsername())) {
 			throw new HttpStatusException(Response.Status.FORBIDDEN);
 		}
 		this.userDao.refresh(userEntity);
@@ -186,8 +178,9 @@ public class UserResource {
 	@Path("/me")
 	@GET
 	public User getMe(@Context HttpServletRequest req) {
+		
 		AttributePrincipal principal = 
-				this.authenticationSupport.getUserPrincipal(req);
+				(AttributePrincipal) req.getUserPrincipal();
 		String username = principal.getName();
 		UserEntity userEntity = this.userDao.getByName(username);
 		if (userEntity != null) {

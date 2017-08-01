@@ -40,11 +40,11 @@ import org.eurekaclinical.user.client.comm.authentication.LoginType;
 
 import org.eurekaclinical.user.common.test.TestDataException;
 import org.eurekaclinical.user.common.test.TestDataProvider;
-import org.eurekaclinical.user.common.util.StringUtil;
 
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
 import org.eurekaclinical.user.service.entity.UserEntityFactory;
+import org.eurekaclinical.user.service.util.StringUtil;
 /**
  * Sets up the environment for testing, by bootstrapping the data store with
  * certain items to test against.

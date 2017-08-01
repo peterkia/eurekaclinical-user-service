@@ -41,7 +41,6 @@ import org.eurekaclinical.user.service.entity.LocalUserEntity;
 import org.eurekaclinical.user.service.entity.OAuthUserEntity;
 import org.eurekaclinical.user.service.entity.RoleEntity;
 import org.eurekaclinical.user.service.entity.UserEntity;
-import org.eurekaclinical.user.common.util.StringUtil;
 
 import org.eurekaclinical.user.service.dao.AuthenticationMethodDao;
 import org.eurekaclinical.user.service.dao.LoginTypeDao;
