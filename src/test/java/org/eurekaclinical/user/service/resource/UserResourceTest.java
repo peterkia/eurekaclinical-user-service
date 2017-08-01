@@ -65,6 +65,7 @@ public class UserResourceTest extends AbstractServiceResourceTest {
 		WebResource webResource = this.resource();
 
 		String email = "test@emory.edu";
+		String username = "userservicetestuser";
 		String verifyEmail = "test@emory.edu";
 		String firstName = "Joe";
 		String lastName = "Schmoe";
@@ -78,7 +79,7 @@ public class UserResourceTest extends AbstractServiceResourceTest {
 
 		userRequest.setFirstName(firstName);
 		userRequest.setLastName(lastName);
-		userRequest.setUsername(email);
+		userRequest.setUsername(username);
 		userRequest.setEmail(email);
 		userRequest.setVerifyEmail(verifyEmail);
 		userRequest.setOrganization(organization);

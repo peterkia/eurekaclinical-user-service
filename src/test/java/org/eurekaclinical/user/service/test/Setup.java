@@ -62,8 +62,6 @@ public class Setup implements TestDataProvider {
 	private RoleEntity researcherRole;
 	private RoleEntity adminRole;
 	private final UserEntityFactory userEntityFactory;
-	private List<LoginTypeEntity> loginTypes;
-	private List<AuthenticationMethodEntity> authenticationMethods;
 
 
 	/**
@@ -85,10 +83,10 @@ public class Setup implements TestDataProvider {
 	public void setUp() throws TestDataException {
 		this.researcherRole = this.createResearcherRole();
 		this.adminRole = this.createAdminRole();
-		this.loginTypes = createLoginTypes();
-		this.authenticationMethods = createAuthenticationMethods();
-		UserEntity researcherUser = this.createResearcherUser();
-		UserEntity adminUser = this.createAdminUser();
+		createLoginTypes();
+		createAuthenticationMethods();
+		createResearcherUser();
+		createAdminUser();
 	}
 
 	@Override
@@ -118,16 +116,16 @@ public class Setup implements TestDataProvider {
 	
 
 	private UserEntity createResearcherUser() throws TestDataException {
-		return this.createAndPersistUser("user@emory.edu", "Regular", "User",
+		return this.createAndPersistUser("testuser", "user@emory.edu", "Regular", "User",
 				this.researcherRole);
 	}
 
 	private UserEntity createAdminUser() throws TestDataException {
-		return this.createAndPersistUser("admin.user@emory.edu", "Admin",
+		return this.createAndPersistUser("anothertestuser", "admin.user@emory.edu", "Admin",
 				"User", this.researcherRole, this.adminRole);
 	}
 
-	private UserEntity createAndPersistUser(String email, String firstName,
+	private UserEntity createAndPersistUser(String username, String email, String firstName,
 	                                  String lastName,
 	                                  RoleEntity... roles) throws
 			TestDataException {
@@ -137,7 +135,7 @@ public class Setup implements TestDataProvider {
 			user.setActive(true);
 			user.setVerified(true);
 			user.setEmail(email);
-			user.setUsername(email);
+			user.setUsername(username);
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
 			user.setOrganization(ORGANIZATION);
