@@ -67,32 +67,6 @@ web interface that is used by Eureka! Clinical multiple projects
 							<goal>update</goal>
 						</goals>
 						<configuration>
-							<expressionVars>
-								<property>
-									<name>eureka.superuser.email</name>
-									<value>no-reply@localhost</value>
-								</property>
-								<property>
-									<name>eureka.superuser.firstname</name>
-									<value>super</value>
-								</property>
-								<property>
-									<name>eureka.superuser.lastname</name>
-									<value>user</value>
-								</property>
-								<property>
-									<name>eureka.superuser.password</name>
-									<value>4656fd365a7b2a27efb753bca9b9cf1</value>
-								</property>
-								<property>
-									<name>eureka.superuser.username</name>
-									<value>superuser</value>
-								</property>
-								<property>
-									<name>eureka.superuser.fullname</name>
-									<value>Superuser</value>
-								</property>
-							</expressionVars>
 							<changeLogFile>${project.build.directory}/classes/dbmigration/changelog-master.xml</changeLogFile>
 							<url>jdbc:h2:file:${project.build.directory}/eurekaclinical-user-service-db/eurekaclinical-user-service</url>
 						</configuration>
