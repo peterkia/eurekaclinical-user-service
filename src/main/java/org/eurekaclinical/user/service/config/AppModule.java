@@ -65,8 +65,6 @@ public class AppModule extends AbstractModule {
 		bind(AuthenticationMethodDao.class).to(JpaAuthenticationMethodDao.class);
 		bind(LoginTypeDao.class).to(JpaLoginTypeDao.class);
 		bind(EmailSender.class).to(FreeMarkerEmailSender.class);
-
-
 		bind(Context.class).to(InitialContext.class);
 		bind(Session.class).toProvider(
 				JndiIntegration.fromJndi(Session.class,

@@ -24,8 +24,6 @@ import com.google.inject.Module;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.GuiceServletContextListener;
 
-import javax.servlet.ServletContextEvent;
-
 import org.eurekaclinical.common.config.InjectorSupport;
 /**
  * Set up the Guice dependency injection engine. Uses three modules:
@@ -37,8 +35,12 @@ import org.eurekaclinical.common.config.InjectorSupport;
  */
 public class UserConfigListener extends GuiceServletContextListener {
 	private static final String JPA_UNIT = "eurekaclinical-user-service-jpa-unit";
-	private final UserServiceProperties userServiceProperties = new UserServiceProperties();
+	private final UserServiceProperties userServiceProperties;
 
+	public UserConfigListener() {
+		this.userServiceProperties = new UserServiceProperties();
+	}
+	
 	@Override
 	protected Injector getInjector() {
 		return new InjectorSupport(
@@ -50,8 +52,4 @@ public class UserConfigListener extends GuiceServletContextListener {
 				this.userServiceProperties).getInjector();
 	}
 
-	@Override
-	public void contextDestroyed(ServletContextEvent inServletContextEvent) {
-		super.contextDestroyed(inServletContextEvent);
-	}    
 }
