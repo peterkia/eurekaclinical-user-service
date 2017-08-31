@@ -61,8 +61,6 @@ import org.eurekaclinical.user.service.dao.UserDao;
  */
 @Transactional
 @Path("/userrequests")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class UserRequestResource {
 
 	/**
@@ -117,6 +115,7 @@ public class UserRequestResource {
          * @return HTTP Response
 	 */
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addUser(
 			UserRequest userRequest, @Context UriInfo uriInfo) {
 		UserEntity user
