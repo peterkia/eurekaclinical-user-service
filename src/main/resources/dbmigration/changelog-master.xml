@@ -20,352 +20,352 @@ limitations under the License.
 -->
 
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
-                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd" 
-                   logicalFilePath="changelog-master.xml">
+				   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd" 
+				   logicalFilePath="changelog-master.xml">
 
-    <property name="eureka.superuser.email" value="no-reply@localhost"/>
-    <property name="eureka.superuser.username" value="superuser"/>
-    <property name="eureka.superuser.firstname" value="NULL"/>
-    <property name="eureka.superuser.lastname" value="NULL"/>
-    <property name="eureka.superuser.password" value="4656fd365a7b2a27efb753bca9b9cf1"/>
-    <property name="eureka.superuser.fullname" value="Superuser"/>
+	<property name="eureka.superuser.email" value="no-reply@localhost"/>
+	<property name="eureka.superuser.username" value="superuser"/>
+	<property name="eureka.superuser.firstname" value="NULL"/>
+	<property name="eureka.superuser.lastname" value="NULL"/>
+	<property name="eureka.superuser.password" value="4656fd365a7b2a27efb753bca9b9cf1"/>
+	<property name="eureka.superuser.fullname" value="Superuser"/>
     
-    <changeSet author="miaoai (generated)" id="1360440238345-1">
-	<createTable tableName="ROLES">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0013014"/>
-	    </column>
-	    <column name="DEFAULTROLE" type="BOOLEAN">
-		<constraints nullable="false"/>
-	    </column>
-	    <column name="NAME" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-    </changeSet>	
-    <changeSet author="miaoai (generated)" id="1360440238345-2">
-	<addUniqueConstraint columnNames="NAME" constraintName="SYS_C0013015" deferrable="false" disabled="false" initiallyDeferred="false" tableName="ROLES"/>
-    </changeSet>       
-    <changeSet author="miaoai (generated)" id="1360440238345-3">
-	<createTable tableName="USER_ROLE">
-	    <column name="USER_ID" type="BIGINT">
-		<constraints nullable="false"/>
-	    </column>
-	    <column name="ROLE_ID" type="BIGINT">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-    </changeSet>        
-    <changeSet author="miaoai (generated)" id="1360440238345-4">
-	<addForeignKeyConstraint baseColumnNames="ROLE_ID" baseTableName="USER_ROLE" constraintName="FK143BF46A2EE17E2D" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="ROLES" referencesUniqueColumn="false"/>
-    </changeSet>               
-    <changeSet author="miaoai (generated)" id="1360440238345-6">
-	<createTable tableName="USERS">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0013037"/>
-	    </column>
-	    <column name="ACTIVE" type="BOOLEAN">
-		<constraints nullable="false"/>
-	    </column>
-	    <column name="EMAIL" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	    <column name="FIRSTNAME" type="VARCHAR(255)"/>
-	    <column name="LASTLOGIN" type="TIMESTAMP(6)"/>
-	    <column name="LASTNAME" type="VARCHAR(255)"/>
-	    <column name="ORGANIZATION" type="VARCHAR(255)"/>
-	    <column name="PASSWORD" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	    <column name="PASSWORDEXPIRATION" type="TIMESTAMP(6)"/>
-	    <column name="VERIFICATIONCODE" type="VARCHAR(255)"/>
-	    <column name="VERIFIED" type="BOOLEAN">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-    </changeSet>
-    <changeSet author="miaoai (generated)" id="1360440238345-7">
-	<addUniqueConstraint columnNames="EMAIL" constraintName="SYS_C0013038" deferrable="false" disabled="false" initiallyDeferred="false" tableName="USERS"/>
-    </changeSet>
-    <changeSet author="miaoai (generated)" id="1360440238345-5">
-	<addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="USER_ROLE" constraintName="FK143BF46AD40C420D" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="USERS" referencesUniqueColumn="false"/>
-    </changeSet>  
-    <changeSet author="arpost (generated)" id="1360440238345-74">
-	<createSequence sequenceName="ROLE_SEQ"/>
-    </changeSet>        
-    <changeSet author="miaoai (generated)" id="1360440238345-8">
-	<createSequence sequenceName="USER_SEQ"/>
-    </changeSet>
-    <changeSet author="miaoai" id="1360440238345-9">
-	<insert tableName="ROLES">
-	    <column name="ID" valueNumeric="2"/>
-	    <column name="NAME" value="researcher"/>
-	    <column name="DEFAULTROLE" valueBoolean="true"/>
-	</insert>
-	<insert tableName="ROLES">
-	    <column name="ID" valueNumeric="3"/>
-	    <column name="NAME" value="admin"/>
-	    <column name="DEFAULTROLE" valueBoolean="false"/>
-	</insert>
-	<insert tableName="ROLES">
-	    <column name="ID" valueNumeric="1"/>
-	    <column name="NAME" value="superuser"/>
-	    <column name="DEFAULTROLE" valueBoolean="false"/>
-	</insert>            
-	<insert tableName="USERS">
-	    <column name="ID" valueNumeric="1"/>
-	    <column name="ACTIVE" valueBoolean="true"/>
-	    <column name="EMAIL" value="super.user@emory.edu"/>
-	    <column name="FIRSTNAME" value="Super"/>
-	    <column name="LASTNAME" value="User"/>
-	    <column name="ORGANIZATION" value="N/A"/>
-	    <column name="VERIFIED" valueBoolean="true"/>
-	    <column name="PASSWORDEXPIRATION" valueDate="1971-01-01T00:00:00"/>
-	    <!-- the default password is defaultPassword -->
-	    <column name="PASSWORD" value="4656fd365a7b2a27efb753bca9b9cf1"/>
-	</insert>
-	<insert tableName="USER_ROLE">
-	    <column name="USER_ID" valueNumeric="1"/>
-	    <column name="ROLE_ID" valueNumeric="1"/>
-	</insert>
-	<insert tableName="USER_ROLE">
-	    <column name="USER_ID" valueNumeric="1"/>
-	    <column name="ROLE_ID" valueNumeric="2"/>
-	</insert>
-	<insert tableName="USER_ROLE">
-	    <column name="USER_ID" valueNumeric="1"/>
-	    <column name="ROLE_ID" valueNumeric="3"/>
-	</insert>                
-    </changeSet>
+	<changeSet author="miaoai (generated)" id="1360440238345-1">
+		<createTable tableName="ROLES">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0013014"/>
+			</column>
+			<column name="DEFAULTROLE" type="BOOLEAN">
+				<constraints nullable="false"/>
+			</column>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>	
+	<changeSet author="miaoai (generated)" id="1360440238345-2">
+		<addUniqueConstraint columnNames="NAME" constraintName="SYS_C0013015" deferrable="false" disabled="false" initiallyDeferred="false" tableName="ROLES"/>
+	</changeSet>       
+	<changeSet author="miaoai (generated)" id="1360440238345-3">
+		<createTable tableName="USER_ROLE">
+			<column name="USER_ID" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="ROLE_ID" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>        
+	<changeSet author="miaoai (generated)" id="1360440238345-4">
+		<addForeignKeyConstraint baseColumnNames="ROLE_ID" baseTableName="USER_ROLE" constraintName="FK143BF46A2EE17E2D" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="ROLES" referencesUniqueColumn="false"/>
+	</changeSet>               
+	<changeSet author="miaoai (generated)" id="1360440238345-6">
+		<createTable tableName="USERS">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="SYS_C0013037"/>
+			</column>
+			<column name="ACTIVE" type="BOOLEAN">
+				<constraints nullable="false"/>
+			</column>
+			<column name="EMAIL" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="FIRSTNAME" type="VARCHAR(255)"/>
+			<column name="LASTLOGIN" type="TIMESTAMP(6)"/>
+			<column name="LASTNAME" type="VARCHAR(255)"/>
+			<column name="ORGANIZATION" type="VARCHAR(255)"/>
+			<column name="PASSWORD" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PASSWORDEXPIRATION" type="TIMESTAMP(6)"/>
+			<column name="VERIFICATIONCODE" type="VARCHAR(255)"/>
+			<column name="VERIFIED" type="BOOLEAN">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="miaoai (generated)" id="1360440238345-7">
+		<addUniqueConstraint columnNames="EMAIL" constraintName="SYS_C0013038" deferrable="false" disabled="false" initiallyDeferred="false" tableName="USERS"/>
+	</changeSet>
+	<changeSet author="miaoai (generated)" id="1360440238345-5">
+		<addForeignKeyConstraint baseColumnNames="USER_ID" baseTableName="USER_ROLE" constraintName="FK143BF46AD40C420D" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="USERS" referencesUniqueColumn="false"/>
+	</changeSet>  
+	<changeSet author="arpost (generated)" id="1360440238345-74">
+		<createSequence sequenceName="ROLE_SEQ"/>
+	</changeSet>        
+	<changeSet author="miaoai (generated)" id="1360440238345-8">
+		<createSequence sequenceName="USER_SEQ"/>
+	</changeSet>
+	<changeSet author="miaoai" id="1360440238345-9">
+		<insert tableName="ROLES">
+			<column name="ID" valueNumeric="2"/>
+			<column name="NAME" value="researcher"/>
+			<column name="DEFAULTROLE" valueBoolean="true"/>
+		</insert>
+		<insert tableName="ROLES">
+			<column name="ID" valueNumeric="3"/>
+			<column name="NAME" value="admin"/>
+			<column name="DEFAULTROLE" valueBoolean="false"/>
+		</insert>
+		<insert tableName="ROLES">
+			<column name="ID" valueNumeric="1"/>
+			<column name="NAME" value="superuser"/>
+			<column name="DEFAULTROLE" valueBoolean="false"/>
+		</insert>            
+		<insert tableName="USERS">
+			<column name="ID" valueNumeric="1"/>
+			<column name="ACTIVE" valueBoolean="true"/>
+			<column name="EMAIL" value="super.user@emory.edu"/>
+			<column name="FIRSTNAME" value="Super"/>
+			<column name="LASTNAME" value="User"/>
+			<column name="ORGANIZATION" value="N/A"/>
+			<column name="VERIFIED" valueBoolean="true"/>
+			<column name="PASSWORDEXPIRATION" valueDate="1971-01-01T00:00:00"/>
+			<!-- the default password is defaultPassword -->
+			<column name="PASSWORD" value="4656fd365a7b2a27efb753bca9b9cf1"/>
+		</insert>
+		<insert tableName="USER_ROLE">
+			<column name="USER_ID" valueNumeric="1"/>
+			<column name="ROLE_ID" valueNumeric="1"/>
+		</insert>
+		<insert tableName="USER_ROLE">
+			<column name="USER_ID" valueNumeric="1"/>
+			<column name="ROLE_ID" valueNumeric="2"/>
+		</insert>
+		<insert tableName="USER_ROLE">
+			<column name="USER_ID" valueNumeric="1"/>
+			<column name="ROLE_ID" valueNumeric="3"/>
+		</insert>                
+	</changeSet>
     
-    <!-- 1.8 changes -->
-    <changeSet author="miaoai" id="1360440238345-10">
-	<addColumn tableName="USERS">
-	    <column name="TITLE" type="VARCHAR(255)"/>
-	    <column name="DEPARTMENT" type="VARCHAR(255)"/>
-	</addColumn>
-    </changeSet>
-    <!-- 1.9 changes -->
-    <changeSet author="miaoai" id="1360440238345-11">
-	<createTable tableName="LOCAL_USERS">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="LOCAL_USERS_PK"/>
-	    </column>
-	    <column name="PASSWORD" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	    <column name="PASSWORDEXPIRATION" type="TIMESTAMP(6)"/>
-	    <column name="VERIFICATIONCODE" type="VARCHAR(255)"/>
-	    <column name="VERIFIED" type="BOOLEAN">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-	<sql>
-	    INSERT INTO LOCAL_USERS (SELECT ID, PASSWORD, PASSWORDEXPIRATION, VERIFICATIONCODE, VERIFIED FROM USERS)
-	</sql>
-	<dropColumn tableName="USERS" columnName="PASSWORD"/>
-	<dropColumn tableName="USERS" columnName="PASSWORDEXPIRATION"/>
-	<dropColumn tableName="USERS" columnName="VERIFICATIONCODE"/>
-	<dropColumn tableName="USERS" columnName="VERIFIED"/>
-	<addColumn tableName="USERS">
-	    <column name="USERNAME" type="VARCHAR(255)"/>
-	</addColumn>
-	<dropUniqueConstraint tableName="USERS" constraintName="SYS_C0013038"/>
-	<addUniqueConstraint columnNames="USERNAME" constraintName="UNIQ_USERS_USERNAME" deferrable="false" disabled="false" initiallyDeferred="false" tableName="USERS"/>
-	<update tableName="USERS">
-	    <column name="USERNAME" value="superuser"/>
-	    <where>EMAIL='super.user@emory.edu'</where>
-	</update>
-	<update tableName="USERS">
-	    <column name="EMAIL" value="no-reply@localhost"/>
-	    <where>EMAIL='super.user@emory.edu'</where>
-	</update>
-	<sql>
-	    UPDATE USERS SET USERNAME=EMAIL WHERE USERNAME IS NULL
-	</sql>
-	<addNotNullConstraint tableName="USERS" columnName="USERNAME" columnDataType="VARCHAR(255)"/>
-	<addColumn tableName="USERS">
-	    <column name="FULLNAME" type="VARCHAR(255)"/>
-	</addColumn>
-	<addColumn tableName="USERS">
-	    <column name="CREATED" type="TIMESTAMP(6)" defaultValueDate="1970-01-01 00:00:00">
-		<constraints nullable="false" />
-	    </column>
-	</addColumn>
-	<createTable tableName="OAUTH_PROVIDERS">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="OAUTH_PROVIDERS_PK"/>
-	    </column>
-	    <column name="DESCRIPTION" type="VARCHAR(255)"/>
-	    <column name="NAME" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-	<insert tableName="OAUTH_PROVIDERS">
-	    <column name="ID" valueNumeric="1"/>
-	    <column name="NAME" value="SSLTwitterProvider"/>
-	    <column name="DESCRIPTION" value="Twitter"/>
-	</insert>
-	<insert tableName="OAUTH_PROVIDERS">
-	    <column name="ID" valueNumeric="2"/>
-	    <column name="NAME" value="Google2Provider"/>
-	    <column name="DESCRIPTION" value="Google"/>
-	</insert>
-	<insert tableName="OAUTH_PROVIDERS">
-	    <column name="ID" valueNumeric="3"/>
-	    <column name="NAME" value="GitHubProvider"/>
-	    <column name="DESCRIPTION" value="GitHub"/>
-	</insert>
-	<createTable tableName="OAUTH_USERS">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="OAUTH_USERS_PK"/>
-	    </column>
-	    <column name="PROVIDERUSERNAME" type="VARCHAR(255)"/>
-	    <column name="OAUTHPROVIDER_ID" type="BIGINT">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-	<addForeignKeyConstraint baseColumnNames="OAUTHPROVIDER_ID" baseTableName="OAUTH_USERS" constraintName="FK_OAUTH_USERS_PROV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="OAUTH_PROVIDERS" referencesUniqueColumn="false"/>
-	<createTable tableName="LDAP_USERS">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="LDAP_USERS_PK"/>
-	    </column>
-	</createTable>
-    </changeSet>
-    <changeSet author="miaoai" id="1360440238345-12">
-	<createSequence sequenceName="OAUTH_PROV_SEQ"/>
-    </changeSet>
-    <changeSet author="miaoai" id="1360440238345-13">
-	<addColumn tableName="USERS">
-	    <column name="LOGINTYPE_ID" type="BIGINT"/>
-	</addColumn>
-	<addColumn tableName="USERS">
-	    <column name="AUTHENTICATIONMETHOD_ID" type="BIGINT"/>
-	</addColumn>
-    </changeSet>
-    <changeSet author="miaoai" id="1360440238345-14">
-	<createTable tableName="LOGIN_TYPES">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="LOGIN_TYPES_PK"/>
-	    </column>
-	    <column name="DESCRIPTION" type="VARCHAR(255)"/>
-	    <column name="NAME" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-	<createSequence sequenceName="LOGIN_TYPES_SEQ"/>
-	<insert tableName="LOGIN_TYPES">
-	    <column name="ID" valueNumeric="1"/>
-	    <column name="NAME" value="INTERNAL"/>
-	    <column name="DESCRIPTION" value="Authenticated by Eureka!"/>
-	</insert>
-	<insert tableName="LOGIN_TYPES">
-	    <column name="ID" valueNumeric="2"/>
-	    <column name="NAME" value="PROVIDER"/>
-	    <column name="DESCRIPTION" value="Authenticated by an external provider"/>
-	</insert>
-	<update tableName="USERS">
-	    <column name="LOGINTYPE_ID" value="1"/>
-	</update>
-	<addNotNullConstraint tableName="USERS" columnName="LOGINTYPE_ID" columnDataType="BIGINT"/>
-	<addForeignKeyConstraint baseColumnNames="LOGINTYPE_ID" baseTableName="USERS" constraintName="FK_USERS_LOGINTYPE" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="LOGIN_TYPES" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="miaoai" id="1360440238345-15">
-	<createTable tableName="AUTHENTICATION_METHODS">
-	    <column name="ID" type="BIGINT">
-		<constraints nullable="false" primaryKey="true" primaryKeyName="AUTHENTICATION_METHODS_PK"/>
-	    </column>
-	    <column name="DESCRIPTION" type="VARCHAR(255)"/>
-	    <column name="NAME" type="VARCHAR(255)">
-		<constraints nullable="false"/>
-	    </column>
-	</createTable>
-	<createSequence sequenceName="AUTHENTICATION_METHODS_SEQ" startValue="5"/>
-	<insert tableName="AUTHENTICATION_METHODS">
-	    <column name="ID" valueNumeric="1"/>
-	    <column name="NAME" value="LOCAL"/>
-	    <column name="DESCRIPTION" value="Stored within Eureka!"/>
-	</insert>
-	<insert tableName="AUTHENTICATION_METHODS">
-	    <column name="ID" valueNumeric="2"/>
-	    <column name="NAME" value="LDAP"/>
-	    <column name="DESCRIPTION" value="Managed by an LDAP server"/>
-	</insert>
-	<insert tableName="AUTHENTICATION_METHODS">
-	    <column name="ID" valueNumeric="3"/>
-	    <column name="NAME" value="OAUTH"/>
-	    <column name="DESCRIPTION" value="Managed by an OAuth provider"/>
-	</insert>
-	<update tableName="USERS">
-	    <column name="AUTHENTICATIONMETHOD_ID" valueNumeric="1"/>
-	</update>
-	<addNotNullConstraint tableName="USERS" columnName="AUTHENTICATIONMETHOD_ID" columnDataType="BIGINT"/>
-	<addForeignKeyConstraint baseColumnNames="AUTHENTICATIONMETHOD_ID" baseTableName="USERS" constraintName="FK_USERS_AUTHENTMETHOD" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="AUTHENTICATION_METHODS" referencesUniqueColumn="false"/>
-    </changeSet>
-    <changeSet author="miaoai" id="1360440238345-16">
-	<dropSequence sequenceName="USER_SEQ"/>
-	<createSequence sequenceName="USER_SEQ" startValue="2"/>
-    </changeSet>
+	<!-- 1.8 changes -->
+	<changeSet author="miaoai" id="1360440238345-10">
+		<addColumn tableName="USERS">
+			<column name="TITLE" type="VARCHAR(255)"/>
+			<column name="DEPARTMENT" type="VARCHAR(255)"/>
+		</addColumn>
+	</changeSet>
+	<!-- 1.9 changes -->
+	<changeSet author="miaoai" id="1360440238345-11">
+		<createTable tableName="LOCAL_USERS">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="LOCAL_USERS_PK"/>
+			</column>
+			<column name="PASSWORD" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="PASSWORDEXPIRATION" type="TIMESTAMP(6)"/>
+			<column name="VERIFICATIONCODE" type="VARCHAR(255)"/>
+			<column name="VERIFIED" type="BOOLEAN">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<sql>
+			INSERT INTO LOCAL_USERS (SELECT ID, PASSWORD, PASSWORDEXPIRATION, VERIFICATIONCODE, VERIFIED FROM USERS)
+		</sql>
+		<dropColumn tableName="USERS" columnName="PASSWORD"/>
+		<dropColumn tableName="USERS" columnName="PASSWORDEXPIRATION"/>
+		<dropColumn tableName="USERS" columnName="VERIFICATIONCODE"/>
+		<dropColumn tableName="USERS" columnName="VERIFIED"/>
+		<addColumn tableName="USERS">
+			<column name="USERNAME" type="VARCHAR(255)"/>
+		</addColumn>
+		<dropUniqueConstraint tableName="USERS" constraintName="SYS_C0013038"/>
+		<addUniqueConstraint columnNames="USERNAME" constraintName="UNIQ_USERS_USERNAME" deferrable="false" disabled="false" initiallyDeferred="false" tableName="USERS"/>
+		<update tableName="USERS">
+			<column name="USERNAME" value="superuser"/>
+			<where>EMAIL='super.user@emory.edu'</where>
+		</update>
+		<update tableName="USERS">
+			<column name="EMAIL" value="no-reply@localhost"/>
+			<where>EMAIL='super.user@emory.edu'</where>
+		</update>
+		<sql>
+			UPDATE USERS SET USERNAME=EMAIL WHERE USERNAME IS NULL
+		</sql>
+		<addNotNullConstraint tableName="USERS" columnName="USERNAME" columnDataType="VARCHAR(255)"/>
+		<addColumn tableName="USERS">
+			<column name="FULLNAME" type="VARCHAR(255)"/>
+		</addColumn>
+		<addColumn tableName="USERS">
+			<column name="CREATED" type="TIMESTAMP(6)" defaultValueDate="1970-01-01 00:00:00">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+		<createTable tableName="OAUTH_PROVIDERS">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="OAUTH_PROVIDERS_PK"/>
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(255)"/>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<insert tableName="OAUTH_PROVIDERS">
+			<column name="ID" valueNumeric="1"/>
+			<column name="NAME" value="GlobusProvider"/>
+			<column name="DESCRIPTION" value="Globus"/>
+		</insert>
+		<insert tableName="OAUTH_PROVIDERS">
+			<column name="ID" valueNumeric="2"/>
+			<column name="NAME" value="Google2Provider"/>
+			<column name="DESCRIPTION" value="Google"/>
+		</insert>
+		<insert tableName="OAUTH_PROVIDERS">
+			<column name="ID" valueNumeric="3"/>
+			<column name="NAME" value="GitHubProvider"/>
+			<column name="DESCRIPTION" value="GitHub"/>
+		</insert>
+		<createTable tableName="OAUTH_USERS">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="OAUTH_USERS_PK"/>
+			</column>
+			<column name="PROVIDERUSERNAME" type="VARCHAR(255)"/>
+			<column name="OAUTHPROVIDER_ID" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<addForeignKeyConstraint baseColumnNames="OAUTHPROVIDER_ID" baseTableName="OAUTH_USERS" constraintName="FK_OAUTH_USERS_PROV" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="OAUTH_PROVIDERS" referencesUniqueColumn="false"/>
+		<createTable tableName="LDAP_USERS">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="LDAP_USERS_PK"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="miaoai" id="1360440238345-12">
+		<createSequence sequenceName="OAUTH_PROV_SEQ" startValue="4"/>
+	</changeSet>
+	<changeSet author="miaoai" id="1360440238345-13">
+		<addColumn tableName="USERS">
+			<column name="LOGINTYPE_ID" type="BIGINT"/>
+		</addColumn>
+		<addColumn tableName="USERS">
+			<column name="AUTHENTICATIONMETHOD_ID" type="BIGINT"/>
+		</addColumn>
+	</changeSet>
+	<changeSet author="miaoai" id="1360440238345-14">
+		<createTable tableName="LOGIN_TYPES">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="LOGIN_TYPES_PK"/>
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(255)"/>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<createSequence sequenceName="LOGIN_TYPES_SEQ"/>
+		<insert tableName="LOGIN_TYPES">
+			<column name="ID" valueNumeric="1"/>
+			<column name="NAME" value="INTERNAL"/>
+			<column name="DESCRIPTION" value="Authenticated by Eureka!"/>
+		</insert>
+		<insert tableName="LOGIN_TYPES">
+			<column name="ID" valueNumeric="2"/>
+			<column name="NAME" value="PROVIDER"/>
+			<column name="DESCRIPTION" value="Authenticated by an external provider"/>
+		</insert>
+		<update tableName="USERS">
+			<column name="LOGINTYPE_ID" value="1"/>
+		</update>
+		<addNotNullConstraint tableName="USERS" columnName="LOGINTYPE_ID" columnDataType="BIGINT"/>
+		<addForeignKeyConstraint baseColumnNames="LOGINTYPE_ID" baseTableName="USERS" constraintName="FK_USERS_LOGINTYPE" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="LOGIN_TYPES" referencesUniqueColumn="false"/>
+	</changeSet>
+	<changeSet author="miaoai" id="1360440238345-15">
+		<createTable tableName="AUTHENTICATION_METHODS">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="AUTHENTICATION_METHODS_PK"/>
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(255)"/>
+			<column name="NAME" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+		<createSequence sequenceName="AUTHENTICATION_METHODS_SEQ" startValue="5"/>
+		<insert tableName="AUTHENTICATION_METHODS">
+			<column name="ID" valueNumeric="1"/>
+			<column name="NAME" value="LOCAL"/>
+			<column name="DESCRIPTION" value="Stored within Eureka!"/>
+		</insert>
+		<insert tableName="AUTHENTICATION_METHODS">
+			<column name="ID" valueNumeric="2"/>
+			<column name="NAME" value="LDAP"/>
+			<column name="DESCRIPTION" value="Managed by an LDAP server"/>
+		</insert>
+		<insert tableName="AUTHENTICATION_METHODS">
+			<column name="ID" valueNumeric="3"/>
+			<column name="NAME" value="OAUTH"/>
+			<column name="DESCRIPTION" value="Managed by an OAuth provider"/>
+		</insert>
+		<update tableName="USERS">
+			<column name="AUTHENTICATIONMETHOD_ID" valueNumeric="1"/>
+		</update>
+		<addNotNullConstraint tableName="USERS" columnName="AUTHENTICATIONMETHOD_ID" columnDataType="BIGINT"/>
+		<addForeignKeyConstraint baseColumnNames="AUTHENTICATIONMETHOD_ID" baseTableName="USERS" constraintName="FK_USERS_AUTHENTMETHOD" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="AUTHENTICATION_METHODS" referencesUniqueColumn="false"/>
+	</changeSet>
+	<changeSet author="miaoai" id="1360440238345-16">
+		<dropSequence sequenceName="USER_SEQ"/>
+		<createSequence sequenceName="USER_SEQ" startValue="2"/>
+	</changeSet>
 
-    <!-- Update the superuser to the values of the eureka.super variables
-	 only if the values are still the defaults. -->
-    <changeSet author="miaoai" id="1360440238345-17">
-	<update tableName="USERS">
-	    <column name="EMAIL" value="${eureka.superuser.email}"/>
-	    <where>ID=1 AND EMAIL='no-reply@localhost'</where>
-	</update>
-	<update tableName="USERS">
-	    <column name="USERNAME" value="${eureka.superuser.username}"/>
-	    <where>ID=1 AND USERNAME='superuser'</where>
-	</update>
-	<update tableName="USERS">
-	    <column name="FULLNAME" value="${eureka.superuser.fullname}"/>
-	    <where>ID=1 AND FULLNAME IS NULL AND FIRSTNAME='Super' AND LASTNAME='User'</where>
-	</update>
-	<update tableName="USERS">
-	    <column name="FIRSTNAME" value="${eureka.superuser.firstname}"/>
-	    <where>ID=1 AND FIRSTNAME='Super'</where>
-	</update>
-	<update tableName="USERS">
-	    <column name="LASTNAME" value="${eureka.superuser.lastname}"/>
-	    <where>ID=1 AND LASTNAME='User'</where>
-	</update>
-	<update tableName="LOCAL_USERS">
-	    <column name="PASSWORD" value="${eureka.superuser.password}"/>
-	    <where>ID=1 AND PASSWORD='4656fd365a7b2a27efb753bca9b9cf1'</where>
-	</update>
-    </changeSet>    
-    <changeSet author="mai" id="1360440238345-18">
-	<dropForeignKeyConstraint baseTableName="USER_ROLE" constraintName="FK143BF46A2EE17E2D"/>                         
-    </changeSet>                  
-    <changeSet author="mai" id="1360440238345-19">  
-	<delete tableName="USER_ROLE">
-	    <where>USER_ID=1 AND ROLE_ID=1 </where>
-	</delete>                    
-	<delete tableName="ROLES">
-	    <where>NAME='superuser'</where>
-	</delete>   
-    </changeSet>   
-    <changeSet author="mai" id="1360440238345-20">                                           
-	<update tableName="USER_ROLE">
-	    <column name="ROLE_ID" value="1"/>
-	    <where>ROLE_ID=2</where>
-	</update>     
-	<update tableName="USER_ROLE">
-	    <column name="ROLE_ID" value="2"/>
-	    <where>ROLE_ID=3</where>
-	</update>                      
-	<update tableName="ROLES">
-	    <column name="ID" value="1"/>
-	    <where>NAME='researcher'</where>
-	</update>     
-	<update tableName="ROLES">
-	    <column name="ID" value="2"/>
-	    <where>NAME='admin'</where>
-	</update>                                       
-    </changeSet>     
-    <changeSet author="mai" id="1360440238345-21">
-	<addForeignKeyConstraint baseColumnNames="ROLE_ID" baseTableName="USER_ROLE" constraintName="FK_USER_ROLE_TO_ROLES" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="ROLES" referencesUniqueColumn="false"/>
-    </changeSet>                                                                   
+	<!-- Update the superuser to the values of the eureka.super variables
+	only if the values are still the defaults. -->
+	<changeSet author="miaoai" id="1360440238345-17">
+		<update tableName="USERS">
+			<column name="EMAIL" value="${eureka.superuser.email}"/>
+			<where>ID=1 AND EMAIL='no-reply@localhost'</where>
+		</update>
+		<update tableName="USERS">
+			<column name="USERNAME" value="${eureka.superuser.username}"/>
+			<where>ID=1 AND USERNAME='superuser'</where>
+		</update>
+		<update tableName="USERS">
+			<column name="FULLNAME" value="${eureka.superuser.fullname}"/>
+			<where>ID=1 AND FULLNAME IS NULL AND FIRSTNAME='Super' AND LASTNAME='User'</where>
+		</update>
+		<update tableName="USERS">
+			<column name="FIRSTNAME" value="${eureka.superuser.firstname}"/>
+			<where>ID=1 AND FIRSTNAME='Super'</where>
+		</update>
+		<update tableName="USERS">
+			<column name="LASTNAME" value="${eureka.superuser.lastname}"/>
+			<where>ID=1 AND LASTNAME='User'</where>
+		</update>
+		<update tableName="LOCAL_USERS">
+			<column name="PASSWORD" value="${eureka.superuser.password}"/>
+			<where>ID=1 AND PASSWORD='4656fd365a7b2a27efb753bca9b9cf1'</where>
+		</update>
+	</changeSet>    
+	<changeSet author="mai" id="1360440238345-18">
+		<dropForeignKeyConstraint baseTableName="USER_ROLE" constraintName="FK143BF46A2EE17E2D"/>                         
+	</changeSet>                  
+	<changeSet author="mai" id="1360440238345-19">  
+		<delete tableName="USER_ROLE">
+			<where>USER_ID=1 AND ROLE_ID=1 </where>
+		</delete>                    
+		<delete tableName="ROLES">
+			<where>NAME='superuser'</where>
+		</delete>   
+	</changeSet>   
+	<changeSet author="mai" id="1360440238345-20">                                           
+		<update tableName="USER_ROLE">
+			<column name="ROLE_ID" value="1"/>
+			<where>ROLE_ID=2</where>
+		</update>     
+		<update tableName="USER_ROLE">
+			<column name="ROLE_ID" value="2"/>
+			<where>ROLE_ID=3</where>
+		</update>                      
+		<update tableName="ROLES">
+			<column name="ID" value="1"/>
+			<where>NAME='researcher'</where>
+		</update>     
+		<update tableName="ROLES">
+			<column name="ID" value="2"/>
+			<where>NAME='admin'</where>
+		</update>                                       
+	</changeSet>     
+	<changeSet author="mai" id="1360440238345-21">
+		<addForeignKeyConstraint baseColumnNames="ROLE_ID" baseTableName="USER_ROLE" constraintName="FK_USER_ROLE_TO_ROLES" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" referencedColumnNames="ID" referencedTableName="ROLES" referencesUniqueColumn="false"/>
+	</changeSet>
 </databaseChangeLog>
