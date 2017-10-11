@@ -6,7 +6,7 @@
 	<version>1.0-Alpha-23-SNAPSHOT</version>
 	<name>Eureka! Clinical User Service</name>
 	<description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
-web interface that is used by Eureka! Clinical multiple projects
+		web interface that is used by Eureka! Clinical multiple projects
 	</description>    
 	<inceptionYear>2016</inceptionYear> 
     
@@ -232,6 +232,19 @@ web interface that is used by Eureka! Clinical multiple projects
 					</plugin>
 				</plugins>           
 			</build>
+			<!-- We need this dependency to ensure that cas-mock is downloaded from its maven repo before
+			the tomcat plugin overwrites the javax.net.ssl.trustStore system property. Otherwise
+			attempts to download artifacts from repositories will fail with certificate validation
+			errors. -->
+			<dependencies>
+				<dependency>
+					<groupId>org.eurekaclinical</groupId>
+					<artifactId>cas-mock</artifactId>
+					<version>${cas-mock-version}</version>
+					<type>war</type>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>        
 	<dependencies>                      
