@@ -255,10 +255,7 @@ public class UserResource {
         Response response = null;
 
         if (user == null) {
-            LOGGER.error("User " + username + " not found");
             throw new HttpStatusException(Response.Status.NOT_FOUND);
-        } else {
-            this.localUserDao.refresh(user);
         }
 
         String newPassword = passwordChangeRequest.getNewPassword();
