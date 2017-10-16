@@ -38,6 +38,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -245,42 +247,58 @@ public class UserResource {
 	@RolesAllowed({"researcher", "admin"})
 	@Path("/passwordchange")
 	@POST
-	public void changePassword(@Context HttpServletRequest request,
-			PasswordChangeRequest passwordChangeRequest) {
+	public Response changePassword(@Context HttpServletRequest request, PasswordChangeRequest passwordChangeRequest) 
+	{
 		String username = request.getUserPrincipal().getName();
 		LocalUserEntity user = this.localUserDao.getByName(username);
-		if (user == null) {
+		Response response = null;
+		Status status = null;
+		
+		if (user == null) 
+		{
 			LOGGER.error("User " + username + " not found");
 			throw new HttpStatusException(Response.Status.NOT_FOUND);
-		} else
+		} 
+		else
 			this.localUserDao.refresh(user);
-
+		
 		String newPassword = passwordChangeRequest.getNewPassword();
 		String oldPasswordHash;
 		String newPasswordHash;
-		try {
+		try 
+		{
 			oldPasswordHash = StringUtil.md5(passwordChangeRequest.getOldPassword());
 			newPasswordHash = StringUtil.md5(newPassword);
-		} catch (NoSuchAlgorithmException e) {
+			
+		} 
+		catch (NoSuchAlgorithmException e) 
+		{
 			LOGGER.error(e.getMessage(), e);
-			throw new HttpStatusException(
-					Response.Status.INTERNAL_SERVER_ERROR, e);
+			throw new HttpStatusException(Response.Status.INTERNAL_SERVER_ERROR, e);
 		}
-		if (user.getPassword().equals(oldPasswordHash)) {
+		
+		if (user.getPassword().equals(oldPasswordHash)) 
+		{
 			user.setPassword(newPasswordHash);
 			user.setPasswordExpiration(this.getExpirationDate());
 			this.localUserDao.update(user);
 
-			try {
+			try 
+			{
 				this.emailSender.sendPasswordChangeMessage(user);
-			} catch (EmailException ee) {
+				response = Response.status(Status.NO_CONTENT).build();
+				status = Status.fromStatusCode(response.getStatus());
+			} 
+			catch (EmailException ee) 
+			{
 				LOGGER.error(ee.getMessage(), ee);
 			}
-		} else {
-			throw new HttpStatusException(
-					Response.Status.BAD_REQUEST,
-					"Error while changing password. Old password is incorrect.");
+		} 
+		else 
+		{
+			throw new HttpStatusException(Response.Status.BAD_REQUEST, "Error while changing password. Old password is incorrect.");
 		}
+		return response;
 	}
 
 	/**
