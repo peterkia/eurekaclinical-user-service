@@ -242,6 +242,7 @@ public class UserResource {
      * @param request the incoming servlet request
      * @param passwordChangeRequest the request to use to make the password
      * change
+     * @return the response.
      *
      * @throws HttpStatusException Thrown when a password cannot be properly
      * hashed, or the passwords are mismatched.
