@@ -142,8 +142,8 @@ public class FreeMarkerEmailSender implements EmailSender {
 	 * @throws EmailException Thrown if there are any errors in generating
 	 * content from the template, composing the email, or sending the email.
 	 */
-	private void sendMessage(final UserEntity inUser, final String templateName, final String subject, Map<String, Object> params) throws EmailException
-	{   
+	private void sendMessage(final UserEntity inUser, final String templateName, final String subject, Map<String, Object> params) 
+			throws EmailException{
 		if( inUser.getFullName() != null && (inUser.getFullName().length() > 0 && !inUser.getFullName().equals(" ")) ){
 			params.put("user", inUser.getFullName());}
 		
@@ -153,9 +153,10 @@ public class FreeMarkerEmailSender implements EmailSender {
 		else{
 			params.put("user", inUser.getUsername().trim());}
 		
-		params.put("config", this.userServiceProperties);
-		sendMessage(templateName, subject, inUser.getEmail(), params);
-	}
+			params.put("config", this.userServiceProperties);
+			sendMessage(templateName, subject, inUser.getEmail(), params);
+		}
+	
 
 	/**
 	 * Send an email to the given user with the given subject line, using
@@ -168,11 +169,12 @@ public class FreeMarkerEmailSender implements EmailSender {
 	 * @throws EmailException Thrown if there are any errors in generating
 	 * content from the template, composing the email, or sending the email.
 	 */
-	private void sendMessage(final UserEntity inUser, final String templateName, final String subject) throws EmailException 
-	{
+	private void sendMessage(final UserEntity inUser, final String templateName, final String subject) 
+			throws EmailException{
 		Map<String, Object> params = new HashMap<>();
 		sendMessage(inUser, templateName, subject, params);
-	}
+		}
+	
 
 	/**
 	 * Send an email to the given email address with the given subject line,
@@ -241,5 +243,4 @@ public class FreeMarkerEmailSender implements EmailSender {
 			throw new EmailException(e);
 		}
 	}
-
 }
