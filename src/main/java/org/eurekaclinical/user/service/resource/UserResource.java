@@ -38,6 +38,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.commons.lang3.StringUtils;
@@ -71,325 +73,328 @@ import org.eurekaclinical.user.service.util.StringUtil;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UserResource {
 
-	/**
-	 * The class logger.
-	 */
-	private static final Logger LOGGER = LoggerFactory.getLogger(
-			UserResource.class);
-	/**
-	 * Data access object to work with User objects.
-	 */
-	private final UserDao userDao;
-	
-	/**
-	 * Data access object to work with LocalUser objects.
-	 */
-	private final LocalUserDao localUserDao;
-	/**
-	 * Data access object to work with Role objects.
-	 */
-	private final RoleDao roleDao;
-	/**
-	 * Used to send emails to the user when needed.
-	 */
-	private final EmailSender emailSender;
-	/**
-	 * And validation errors that we may have encountered while validating a new
-	 * user request, or a user update.
-	 */
-	private String validationError;
-	
-	private UserToUserEntityVisitor visitor;
+    /**
+     * The class logger.
+     */
+    private static final Logger LOGGER = LoggerFactory.getLogger(
+            UserResource.class);
+    /**
+     * Data access object to work with User objects.
+     */
+    private final UserDao userDao;
 
-	/**
-	 * Create a UserResource object with a User DAO and a Role DAO.
-	 *
-	 * @param inUserDao DAO used to access {@link UserEntity} related functionality.
-	 * @param inLocalUserDao Local user dao
-	 * @param inRoleDao DAO used to access {@link RoleEntity} related functionality.
-	 * @param inEmailSender Used to send emails to the user when necessary.
-	 * @param inOAuthProviderDao OAuth provider dao
-	 * @param inLoginTypeDao Login type dao
-	 * @param inAuthenticationMethodDao Authentication method dao
-	 */
-	@Inject
-	public UserResource(UserDao inUserDao, LocalUserDao inLocalUserDao,
-			RoleDao inRoleDao,
-			EmailSender inEmailSender, 
-			OAuthProviderDao inOAuthProviderDao,
-			LoginTypeDao inLoginTypeDao,
-			AuthenticationMethodDao inAuthenticationMethodDao) {
-		this.userDao = inUserDao;
-		this.localUserDao = inLocalUserDao;
-		this.roleDao = inRoleDao;
-		this.emailSender = inEmailSender;
-		this.visitor = new UserToUserEntityVisitor(inOAuthProviderDao,
-				inRoleDao, inLoginTypeDao, inAuthenticationMethodDao);
-	}
+    /**
+     * Data access object to work with LocalUser objects.
+     */
+    private final LocalUserDao localUserDao;
+    /**
+     * Data access object to work with Role objects.
+     */
+    private final RoleDao roleDao;
+    /**
+     * Used to send emails to the user when needed.
+     */
+    private final EmailSender emailSender;
+    /**
+     * And validation errors that we may have encountered while validating a new
+     * user request, or a user update.
+     */
+    private String validationError;
 
-	/**
-	 * Get a list of all users in the system.
-	 *
-	 * @return A list of {@link UserEntity} objects.
-	 */
-	@RolesAllowed({"admin"})
-	@GET
-	public List<User> getUsers() {
-		List<UserEntity> users = this.userDao.getAll();
-		LOGGER.debug("Returning list of users");
-		UserEntityToUserVisitor visitor = new UserEntityToUserVisitor();
-		visitor.visit(users);
-		return visitor.getUsers();
-	}
+    private UserToUserEntityVisitor visitor;
 
-	/**
-	 * Get a user by the user's identification number.
-	 *
-	 * @param req in request
-	 * @param inId The identification number for the user to fetch.
-	 * @return The user referenced by the identification number.
-	 */
-	@RolesAllowed({"researcher", "admin"})
-	@Path("/{id}")
-	@GET
-	public User getUserById(@Context HttpServletRequest req,
-			@PathParam("id") Long inId) {
-		UserEntity userEntity = this.userDao.retrieve(inId);
-		if (userEntity == null) {
-			throw new HttpStatusException(Response.Status.NOT_FOUND);
-		}
-		if (!req.isUserInRole("admin") && !req.getRemoteUser().equals(userEntity.getUsername())) {
-			throw new HttpStatusException(Response.Status.FORBIDDEN);
-		}
-		this.userDao.refresh(userEntity);
-		LOGGER.debug("Returning user for ID {}", inId);
-		UserEntityToUserVisitor visitor = new UserEntityToUserVisitor();
-		userEntity.accept(visitor);
-		return visitor.getUser();
-	}
+    /**
+     * Create a UserResource object with a User DAO and a Role DAO.
+     *
+     * @param inUserDao DAO used to access {@link UserEntity} related
+     * functionality.
+     * @param inLocalUserDao Local user dao
+     * @param inRoleDao DAO used to access {@link RoleEntity} related
+     * functionality.
+     * @param inEmailSender Used to send emails to the user when necessary.
+     * @param inOAuthProviderDao OAuth provider dao
+     * @param inLoginTypeDao Login type dao
+     * @param inAuthenticationMethodDao Authentication method dao
+     */
+    @Inject
+    public UserResource(UserDao inUserDao, LocalUserDao inLocalUserDao,
+            RoleDao inRoleDao,
+            EmailSender inEmailSender,
+            OAuthProviderDao inOAuthProviderDao,
+            LoginTypeDao inLoginTypeDao,
+            AuthenticationMethodDao inAuthenticationMethodDao) {
+        this.userDao = inUserDao;
+        this.localUserDao = inLocalUserDao;
+        this.roleDao = inRoleDao;
+        this.emailSender = inEmailSender;
+        this.visitor = new UserToUserEntityVisitor(inOAuthProviderDao,
+                inRoleDao, inLoginTypeDao, inAuthenticationMethodDao);
+    }
 
-	/**
-	 * Get a user using the username.
-	 * @param req The HTTP request containing the user name.
-	 *
-	 * @return The user corresponding to the given name.
-	 */
-	@RolesAllowed({"researcher", "admin"})
-	@Path("/me")
-	@GET
-	public User getMe(@Context HttpServletRequest req) {
-		
-		AttributePrincipal principal = 
-				(AttributePrincipal) req.getUserPrincipal();
-		String username = principal.getName();
-		UserEntity userEntity = this.userDao.getByName(username);
-		if (userEntity != null) {
-			this.userDao.refresh(userEntity);
-		} else {
-			throw new HttpStatusException(Response.Status.NOT_FOUND);
-		}
-		LOGGER.debug("Returning user for name {}", username);
-		UserEntityToUserVisitor visitor = new UserEntityToUserVisitor();
-		userEntity.accept(visitor);
-		return visitor.getUser();
-	}
+    /**
+     * Get a list of all users in the system.
+     *
+     * @return A list of {@link UserEntity} objects.
+     */
+    @RolesAllowed({"admin"})
+    @GET
+    public List<User> getUsers() {
+        List<UserEntity> users = this.userDao.getAll();
+        LOGGER.debug("Returning list of users");
+        UserEntityToUserVisitor visitor = new UserEntityToUserVisitor();
+        visitor.visit(users);
+        return visitor.getUsers();
+    }
 
-	/**
-	 * Add a new user to the system. The user is activated immediately.
-	 *
-	 * @param user Object containing all the information about the user
-	 * to add.
-	 * @param uriInfo URI
-	 * @return  Response
-	 */
-	@RolesAllowed({"admin"})
-	@POST
-	public Response addUser(final User user, @Context UriInfo uriInfo) {
-		if (this.userDao.getByName(user.getUsername()) != null) {
-			throw new HttpStatusException(Response.Status.CONFLICT);
-		}
-		String[] errors = user.validate();
-		if (errors.length == 0) {
-			user.accept(visitor);
-			UserEntity userEntity = visitor.getUserEntity();
-			LOGGER.debug("Saving new user {}", userEntity.getEmail());
-			this.userDao.create(userEntity);
-			try {
-				LOGGER.debug("Sending email to {}", userEntity.getEmail());
-				this.emailSender.sendActivationMessage(userEntity);
-			} catch (EmailException e) {
-				LOGGER.error("Error sending email to {}", userEntity.getEmail(), e);
-			}
-		} else {
-			LOGGER.info(
-					"Invalid new user request: {}, reason {}", user,
-					this.validationError);
-			throw new HttpStatusException(
-					Response.Status.BAD_REQUEST, StringUtils.join(errors, ", "));
-		}
-		UserEntity addedUser = this.userDao.getByName(user.getUsername());
-		URI uri = uriInfo.getAbsolutePathBuilder().path(addedUser.getId().toString()).build();
-		return Response.created(uri).entity(user).build();
-	}
+    /**
+     * Get a user by the user's identification number.
+     *
+     * @param req in request
+     * @param inId The identification number for the user to fetch.
+     * @return The user referenced by the identification number.
+     */
+    @RolesAllowed({"researcher", "admin"})
+    @Path("/{id}")
+    @GET
+    public User getUserById(@Context HttpServletRequest req,
+            @PathParam("id") Long inId) {
+        UserEntity userEntity = this.userDao.retrieve(inId);
+        if (userEntity == null) {
+            throw new HttpStatusException(Response.Status.NOT_FOUND);
+        }
+        if (!req.isUserInRole("admin") && !req.getRemoteUser().equals(userEntity.getUsername())) {
+            throw new HttpStatusException(Response.Status.FORBIDDEN);
+        }
+        this.userDao.refresh(userEntity);
+        LOGGER.debug("Returning user for ID {}", inId);
+        UserEntityToUserVisitor visitor = new UserEntityToUserVisitor();
+        userEntity.accept(visitor);
+        return visitor.getUser();
+    }
 
-	/**
-	 * Changes a user's password.
-	 *
-	 * @param request the incoming servlet request
-	 * @param passwordChangeRequest the request to use to make the password
-	 * change
-	 *
-	 * @throws HttpStatusException Thrown when a password cannot be properly
-	 * hashed, or the passwords are mismatched.
-	 */
-	@RolesAllowed({"researcher", "admin"})
-	@Path("/passwordchange")
-	@POST
-	public void changePassword(@Context HttpServletRequest request,
-			PasswordChangeRequest passwordChangeRequest) {
-		String username = request.getUserPrincipal().getName();
-		LocalUserEntity user = this.localUserDao.getByName(username);
-		if (user == null) {
-			LOGGER.error("User " + username + " not found");
-			throw new HttpStatusException(Response.Status.NOT_FOUND);
-		} else
-			this.localUserDao.refresh(user);
+    /**
+     * Get a user using the username.
+     *
+     * @param req The HTTP request containing the user name.
+     *
+     * @return The user corresponding to the given name.
+     */
+    @RolesAllowed({"researcher", "admin"})
+    @Path("/me")
+    @GET
+    public User getMe(@Context HttpServletRequest req) {
 
-		String newPassword = passwordChangeRequest.getNewPassword();
-		String oldPasswordHash;
-		String newPasswordHash;
-		try {
-			oldPasswordHash = StringUtil.md5(passwordChangeRequest.getOldPassword());
-			newPasswordHash = StringUtil.md5(newPassword);
-		} catch (NoSuchAlgorithmException e) {
-			LOGGER.error(e.getMessage(), e);
-			throw new HttpStatusException(
-					Response.Status.INTERNAL_SERVER_ERROR, e);
-		}
-		if (user.getPassword().equals(oldPasswordHash)) {
-			user.setPassword(newPasswordHash);
-			user.setPasswordExpiration(this.getExpirationDate());
-			this.localUserDao.update(user);
+        AttributePrincipal principal
+                = (AttributePrincipal) req.getUserPrincipal();
+        String username = principal.getName();
+        UserEntity userEntity = this.userDao.getByName(username);
+        if (userEntity != null) {
+            this.userDao.refresh(userEntity);
+        } else {
+            throw new HttpStatusException(Response.Status.NOT_FOUND);
+        }
+        LOGGER.debug("Returning user for name {}", username);
+        UserEntityToUserVisitor visitor = new UserEntityToUserVisitor();
+        userEntity.accept(visitor);
+        return visitor.getUser();
+    }
 
-			try {
-				this.emailSender.sendPasswordChangeMessage(user);
-			} catch (EmailException ee) {
-				LOGGER.error(ee.getMessage(), ee);
-			}
-		} else {
-			throw new HttpStatusException(
-					Response.Status.BAD_REQUEST,
-					"Error while changing password. Old password is incorrect.");
-		}
-	}
+    /**
+     * Add a new user to the system. The user is activated immediately.
+     *
+     * @param user Object containing all the information about the user to add.
+     * @param uriInfo URI
+     * @return Response
+     */
+    @RolesAllowed({"admin"})
+    @POST
+    public Response addUser(final User user, @Context UriInfo uriInfo) {
+        if (this.userDao.getByName(user.getUsername()) != null) {
+            throw new HttpStatusException(Response.Status.CONFLICT);
+        }
+        String[] errors = user.validate();
+        if (errors.length == 0) {
+            user.accept(visitor);
+            UserEntity userEntity = visitor.getUserEntity();
+            LOGGER.debug("Saving new user {}", userEntity.getEmail());
+            this.userDao.create(userEntity);
+            try {
+                LOGGER.debug("Sending email to {}", userEntity.getEmail());
+                this.emailSender.sendActivationMessage(userEntity);
+            } catch (EmailException e) {
+                LOGGER.error("Error sending email to {}", userEntity.getEmail(), e);
+            }
+        } else {
+            LOGGER.info(
+                    "Invalid new user request: {}, reason {}", user,
+                    this.validationError);
+            throw new HttpStatusException(
+                    Response.Status.BAD_REQUEST, StringUtils.join(errors, ", "));
+        }
+        UserEntity addedUser = this.userDao.getByName(user.getUsername());
+        URI uri = uriInfo.getAbsolutePathBuilder().path(addedUser.getId().toString()).build();
+        return Response.created(uri).entity(user).build();
+    }
 
-	/**
-	 * Put an updated user to the system. Unless the user has the admin role,
-	 * s/he may only update their own user info.
-	 *
-	 * @param req in request
-	 * @param inUser Object containing all the information about the user to
-	 * add.
-	 * @param inId in Id
-	 * @return A "Created" response with a link to the user page if successful.
-	 */
-	@RolesAllowed({"researcher", "admin"})
-	@Path("/{id}")
-	@PUT
-	public Response putUser(@Context HttpServletRequest req, User inUser,
-							@PathParam("id") Long inId) {
-		String username = req.getUserPrincipal().getName();
-		if (!req.isUserInRole("admin") && !username.equals(inUser.getUsername())) {
-			throw new HttpStatusException(Response.Status.FORBIDDEN);
-		}
-		LOGGER.debug("Received updated user: {}", inUser);
-		Response response;
-                
-		UserEntity currentUser = this.userDao.retrieve(inId);
-		User me = getMe(req);
-                
-		boolean activation = (!currentUser.isActive()) && (inUser.isActive());
-                
-		if (this.validateUpdatedUser(currentUser, inUser, me)) {               
+    /**
+     * Changes a user's password.
+     *
+     * @param request the incoming servlet request
+     * @param passwordChangeRequest the request to use to make the password
+     * change
+     * @return the response.
+     *
+     * @throws HttpStatusException Thrown when a password cannot be properly
+     * hashed, or the passwords are mismatched.
+     */
+    @RolesAllowed({"researcher", "admin"})
+    @Path("/passwordchange")
+    @POST
+    public Response changePassword(@Context HttpServletRequest request, PasswordChangeRequest passwordChangeRequest) {
+        String username = request.getUserPrincipal().getName();
+        LocalUserEntity user = this.localUserDao.getByName(username);
+        Response response = null;
 
-			currentUser.setFirstName(inUser.getFirstName());
-			currentUser.setLastName(inUser.getLastName());
-			currentUser.setEmail(inUser.getEmail());
-			currentUser.setOrganization(inUser.getOrganization());
-			currentUser.setTitle(inUser.getTitle());
-			currentUser.setDepartment(inUser.getDepartment());
-			currentUser.setFullName(inUser.getFullName());                
+        if (user == null) {
+            throw new HttpStatusException(Response.Status.NOT_FOUND);
+        }
 
-			List<RoleEntity> updatedRoles = this.roleIdsToRoles(inUser.getRoles());                
-			currentUser.setRoles(updatedRoles);
-			currentUser.setActive(inUser.isActive());
-			currentUser.setLastLogin(inUser.getLastLogin());
+        String newPassword = passwordChangeRequest.getNewPassword();
+        String oldPasswordHash;
+        String newPasswordHash;
+        try {
+            oldPasswordHash = StringUtil.md5(passwordChangeRequest.getOldPassword());
+            newPasswordHash = StringUtil.md5(newPassword);
 
-			LOGGER.debug("Saving updated user: {}", currentUser.getEmail());
-			this.userDao.update(currentUser);
+        } catch (NoSuchAlgorithmException e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new HttpStatusException(Response.Status.INTERNAL_SERVER_ERROR, e);
+        }
 
-			if (activation) {
-				try {
-					this.emailSender.sendActivationMessage(currentUser);
-				} catch (EmailException ee) {
-					LOGGER.error(ee.getMessage(), ee);
-				}
-			}
+        if (user.getPassword().equals(oldPasswordHash)) {
+            user.setPassword(newPasswordHash);
+            user.setPasswordExpiration(this.getExpirationDate());
+            this.localUserDao.update(user);
 
-			response = Response.ok().
-					entity(currentUser).
-					build();
-		} else {
-			response = Response.notModified(this.validationError).build();
-		}               
+            try {
+                this.emailSender.sendPasswordChangeMessage(user);
+                response = Response.status(Status.NO_CONTENT).build();
+            } catch (EmailException ee) {
+                LOGGER.error(ee.getMessage(), ee);
+            }
+        } else {
+            throw new HttpStatusException(Response.Status.BAD_REQUEST, "Error while changing password. Old password is incorrect.");
+        }
+        return response;
+    }
 
-		return response; 
-	}
+    /**
+     * Put an updated user to the system. Unless the user has the admin role,
+     * s/he may only update their own user info.
+     *
+     * @param req in request
+     * @param inUser Object containing all the information about the user to
+     * add.
+     * @param inId in Id
+     * @return A "Created" response with a link to the user page if successful.
+     */
+    @RolesAllowed({"researcher", "admin"})
+    @Path("/{id}")
+    @PUT
+    public Response putUser(@Context HttpServletRequest req, User inUser,
+            @PathParam("id") Long inId) {
+        String username = req.getUserPrincipal().getName();
+        if (!req.isUserInRole("admin") && !username.equals(inUser.getUsername())) {
+            throw new HttpStatusException(Response.Status.FORBIDDEN);
+        }
+        LOGGER.debug("Received updated user: {}", inUser);
+        Response response;
 
-	/**
-	 * Validate that a user being updated does not violate any rules.
-	 *
-	 * @param currentUser The user before update.
-	 * @param inUser The updated user that to be validate.
-	 * @param me The current login user.
-	 * @return True if the user is valid, false otherwise.
-	 */
-	private boolean validateUpdatedUser(UserEntity currentUser, User inUser, User me) {
-		boolean result = true;
-		boolean updateByMe = true;
-		// the roles to check
-		RoleEntity adminUserRole = this.roleDao.getByName("admin");
+        UserEntity currentUser = this.userDao.retrieve(inId);
+        User me = getMe(req);
 
-		updateByMe = me.getUsername().equals(currentUser.getUsername());
-                
-		// a admin user can not be stripped of admin rights, 
-		// or be de-activated by him/herself.
-		if(currentUser.getRoles().contains(adminUserRole) && updateByMe){
-			if ( !inUser.getRoles().contains(Long.valueOf(2))) {
-				this.validationError = "admin user can not be stripped of admin rights by him/herself ";
-				result = false;
-			} else {
-				if (currentUser.isActive() && !inUser.isActive()){
-					this.validationError = "admin user can not be de-activated by him/herself";				
-					result = false;                                    
-				}
-			}
-		}
-                
-		return result;
-	}
+        boolean activation = (!currentUser.isActive()) && (inUser.isActive());
 
-	private Date getExpirationDate() {
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.DATE, 90);
-		return calendar.getTime();
-	}
+        if (this.validateUpdatedUser(currentUser, inUser, me)) {
 
-	private List<RoleEntity> roleIdsToRoles(List<Long> inRoleIds) {
-		List<RoleEntity> roles = new ArrayList<>(inRoleIds.size());
-		for (Long roleId : inRoleIds) {
-			roles.add(this.roleDao.retrieve(roleId));
-		}
-		return roles;
-	}
+            currentUser.setFirstName(inUser.getFirstName());
+            currentUser.setLastName(inUser.getLastName());
+            currentUser.setEmail(inUser.getEmail());
+            currentUser.setOrganization(inUser.getOrganization());
+            currentUser.setTitle(inUser.getTitle());
+            currentUser.setDepartment(inUser.getDepartment());
+            currentUser.setFullName(inUser.getFullName());
+
+            List<RoleEntity> updatedRoles = this.roleIdsToRoles(inUser.getRoles());
+            currentUser.setRoles(updatedRoles);
+            currentUser.setActive(inUser.isActive());
+            currentUser.setLastLogin(inUser.getLastLogin());
+
+            LOGGER.debug("Saving updated user: {}", currentUser.getEmail());
+            this.userDao.update(currentUser);
+
+            if (activation) {
+                try {
+                    this.emailSender.sendActivationMessage(currentUser);
+                } catch (EmailException ee) {
+                    LOGGER.error(ee.getMessage(), ee);
+                }
+            }
+
+            response = Response.ok().
+                    entity(currentUser).
+                    build();
+        } else {
+            response = Response.notModified(this.validationError).build();
+        }
+
+        return response;
+    }
+
+    /**
+     * Validate that a user being updated does not violate any rules.
+     *
+     * @param currentUser The user before update.
+     * @param inUser The updated user that to be validate.
+     * @param me The current login user.
+     * @return True if the user is valid, false otherwise.
+     */
+    private boolean validateUpdatedUser(UserEntity currentUser, User inUser, User me) {
+        boolean result = true;
+        boolean updateByMe = true;
+        // the roles to check
+        RoleEntity adminUserRole = this.roleDao.getByName("admin");
+
+        updateByMe = me.getUsername().equals(currentUser.getUsername());
+
+        // a admin user can not be stripped of admin rights, 
+        // or be de-activated by him/herself.
+        if (currentUser.getRoles().contains(adminUserRole) && updateByMe) {
+            if (!inUser.getRoles().contains(Long.valueOf(2))) {
+                this.validationError = "admin user can not be stripped of admin rights by him/herself ";
+                result = false;
+            } else {
+                if (currentUser.isActive() && !inUser.isActive()) {
+                    this.validationError = "admin user can not be de-activated by him/herself";
+                    result = false;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private Date getExpirationDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 90);
+        return calendar.getTime();
+    }
+
+    private List<RoleEntity> roleIdsToRoles(List<Long> inRoleIds) {
+        List<RoleEntity> roles = new ArrayList<>(inRoleIds.size());
+        for (Long roleId : inRoleIds) {
+            roles.add(this.roleDao.retrieve(roleId));
+        }
+        return roles;
+    }
 }
