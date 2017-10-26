@@ -143,19 +143,18 @@ public class FreeMarkerEmailSender implements EmailSender {
 	 * content from the template, composing the email, or sending the email.
 	 */
 	private void sendMessage(final UserEntity inUser, final String templateName, final String subject, Map<String, Object> params) 
-			throws EmailException{
-		if( inUser.getFullName() != null && (inUser.getFullName().length() > 0 && !inUser.getFullName().equals(" ")) ){
-			params.put("user", inUser.getFullName());}
+			throws EmailException {
+		if (inUser.getFullName() != null && (inUser.getFullName().length() > 0 && !inUser.getFullName().equals(" "))) {
+			params.put("user", inUser.getFullName());
+		} else if (( inUser.getFirstName() != null && (inUser.getFirstName().length() > 0 && !inUser.getFirstName().equals(" ")) ) ||
+		    (inUser.getLastName() != null && (inUser.getLastName().length() > 0 && !inUser.getLastName().equals(" "))) ) {
+			params.put("user", inUser.getFirstName() + " " + inUser.getLastName());
+		} else params.put("user", inUser.getUsername().trim());
 		
-		if( ( inUser.getFirstName() != null && (inUser.getFirstName().length() > 0 && !inUser.getFirstName().equals(" ")) ) ||
-		    (inUser.getLastName() != null && (inUser.getLastName().length() > 0 && !inUser.getLastName().equals(" "))) ){
-			params.put("user", inUser.getFirstName() + " " + inUser.getLastName());}
-		else{
-			params.put("user", inUser.getUsername().trim());}
+		params.put("config", this.userServiceProperties);
+		sendMessage(templateName, subject, inUser.getEmail(), params);
+	}
 		
-			params.put("config", this.userServiceProperties);
-			sendMessage(templateName, subject, inUser.getEmail(), params);
-		}
 	
 
 	/**
