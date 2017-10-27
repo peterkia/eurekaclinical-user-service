@@ -144,10 +144,10 @@ public class FreeMarkerEmailSender implements EmailSender {
 	 */
 	private void sendMessage(final UserEntity inUser, final String templateName, final String subject, Map<String, Object> params) 
 			throws EmailException {
-		if (inUser.getFullName() != null && (inUser.getFullName().length() > 0 && !inUser.getFullName().equals(" "))) {
+		if (inUser.getFullName() != null && inUser.getFullName().trim().length() > 0 ) {
 			params.put("user", inUser.getFullName());
-		} else if (( inUser.getFirstName() != null && (inUser.getFirstName().length() > 0 && !inUser.getFirstName().equals(" ")) ) ||
-		    (inUser.getLastName() != null && (inUser.getLastName().length() > 0 && !inUser.getLastName().equals(" "))) ) {
+		} else if (( inUser.getFirstName() != null && inUser.getFirstName().trim().length() > 0) ||
+		    (inUser.getLastName() != null && inUser.getLastName().trim().length() > 0)) {
 			params.put("user", inUser.getFirstName() + " " + inUser.getLastName());
 		} else params.put("user", inUser.getUsername().trim());
 		
