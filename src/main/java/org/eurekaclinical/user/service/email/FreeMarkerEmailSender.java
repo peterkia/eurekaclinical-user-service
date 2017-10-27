@@ -148,17 +148,27 @@ public class FreeMarkerEmailSender implements EmailSender {
             final String templateName, final String subject, 
             Map<String, Object> params)
             throws EmailException {
-        if (StringUtils.isNotEmpty(inUser.getFullName())) {
-            params.put("user", inUser.getFullName());
-        } else if (StringUtils.isNotEmpty(inUser.getFirstName())
-                || StringUtils.isNotEmpty(inUser.getLastName())) {
-            params.put("user", inUser.getFirstName() + " " + inUser.getLastName());
-        } else {
-            params.put("user", inUser.getUsername());
-        }
-
+        params.put("user", extractDisplayName(inUser));
         params.put("config", this.userServiceProperties);
         sendMessage(templateName, subject, inUser.getEmail(), params);
+    }
+    
+    /**
+     * Extracts a string to put in the "Dear" part of the email for the user's
+     * name.
+     * 
+     * @param inUser the user entity.
+     * @return the name string.
+     */
+    private String extractDisplayName(UserEntity inUser) {
+        if (StringUtils.isNotEmpty(inUser.getFullName())) {
+            return inUser.getFullName();
+        } else if (StringUtils.isNotEmpty(inUser.getFirstName())
+                || StringUtils.isNotEmpty(inUser.getLastName())) {
+            return inUser.getFirstName() + " " + inUser.getLastName();
+        } else {
+            return inUser.getUsername();
+        }
     }
 
     /**
