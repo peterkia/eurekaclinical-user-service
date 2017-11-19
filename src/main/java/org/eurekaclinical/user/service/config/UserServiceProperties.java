@@ -29,81 +29,92 @@ import org.eurekaclinical.standardapis.props.CasJerseyEurekaClinicalProperties;
 @Singleton
 public class UserServiceProperties extends CasJerseyEurekaClinicalProperties {
 
-	public UserServiceProperties() {
-		super("/etc/ec-user");
-	}
-	
-	@Override
-	public String getProxyCallbackServer() {
-		return this.getValue("eurekaclinical.userservice.callbackserver");
-	}
+    public UserServiceProperties() {
+        super("/etc/ec-user");
+    }
 
-	/**
-	 * Get the verification base URL, to be used in sending a verification email
-	 * to the user.
-	 *
-	 * @return The verification base URL, as found in the application
-	 * configuration file.
-	 */
-	public String getVerificationUrl() {
-		String verUrl = getUserWebappUrl();
-		return verUrl + (verUrl.endsWith("/") ? "" : "/") + "verify?code=";
-	}
+    @Override
+    public String getProxyCallbackServer() {
+        return getValue("eurekaclinical.userservice.callbackserver");
+    }
 
-	/**
-	 * Get the verification email subject line.
-	 *
-	 * @return The subject for the verification email.
-	 */
-	public String getVerificationEmailSubject() {
-		return this.getValue(
-				"eurekaclinical.userservice.email.verify.subject");
-	}
+    /**
+     * Get the verification base URL, to be used in sending a verification email
+     * to the user.
+     *
+     * @return The verification base URL, as found in the application
+     * configuration file.
+     */
+    public String getVerificationUrl() {
+        String verUrl = getUserWebappUrl();
+        return verUrl + (verUrl.endsWith("/") ? "" : "/") + "verify?code=";
+    }
 
-	/**
-	 * Get the activation email subject line.
-	 *
-	 * @return The subject for the activation email.
-	 */
-	public String getActivationEmailSubject() {
-		return this.getValue(
-				"eurekaclinical.userservice.email.activation.subject");
-	}
+    /**
+     * Get the verification email subject line.
+     *
+     * @return The subject for the verification email.
+     */
+    public String getVerificationEmailSubject() {
+        return getValue(
+                "eurekaclinical.userservice.email.verify.subject");
+    }
 
-	/**
-	 * Get the password change email subject line.
-	 *
-	 * @return The email subject line.
-	 */
-	public String getPasswordChangeEmailSubject() {
-		return this.getValue(
-				"eurekaclinical.userservice.email.password.subject");
-	}
+    /**
+     * Get the activation email subject line.
+     *
+     * @return The subject for the activation email.
+     */
+    public String getActivationEmailSubject() {
+        return getValue(
+                "eurekaclinical.userservice.email.activation.subject");
+    }
 
-	/**
-	 * Gets the subject line for a password reset email.
-	 *
-	 * @return The subject line.
-	 */
-	public String getPasswordResetEmailSubject() {
-		return this.getValue("eurekaclinical.userservice.email.reset.subject");
-	}
+    /**
+     * Get the password change email subject line.
+     *
+     * @return The email subject line.
+     */
+    public String getPasswordChangeEmailSubject() {
+        return getValue(
+                "eurekaclinical.userservice.email.password.subject");
+    }
 
-	/**
-	 * Get email address in the From header.
-	 *
-	 * @return an email address.
-	 */
-	public String getFromEmailAddress() {
-		return this.getValue("eurekaclinical.userservice.email.from");
-	}
+    /**
+     * Gets the subject line for a password reset email.
+     *
+     * @return The subject line.
+     */
+    public String getPasswordResetEmailSubject() {
+        return getValue("eurekaclinical.userservice.email.reset.subject");
+    }
 
-	@Override
-	public String getUrl() {
-		return getValue("eurekaclinical.userservice.url");
-	}
+    /**
+     * Get email address in the From header.
+     *
+     * @return an email address.
+     */
+    public String getFromEmailAddress() {
+        return getValue("eurekaclinical.userservice.email.from");
+    }
 
-	public String getUserWebappUrl() {
-		return getValue("eurekaclinical.userwebapp.url");
-	}
+    @Override
+    public String getUrl() {
+        return getValue("eurekaclinical.userservice.url");
+    }
+
+    public String getUserWebappUrl() {
+        return getValue("eurekaclinical.userwebapp.url");
+    }
+
+    /**
+     * Get the number of hours to keep a user registration without verification,
+     * before deleting it from the database.
+     *
+     * @return The number of hours listed in the configuration, and 72 if the
+     * configuration is not found.
+     */
+    public int getRegistrationTimeout() {
+        return getIntValue("eurekaclinical.userservice.registration.timeout", 72);
+    }
 }
