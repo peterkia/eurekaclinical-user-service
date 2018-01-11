@@ -45,6 +45,13 @@ import org.eurekaclinical.user.service.dao.RoleDao;
 
 import org.eurekaclinical.user.service.email.EmailSender;
 import org.eurekaclinical.user.service.email.FreeMarkerEmailSender;
+
+import org.eurekaclinical.scribeupext.provider.GitHubProvider;
+import org.eurekaclinical.scribeupext.provider.GlobusProvider;
+import org.eurekaclinical.scribeupext.provider.Google2Provider;
+import org.eurekaclinical.user.service.provider.ScribeExtGitHubProvider;
+import org.eurekaclinical.user.service.provider.ScribeExtGlobusProvider;
+import org.eurekaclinical.user.service.provider.ScribeExtGoogleProvider;
 /**
  * Configure all the non-web related binding for Guice.
  * 
@@ -68,7 +75,11 @@ public class AppModule extends AbstractModule {
 		bind(Context.class).to(InitialContext.class);
 		bind(Session.class).toProvider(
 				JndiIntegration.fromJndi(Session.class,
-						"java:comp/env/mail/Session"));     
+						"java:comp/env/mail/Session"));
+                
+                bind(GitHubProvider.class).toProvider(ScribeExtGitHubProvider.class);
+                bind(GlobusProvider.class).toProvider(ScribeExtGlobusProvider.class);
+                bind(Google2Provider.class).toProvider(ScribeExtGoogleProvider.class);
         }
     
 }
