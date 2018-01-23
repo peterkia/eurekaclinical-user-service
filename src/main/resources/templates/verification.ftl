@@ -17,7 +17,7 @@
  limitations under the License.
  #L%
 -->
-Dear ${user.firstName} ${user.lastName},
+Dear ${user},
 
 Welcome to Eureka! Clinical Analytics.
 

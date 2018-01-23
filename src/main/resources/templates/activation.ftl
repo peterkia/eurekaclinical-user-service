@@ -17,7 +17,7 @@
  limitations under the License.
  #L%
 -->
-Dear ${user.firstName} ${user.lastName},
+Dear ${user},
 
 Your account on Eureka! Clinical Analytics has been activated. Go to ${applicationUrl} and click the Login button, and enter the email address and password that you provided when you registered for an account.
 <#if (config.supportUri.name)?has_content>
