@@ -25,7 +25,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import org.eurekaclinical.scribeupext.profile.EurekaProfile;
 
 import org.eurekaclinical.scribeupext.profile.GoogleProfile;
 import org.eurekaclinical.scribeupext.provider.Google2Provider;

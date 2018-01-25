@@ -25,6 +25,7 @@ package org.eurekaclinical.user.service.util;
  *
  * @author miaoai
  */
+
 class PersonNameSplitter {
 
     private final String fullName;

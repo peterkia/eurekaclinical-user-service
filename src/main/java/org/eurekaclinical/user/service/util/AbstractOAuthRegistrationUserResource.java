@@ -19,12 +19,7 @@
  */
 package org.eurekaclinical.user.service.util;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.Response;
 
 import org.scribe.up.provider.OAuthProvider;
@@ -61,7 +56,6 @@ public class AbstractOAuthRegistrationUserResource<E extends EurekaProfile> {
             throw new HttpStatusException(Response.Status.BAD_REQUEST,
 					"No valid oauth credential found");
         }
-        System.out.println(credential);
         
         E profile = (E) this.provider.getUserProfile(credential); 
         if(profile ==null){
