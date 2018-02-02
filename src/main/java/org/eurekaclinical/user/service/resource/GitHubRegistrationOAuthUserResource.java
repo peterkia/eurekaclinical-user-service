@@ -19,7 +19,7 @@
  */
 package org.eurekaclinical.user.service.resource;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
