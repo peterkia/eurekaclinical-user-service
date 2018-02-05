@@ -23,6 +23,7 @@
         <ec-user-client-version>1.0-Alpha-26</ec-user-client-version>
         <ec-common-version>2.0-Alpha-39</ec-common-version>
         <ec-standard-apis-version>2.0-Alpha-19</ec-standard-apis-version>
+        <scribe-up-ext-version>2.0-Beta-2</scribe-up-ext-version>
     </properties>
 
     <scm>
@@ -291,6 +292,11 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eurekaclinical</groupId>
+            <artifactId>scribe-up-ext</artifactId>
+            <version>${scribe-up-ext-version}</version>
         </dependency>
     </dependencies>
 
