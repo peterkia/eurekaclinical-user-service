@@ -1,11 +1,17 @@
 # Eureka! Clinical User Service
-[Atlanta Clinical and Translational Science Institute (ACTSI)](http://www.actsi.org), [Emory University](http://www.emory.edu), Atlanta, GA
+[Georgia Clinical and Translational Science Alliance (Georgia CTSA)](http://www.georgiactsa.org), [Emory University](http://www.emory.edu), Atlanta, GA
 
 ## What does it do?
 It provides RESTful APIs for users to request an account, manage their profile and change their password. It also provides APIs for an administrator to create accounts.
 
-## Version 1.0 development series
+## Version 2.0 development series
 Latest release: [![Latest release](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-user-service/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.eurekaclinical/eurekaclinical-user-service)
+
+## Version 1.0.1
+Removed a beta dependency that was inadvertently included in version 1.0. This has no impact on functionality.
+
+## Version 1.0
+Initial release.
 
 ## Version history
 No final releases yet
