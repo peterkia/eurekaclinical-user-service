@@ -13,18 +13,18 @@
     <parent>
         <groupId>org.eurekaclinical</groupId>
         <artifactId>eurekaclinical-parent-standard-deps</artifactId>
-        <version>4-Alpha-3</version>
+        <version>4-Alpha-4-SNAPSHOT</version>
     </parent>        
     
     <properties>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <eureka.build.timestamp>${maven.build.timestamp}</eureka.build.timestamp>
-        <ec-user-common-version>1.4</ec-user-common-version>
-        <ec-user-client-version>1.4</ec-user-client-version>
-        <ec-common-version>5.0-Alpha-6</ec-common-version>
-        <ec-standard-apis-version>4.0-Alpha-5</ec-standard-apis-version>
-        <scribe-up-ext-version>2.2</scribe-up-ext-version>
-        <cas-mock-version>2.3</cas-mock-version>
+        <ec-user-common-version>1.5-SNAPSHOT</ec-user-common-version>
+        <ec-user-client-version>1.5-SNAPSHOT</ec-user-client-version>
+        <ec-common-version>5.0-Alpha-7-SNAPSHOT</ec-common-version>
+        <ec-standard-apis-version>4.0-Alpha-6-SNAPSHOT</ec-standard-apis-version>
+        <scribe-up-ext-version>2.3-SNAPSHOT</scribe-up-ext-version>
+        <cas-mock-version>2.4-SNAPSHOT</cas-mock-version>
     </properties>
 
     <scm>
