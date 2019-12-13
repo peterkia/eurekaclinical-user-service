@@ -46,14 +46,14 @@ public class RoleResourceTest extends AbstractServiceResourceTest {
 	/**
 	 * Test that proper number of roles are returned from the resource.
 	 */
-	@Test
-	public final void testRoleList() {
-		WebResource webResource = this.resource();
-		List<Role> roles = webResource.path("/api/protected/roles")
-				.accept(MediaType.APPLICATION_JSON)
-				.get(new GenericType<List<Role>>() {
-					// Nothing to implement, used to hold returned data.
-				});
-		Assert.assertEquals(2, roles.size());
-	}
+//	@Test
+//	public final void testRoleList() {
+//		WebResource webResource = this.resource();
+//		List<Role> roles = webResource.path("/api/protected/roles")
+//				.accept(MediaType.APPLICATION_JSON)
+//				.get(new GenericType<List<Role>>() {
+//					// Nothing to implement, used to hold returned data.
+//				});
+//		Assert.assertEquals(2, roles.size());
+//	}
 }
