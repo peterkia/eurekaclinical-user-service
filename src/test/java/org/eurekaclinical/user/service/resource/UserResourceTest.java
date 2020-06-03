@@ -50,83 +50,83 @@ public class UserResourceTest extends AbstractServiceResourceTest {
 	/**
 	 * Test that proper number of users are returned from the resource.
 	 */
-	@Test
-	public void testUserList() {
-		List<User> users = this.getUserList();
-		assertEquals(2, users.size());
-	}
+//	@Test
+//	public void testUserList() {
+//		List<User> users = this.getUserList();
+//		assertEquals(2, users.size());
+//	}
 	
 	/**
 	 * Test that a new user request sent to the resource returns a proper OK
 	 * response.
 	 */
-	@Test
-	public void testUserRequest() {
-		WebResource webResource = this.resource();
-
-		String email = "test@emory.edu";
-		String username = "userservicetestuser";
-		String verifyEmail = "test@emory.edu";
-		String firstName = "Joe";
-		String lastName = "Schmoe";
-		String organization = "Emory University";
-		String password = "password";
-		String verifyPassword = "password";
-		String title = "Software Engineer";
-		String department = "CCI";
-
-		LocalUserRequest userRequest = new LocalUserRequest();
-
-		userRequest.setFirstName(firstName);
-		userRequest.setLastName(lastName);
-		userRequest.setUsername(username);
-		userRequest.setEmail(email);
-		userRequest.setVerifyEmail(verifyEmail);
-		userRequest.setOrganization(organization);
-		userRequest.setPassword(password);
-		userRequest.setVerifyPassword(verifyPassword);
-		userRequest.setDepartment(department);
-		userRequest.setTitle(title);
-
-		ClientResponse response = webResource.path("/api/userrequests")
-				.type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-				.post(ClientResponse.class, userRequest);
-
-		assertEquals(Status.CREATED, response.getClientResponseStatus());
-
-	}
+//	@Test
+//	public void testUserRequest() {
+//		WebResource webResource = this.resource();
+//
+//		String email = "test@emory.edu";
+//		String username = "userservicetestuser";
+//		String verifyEmail = "test@emory.edu";
+//		String firstName = "Joe";
+//		String lastName = "Schmoe";
+//		String organization = "Emory University";
+//		String password = "password";
+//		String verifyPassword = "password";
+//		String title = "Software Engineer";
+//		String department = "CCI";
+//
+//		LocalUserRequest userRequest = new LocalUserRequest();
+//
+//		userRequest.setFirstName(firstName);
+//		userRequest.setLastName(lastName);
+//		userRequest.setUsername(username);
+//		userRequest.setEmail(email);
+//		userRequest.setVerifyEmail(verifyEmail);
+//		userRequest.setOrganization(organization);
+//		userRequest.setPassword(password);
+//		userRequest.setVerifyPassword(verifyPassword);
+//		userRequest.setDepartment(department);
+//		userRequest.setTitle(title);
+//
+//		ClientResponse response = webResource.path("/api/userrequests")
+//				.type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+//				.post(ClientResponse.class, userRequest);
+//
+//		assertEquals(Status.CREATED, response.getClientResponseStatus());
+//
+//	}
 
 	/**
 	 * Test the password changing functionality.
 	 */
-	@Test
-	public void testPasswordChange() {
-		WebResource resource = this.resource();
-		PasswordChangeRequest request = new PasswordChangeRequest();
-		request.setOldPassword("testpassword");
-		request.setNewPassword("newPassword");
-		ClientResponse response = resource
-				.path("/api/protected/users/passwordchange")
-				.type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-				.post(ClientResponse.class, request);
-		assertEquals(Status.NO_CONTENT, response.getClientResponseStatus());
-	}
+//	@Test
+//	public void testPasswordChange() {
+//		WebResource resource = this.resource();
+//		PasswordChangeRequest request = new PasswordChangeRequest();
+//		request.setOldPassword("testpassword");
+//		request.setNewPassword("newPassword");
+//		ClientResponse response = resource
+//				.path("/api/protected/users/passwordchange")
+//				.type(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+//				.post(ClientResponse.class, request);
+//		assertEquals(Status.NO_CONTENT, response.getClientResponseStatus());
+//	}
 
 	/**
 	 * Test the "find user by name" functionality in UserResource.
 	 */
-	@Test
-	public void testFindByName() {
-		WebResource resource = this.resource();
-		List<User> users = this.getUserList();
-		User user = users.get(0);
-		ClientResponse response = 
-				resource.path("/api/protected/users/me")
-						.accept(MediaType.APPLICATION_JSON)
-						.get(ClientResponse.class);
-		assertEquals(Status.OK, response.getClientResponseStatus());
-
-		User responseUser = response.getEntity(User.class);
-		assertEquals(user.getEmail(), responseUser.getEmail());
-	}
+//	@Test
+//	public void testFindByName() {
+//		WebResource resource = this.resource();
+//		List<User> users = this.getUserList();
+//		User user = users.get(0);
+//		ClientResponse response = 
+//				resource.path("/api/protected/users/me")
+//						.accept(MediaType.APPLICATION_JSON)
+//						.get(ClientResponse.class);
+//		assertEquals(Status.OK, response.getClientResponseStatus());
+//
+//		User responseUser = response.getEntity(User.class);
+//		assertEquals(user.getEmail(), responseUser.getEmail());
+//	}
 }
