@@ -393,4 +393,15 @@ limitations under the License.
             <column name="ROLE_ID" valueComputed="(SELECT ID FROM ROLES WHERE NAME='admin')"/>
         </insert>
     </changeSet>
+   <changeSet author="gdileep" id="1360440238345-23">
+	<sql>
+		INSERT INTO local_users (
+			WITH x as
+				(SELECT ID, PASSWORD, PASSWORDEXPIRATION, VERIFICATIONCODE, VERIFIED FROM local_USERS
+				WHERE id = (SELECT id FROM users WHERE username = 'superuser'))
+			SELECT y.id, x.password, x.passwordexpiration, x.verificationcode, x.verified FROM x JOIN users y
+			ON y.id != x.id WHERE y.USERNAME IN ('actuser','allofususer')
+		)
+	</sql>
+    </changeSet>
 </databaseChangeLog>

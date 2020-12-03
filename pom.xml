@@ -3,7 +3,7 @@
     <groupId>org.eurekaclinical</groupId>    
     <artifactId>eurekaclinical-user-service</artifactId>
     <packaging>war</packaging>
-    <version>2.5-SNAPSHOT</version>
+    <version>2.6-SNAPSHOT</version>
     <name>Eureka! Clinical User Service</name>
     <description>Eureka! Clinical User Services is the implementation of Eureka! Clinical User 
         web interface that is used by Eureka! Clinical multiple projects
