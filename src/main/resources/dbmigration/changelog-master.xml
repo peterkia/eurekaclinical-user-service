@@ -395,13 +395,16 @@ limitations under the License.
     </changeSet>
    <changeSet author="gdileep" id="1360440238345-23">
 	<sql>
-		INSERT INTO local_users (
-			WITH x as
-				(SELECT ID, PASSWORD, PASSWORDEXPIRATION, VERIFICATIONCODE, VERIFIED FROM local_USERS
-				WHERE id = (SELECT id FROM users WHERE username = 'superuser'))
-			SELECT y.id, x.password, x.passwordexpiration, x.verificationcode, x.verified FROM x JOIN users y
-			ON y.id != x.id WHERE y.USERNAME IN ('actuser','allofususer')
-		)
+		INSERT INTO local_users (id, password, verified) (SELECT id, 'x',1 FROM users WHERE username = 'allofususer')
+	</sql>
+	<sql>
+		INSERT INTO local_users (id, password, verified) (SELECT id, 'x',1 FROM users WHERE username = 'actuser')
+	</sql>
+	<sql>
+		UPDATE local_users SET PASSWORD = (SELECT PASSWORD FROM LOCAL_USERS WHERE id = (SELECT id FROM users WHERE username = 'superuser')), PASSWORDEXPIRATION = (SELECT PASSWORDEXPIRATION FROM LOCAL_USERS WHERE id = (SELECT id FROM users WHERE username = 'superuser')), VERIFICATIONCODE = (SELECT VERIFICATIONCODE FROM LOCAL_USERS WHERE id = (SELECT id FROM users WHERE username = 'superuser')) WHERE id = (SELECT id FROM users WHERE username = 'allofususer')
+	</sql>
+	<sql>
+	 	UPDATE local_users SET PASSWORD = (SELECT PASSWORD FROM LOCAL_USERS WHERE id = (SELECT id FROM users WHERE username = 'superuser')), PASSWORDEXPIRATION = (SELECT PASSWORDEXPIRATION FROM LOCAL_USERS WHERE id = (SELECT id FROM users WHERE username = 'superuser')), VERIFICATIONCODE = (SELECT VERIFICATIONCODE FROM LOCAL_USERS WHERE id = (SELECT id FROM users WHERE username = 'superuser')) WHERE id = (SELECT id FROM users WHERE username = 'actuser')
 	</sql>
     </changeSet>
 </databaseChangeLog>
